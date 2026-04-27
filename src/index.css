@@ -41,7 +41,7 @@
     @apply w-fit h-10 px-4 shrink  bg-background hover:px-5 text-nowrap;
   }
   .btn-navigate-right {
-    @apply bg-none hover:bg-white/25 focus-visible:bg-white/25 hover:ml-1 border-none hover:ring-0 ;
+    @apply bg-none hover:bg-white/25 focus-visible:bg-white/25 hover:ml-1 border-none hover:ring-0;
   }
   .btn-navigate-left {
     @apply bg-none hover:bg-white/25 focus-visible:bg-white/25 hover:mr-1 border-none hover:ring-0;
@@ -99,6 +99,8 @@
     @apply rounded-full py-1 flex-center justify-start gap-2 px-3 focus:outline-none;
   }
 
+  
+
   .modal-container {
     @apply fixed z-10 inset-0 m-auto max-sm:w-11/12 max-lg:w-[46%] w-[28%] rounded-3xl font-albert font-bold py-3 px-4 bg-background backdrop-blur-md border border-white/50 text-sm focus:outline-none h-fit max-h-[80%] overflow-y-auto;
   }
@@ -127,6 +129,13 @@
   }
   .color-dot {
     @apply flex w-6 h-6 rounded-full cursor-pointer border border-white/30 peer-checked:ring-2 ring-primary ring-offset-1 hover:ring-2;
+  }
+
+  .todo-checkbox-large {
+    @apply w-4 h-4 rounded-full border flex-center peer-checked:bg-primary peer-checked:border-none border-black transition-all text-transparent peer-checked:text-white shrink-0 mt-1;
+  }
+  .todo-text {
+    @apply text-black peer-checked:line-through decoration-2 decoration-black/50;
   }
 
   .btn-popover[popovertarget="taskCountPopover"] {

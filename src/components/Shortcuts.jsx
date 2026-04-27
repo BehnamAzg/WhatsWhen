@@ -38,7 +38,17 @@ export default function Shortcuts({ dispatch, isShortcutsPanelOpen }) {
         <span className="text-base">Shortcuts</span>
       </h1>
 
-      <div className="menu-row-container mt-4 flex-col gap-3">list of shortcuts...</div>
+      <div className="menu-row-container mt-4 mb-2 flex-col gap-3 ">
+        <ul className="px-4">
+          <li><kbd>/</kbd> Open Shortcuts List</li>
+          <li><kbd>N</kbd> Create New Task</li>
+          <li><kbd>D</kbd> or <kbd>Right Arrow</kbd> Next Day</li>
+          <li><kbd>A</kbd> or <kbd>Left Arrow</kbd> Previous Day</li>
+          <li><kbd>C</kbd> Open Calendar</li>
+          <li><kbd>M</kbd> Open Menu</li>
+          <li><kbd>ESC</kbd> Close Tabs</li>
+        </ul>
+      </div>
     </div>
   );
 }

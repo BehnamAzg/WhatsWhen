@@ -39,7 +39,11 @@ const dates = {
       tag: "Morning Routine",
       reminder: true,
       repeat: [1, 3, 6],
-      todos: [{ text: "This is todo 1", done: false }],
+      todos: [
+        { text: "This is todo 1", done: false },
+        { text: "This is todo 2", done: true },
+        { text: "This is todo 3", done: false },
+      ],
       pomodoroTimer: false,
     },
   ],

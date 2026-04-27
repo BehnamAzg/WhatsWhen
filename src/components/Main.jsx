@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Card from "./Card";
 
 function timeToSeconds(t) {
@@ -6,6 +7,8 @@ function timeToSeconds(t) {
 }
 
 export default function Main({ cards }) {
+  const [activeCard, setActiveCard] = useState(0);
+
   const sortedCards = cards?.sort((a, b) => timeToSeconds(a.time) - timeToSeconds(b.time));
 
   return (
