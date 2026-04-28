@@ -1,11 +1,7 @@
 import { useState } from "react";
-import Card from "./Card";
 import { useStateContext } from "./StateProvider";
-
-function timeToSeconds(t) {
-  const [h, m] = t.split(":").map(Number);
-  return h * 3600 + m * 60;
-}
+import { timeToSeconds } from "../utils/time"
+import Card from "./Card";
 
 export default function Main() {
   const { cards } = useStateContext();

@@ -1,20 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
 import { useStateContext } from "./StateProvider";
+import { formatDate } from "../utils/date";
 
 import Button from "./Button";
 import Icon from "./Icon";
 
-const formatDate = (date) => {
-  if (!date) return "";
-
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
-};
+import "react-day-picker/style.css";
 
 export default function Calendar() {
   const { dispatch, isCalendarPanelOpen } = useStateContext();
@@ -34,6 +26,7 @@ export default function Calendar() {
       }
     };
 
+    // Focusing on the first element after opening a panel (for tabindex accessibility)
     if (isCalendarPanelOpen) {
       const focusableElements = componentRef.current.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
       if (focusableElements.length > 0) {

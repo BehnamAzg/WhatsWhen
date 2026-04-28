@@ -1,21 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { formatDate, shiftDate } from "../utils/date";
 
 const StateContext = createContext();
-
-function formatDate(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
-}
-
-function shiftDate(dateString, days) {
-  const date = new Date(dateString);
-  date.setDate(date.getDate() + days);
-  // return date.toISOString().split("T")[0];
-  return formatDate(date);
-}
 
 const dates = {
   "2026-04-26": [
