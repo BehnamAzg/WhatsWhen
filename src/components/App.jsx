@@ -3,7 +3,6 @@ import { StateProvider } from "./StateProvider";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-
 import Panel from "./Panel";
 
 export default function App() {

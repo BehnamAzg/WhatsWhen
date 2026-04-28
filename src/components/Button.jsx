@@ -11,14 +11,14 @@ const types = {
   close: "btn-close",
   theme: "btn-theme",
   themeSelected: "btn-theme-selected",
-  install: "btn-install"
+  install: "btn-install",
 };
 
 const widths = {
   default: "",
   full: "w-full",
   fit: "w-fit",
-}
+};
 
 export default function Button({ children, type = "default", popoverTarget = "", actionType, width = "default" }) {
   const { dispatch } = useStateContext();
