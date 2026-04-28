@@ -1,3 +1,5 @@
+import { useStateContext } from "./StateProvider";
+
 const types = {
   default: "",
   circle: "btn-circle",
@@ -18,7 +20,9 @@ const widths = {
   fit: "w-fit",
 }
 
-export default function Button({ children, type = "default", popoverTarget = "", dispatch, actionType, width = "default" }) {
+export default function Button({ children, type = "default", popoverTarget = "", actionType, width = "default" }) {
+  const { dispatch } = useStateContext();
+
   return (
     <button type="button" className={`btn ${types[type]} ${widths[width]}`} onClick={type === "popover" ? () => "" : () => dispatch({ type: `${actionType}` })} popoverTarget={popoverTarget}>
       {children}

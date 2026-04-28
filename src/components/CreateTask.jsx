@@ -1,12 +1,16 @@
 import { useEffect, useRef } from "react";
 
+import { useStateContext } from "./StateProvider";
+
 import Button from "./Button";
 import ColorSelection from "./ColorSelection";
 import DayRepetition from "./DayRepetition";
 import Icon from "./Icon";
 import Reminder from "./Reminder";
 
-export default function CreateTask({ dispatch, isCreateTaskPanelOpen }) {
+export default function CreateTask() {
+  const { dispatch, isCreateTaskPanelOpen } = useStateContext();
+
   const componentRef = useRef(null);
 
   useEffect(() => {
@@ -41,7 +45,7 @@ export default function CreateTask({ dispatch, isCreateTaskPanelOpen }) {
         <span className="text-base">Create a New Task</span>
       </h1>
 
-      <form className="create-task-form">
+      <form className="create-task-form" onSubmit="">
         <div className="form-row-container">
           {/* Icon */}
           <Button type="circle">

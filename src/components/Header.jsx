@@ -6,6 +6,7 @@ import DateDisplay from "./DateDisplay";
 import TaskCountDisplay from "./TaskCountDisplay";
 import TaskPercentageDisplay from "./TaskPercentageDisplay";
 import DateNavigation from "./DateNavigation";
+import { useStateContext } from "./StateProvider";
 
 function dateInfoDisplay(date, curDate) {
   const createUtcDate = (dateString) => {
@@ -32,7 +33,8 @@ function dateInfoDisplay(date, curDate) {
   }
 }
 
-export default function Header({ dispatch, currentDate, viewDate, cardsCount }) {
+export default function Header() {
+  const { currentDate, viewDate } = useStateContext();
   const [day, setDay] = useState("");
   const [date, setDate] = useState("");
   const [month, setMonth] = useState("");
@@ -53,17 +55,17 @@ export default function Header({ dispatch, currentDate, viewDate, cardsCount }) 
   return (
     <header>
       <div className="header-row-container">
-        <Button type="circle" dispatch={dispatch} actionType="toggleMenu">
+        <Button type="circle" actionType="toggleMenu">
           <Icon name="list" size="20" />
         </Button>
         <DateDisplay day={day} date={date} month={month} />
-        <Button type="circle" dispatch={dispatch} actionType="toggleCalendar">
+        <Button type="circle" actionType="toggleCalendar">
           <Icon name="calendar" size="20" />
         </Button>
       </div>
       <div className="header-row-container">
-        <TaskCountDisplay completedTasks="?" totalTasks={cardsCount} />
-        <DateNavigation dateInfo={dateInfoDisplay(viewDate, currentDate)} dispatch={dispatch} />
+        <TaskCountDisplay />
+        <DateNavigation dateInfo={dateInfoDisplay(viewDate, currentDate)} />
         <TaskPercentageDisplay taskPercent="??" />
       </div>
     </header>

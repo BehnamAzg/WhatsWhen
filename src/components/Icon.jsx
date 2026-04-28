@@ -1,4 +1,5 @@
 const colors = {
+  none: "",
   white: "text-white",
   black: "text-black",
   primary: "text-primary",

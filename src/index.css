@@ -99,7 +99,25 @@
     @apply rounded-full py-1 flex-center justify-start gap-2 px-3 focus:outline-none;
   }
 
-  
+  .card {
+    position: absolute;
+    top: 100%;
+    scale: 0.92;
+    /* transition: all 0.3s ease; */
+  }
+
+  .card.prev {
+    top: 0%;
+  }
+
+  .card.active {
+    top: 14.5%;
+    scale: 1;
+  }
+
+  .card.next {
+    top: 86%;
+  }
 
   .modal-container {
     @apply fixed z-10 inset-0 m-auto max-sm:w-11/12 max-lg:w-[46%] w-[28%] rounded-3xl font-albert font-bold py-3 px-4 bg-background backdrop-blur-md border border-white/50 text-sm focus:outline-none h-fit max-h-[80%] overflow-y-auto;
@@ -132,10 +150,10 @@
   }
 
   .todo-checkbox-large {
-    @apply w-4 h-4 rounded-full border flex-center peer-checked:bg-primary peer-checked:border-none border-black transition-all text-transparent peer-checked:text-white shrink-0 mt-1;
+    @apply w-4 h-4 rounded-full border flex-center peer-checked:bg-primary peer-checked:border-none border-black transition-all text-transparent peer-checked:text-white shrink-0 mt-0.5;
   }
   .todo-text {
-    @apply text-black peer-checked:line-through decoration-2 decoration-black/50;
+    @apply text-black text-sm peer-checked:line-through decoration-2 decoration-black/50;
   }
 
   .btn-popover[popovertarget="taskCountPopover"] {

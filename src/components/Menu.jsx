@@ -1,12 +1,16 @@
 import { useEffect, useRef } from "react";
 
+import { useStateContext } from "./StateProvider";
+
 import Accordion from "./Accordion";
 import Button from "./Button";
 import Icon from "./Icon";
 import ThemeSelector from "./ThemeSelector";
 import Version from "./Version";
 
-export default function Menu({ dispatch, isMenuPanelOpen }) {
+export default function Menu() {
+  const { dispatch, isMenuPanelOpen } = useStateContext();
+
   const componentRef = useRef(null);
 
   useEffect(() => {

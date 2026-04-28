@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
+import { useStateContext } from "./StateProvider";
 
 import Button from "./Button";
 import Icon from "./Icon";
@@ -15,7 +16,9 @@ const formatDate = (date) => {
   return `${year}-${month}-${day}`;
 };
 
-export default function Calendar({ dispatch, isCalendarPanelOpen }) {
+export default function Calendar() {
+  const { dispatch, isCalendarPanelOpen } = useStateContext();
+
   const [selected, setSelected] = useState(new Date());
   const componentRef = useRef(null);
 

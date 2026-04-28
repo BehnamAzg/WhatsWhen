@@ -1,9 +1,13 @@
 import { useEffect, useRef } from "react";
 
+import { useStateContext } from "./StateProvider";
+
 import Button from "./Button";
 import Icon from "./Icon";
 
-export default function Shortcuts({ dispatch, isShortcutsPanelOpen }) {
+export default function Shortcuts() {
+  const { dispatch, isShortcutsPanelOpen } = useStateContext();
+
   const componentRef = useRef(null);
 
   useEffect(() => {
@@ -40,13 +44,27 @@ export default function Shortcuts({ dispatch, isShortcutsPanelOpen }) {
 
       <div className="menu-row-container mt-4 mb-2 flex-col gap-3 ">
         <ul className="px-4">
-          <li><kbd>/</kbd> Open Shortcuts List</li>
-          <li><kbd>N</kbd> Create New Task</li>
-          <li><kbd>D</kbd> or <kbd>Right Arrow</kbd> Next Day</li>
-          <li><kbd>A</kbd> or <kbd>Left Arrow</kbd> Previous Day</li>
-          <li><kbd>C</kbd> Open Calendar</li>
-          <li><kbd>M</kbd> Open Menu</li>
-          <li><kbd>ESC</kbd> Close Tabs</li>
+          <li>
+            <kbd>/</kbd> Open Shortcuts List
+          </li>
+          <li>
+            <kbd>N</kbd> Create New Task
+          </li>
+          <li>
+            <kbd>D</kbd> or <kbd>Right Arrow</kbd> Next Day
+          </li>
+          <li>
+            <kbd>A</kbd> or <kbd>Left Arrow</kbd> Previous Day
+          </li>
+          <li>
+            <kbd>C</kbd> Open Calendar
+          </li>
+          <li>
+            <kbd>M</kbd> Open Menu
+          </li>
+          <li>
+            <kbd>ESC</kbd> Close Tabs
+          </li>
         </ul>
       </div>
     </div>

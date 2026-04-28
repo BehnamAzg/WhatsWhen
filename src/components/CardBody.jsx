@@ -6,12 +6,12 @@ export default function CardBody({ card }) {
       <li className="mb-2">
         <p>{card.description}</p>
       </li>
-      {card.todos.map((todo) => (
-        <li className="mb-1">
-          <label className="cursor-pointer inline-flex gap-2 items-start">
-            <input type="checkbox" className="hidden peer" checked={todo.done} />
+      {card.todos.map((todo, index) => (
+        <li className="" key={index}>
+          <label className="cursor-pointer inline-flex gap-x-2 items-start justify-start">
+            <input type="checkbox" className="hidden peer" defaultChecked={todo.done} />
             <span className="todo-checkbox-large">
-              <Icon name="check-todo" size="12" />
+              <Icon name="check-todo" size="12" color="none" />
             </span>
             <span className="todo-text">{todo.text}</span>
           </label>
