@@ -10,7 +10,7 @@ import { useStateContext } from "./StateProvider";
 
 function dateInfoDisplay(date, curDate) {
   const createUtcDate = (dateString) => {
-    const [year, month, day] = dateString.split('-').map(Number);
+    const [year, month, day] = dateString.split("-").map(Number);
     return new Date(Date.UTC(year, month - 1, day));
   };
 
@@ -21,15 +21,15 @@ function dateInfoDisplay(date, curDate) {
   const diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
 
   if (diffInDays === 0) {
-    return "Today"
+    return "Today";
   } else if (diffInDays === 1) {
-    return "Tomorrow"
+    return "Tomorrow";
   } else if (diffInDays === -1) {
-    return "Yesterday"
+    return "Yesterday";
   } else if (diffInDays > 0) {
-    return `In ${diffInDays} days`
+    return `In ${diffInDays} days`;
   } else if (diffInDays < 0) {
-    return `${Math.abs(diffInDays)} days ago`
+    return `${Math.abs(diffInDays)} days ago`;
   }
 }
 
@@ -39,18 +39,21 @@ export default function Header() {
   const [date, setDate] = useState("");
   const [month, setMonth] = useState("");
 
-  useEffect(function () {
-    function getDate(dateString) {
-      const now = new Date(dateString);
-      const day = now.toLocaleDateString("en-US", { weekday: "short" });
-      const date = String(now.getDate()).padStart(2, "0");
-      const month = now.toLocaleDateString("en-US", { month: "short" });
-      setDay(day);
-      setDate(date);
-      setMonth(month);
-    }
-    getDate(viewDate);
-  }, [viewDate]);
+  useEffect(
+    function () {
+      function getDate(dateString) {
+        const now = new Date(dateString);
+        const day = now.toLocaleDateString("en-US", { weekday: "short" });
+        const date = String(now.getDate()).padStart(2, "0");
+        const month = now.toLocaleDateString("en-US", { month: "short" });
+        setDay(day);
+        setDate(date);
+        setMonth(month);
+      }
+      getDate(viewDate);
+    },
+    [viewDate],
+  );
 
   return (
     <header>

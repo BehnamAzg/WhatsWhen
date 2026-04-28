@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useStateContext } from "./StateProvider";
-import { timeToSeconds } from "../utils/time"
+import { timeToSeconds } from "../utils/time";
 import Card from "./Card";
 
 export default function Main() {
