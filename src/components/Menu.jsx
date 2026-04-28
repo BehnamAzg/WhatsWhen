@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-import { useStateContext } from "./StateProvider";
+import useStateContext from "../context/useStateContext";
 
 import Accordion from "./Accordion";
 import Button from "./Button";

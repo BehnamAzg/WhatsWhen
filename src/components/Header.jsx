@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
+import useStateContext from "../context/useStateContext";
+
 import Button from "./Button";
 import Icon from "./Icon";
 import DateDisplay from "./DateDisplay";
 import TaskCountDisplay from "./TaskCountDisplay";
 import TaskPercentageDisplay from "./TaskPercentageDisplay";
 import DateNavigation from "./DateNavigation";
-import { useStateContext } from "./StateProvider";
 
 function dateInfoDisplay(date, curDate) {
   const createUtcDate = (dateString) => {

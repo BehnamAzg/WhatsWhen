@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { DayPicker } from "react-day-picker";
-import { useStateContext } from "./StateProvider";
+
+import useStateContext from "../context/useStateContext";
 import { formatDate } from "../utils/date";
 
 import Button from "./Button";

@@ -1,7 +1,6 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { formatDate, shiftDate } from "../utils/date";
-
-const StateContext = createContext();
+import StateContext from './StateContext';
 
 const dates = {
   "2026-04-26": [
@@ -156,7 +155,7 @@ function reducer(state, action) {
   }
 }
 
-function StateProvider({ children }) {
+export default function StateProvider({ children }) {
   const [{ isMenuPanelOpen, isCalendarPanelOpen, isCreateTaskPanelOpen, isShortcutsPanelOpen, currentDate, viewDate }, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -224,11 +223,3 @@ function StateProvider({ children }) {
     </StateContext.Provider>
   );
 }
-
-function useStateContext() {
-  const context = useContext(StateContext);
-  if (context === undefined) throw new Error("StateContext was used outside of the StateProvider.");
-  return context;
-}
-
-export { StateProvider, useStateContext };

@@ -1,4 +1,4 @@
-import { StateProvider } from "./StateProvider";
+import StateProvider from "../context/StateProvider";
 
 import Header from "./Header";
 import Main from "./Main";

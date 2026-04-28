@@ -1,5 +1,6 @@
+import useStateContext from "../context/useStateContext";
+
 import Button from "./Button";
-import { useStateContext } from "./StateProvider";
 
 export default function TaskCountDisplay() {
   const { cardsCount } = useStateContext();

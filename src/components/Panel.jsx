@@ -1,4 +1,4 @@
-import { useStateContext } from "./StateProvider";
+import useStateContext from "../context/useStateContext";
 
 import Menu from "./Menu";
 import Calendar from "./Calendar";
