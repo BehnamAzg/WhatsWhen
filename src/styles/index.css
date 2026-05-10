@@ -64,6 +64,12 @@
   .btn-install {
     @apply w-full h-10 text-sm bg-primary text-white;
   }
+  .btn-capsule-cancel {
+    @apply w-fit h-8 px-4 shrink bg-background hover:px-5 text-nowrap;
+  }
+  .btn-capsule-add {
+    @apply w-fit h-8 px-4 shrink bg-primary hover:px-5 text-nowrap text-white;
+  }
   .date-navigation-capsule-container {
     @apply cursor-auto flex-center justify-between shrink-0 rounded-full bg-blur min-h-0 gap-x-3 p-1 w-auto h-10;
   }

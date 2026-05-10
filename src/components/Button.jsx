@@ -12,6 +12,8 @@ const types = {
   theme: "btn-theme",
   themeSelected: "btn-theme-selected",
   install: "btn-install",
+  cancel: "btn-capsule-cancel",
+  add: "btn-capsule-add",
 };
 
 const widths = {
@@ -20,7 +22,7 @@ const widths = {
   fit: "w-fit",
 };
 
-export default function Button({ children, type = "default", popoverTarget = "", actionType, width = "default" }) {
+export default function Button({ children, type = "default", popoverTarget = "", actionType = "", width = "default" }) {
   const { dispatch } = useStateContext();
 
   return (

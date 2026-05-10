@@ -88,6 +88,15 @@ export default function CreateTask() {
             <span>Pomodoro Timer</span>
           </Button>
         </div>
+
+        <div className="form-row-container mt-2 justify-end">
+          <Button type="cancel" actionType="toggleCreateTask">
+            Cancel
+          </Button>
+          <Button type="add" actionType="">
+            Add Task
+          </Button>
+        </div>
       </form>
     </div>
   );
