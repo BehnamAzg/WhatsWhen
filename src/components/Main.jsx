@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import useStateContext from "../context/useStateContext";
 import { timeToSeconds } from "../utils/time";
@@ -7,7 +7,7 @@ import Card from "./Card";
 
 export default function Main() {
   const { cards } = useStateContext();
-  const [activeCard, setActiveCard] = useState(1);
+  const [activeCard, setActiveCard] = useState(0);
 
   const getCardClass = (index) => {
     if (index === activeCard) return "card active";
@@ -17,6 +17,22 @@ export default function Main() {
   };
 
   const sortedCards = [...(cards || [])].sort((a, b) => timeToSeconds(a.time) - timeToSeconds(b.time));
+
+  useEffect(() => {
+    function handleScroll(e) {
+      if (e.deltaY > 0 && activeCard < sortedCards.length - 1) {
+        setActiveCard((activeCard) => activeCard + 1);
+      } else if (e.deltaY < 0 && activeCard > 0) {
+        setActiveCard((activeCard) => activeCard - 1);
+      }
+      console.log(activeCard);
+    }
+
+    window.addEventListener("wheel", handleScroll);
+    return () => {
+      window.removeEventListener("wheel", handleScroll);
+    };
+  }, [activeCard, sortedCards]);
 
   return (
     <main className="main-container">

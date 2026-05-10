@@ -3,7 +3,7 @@ import { formatDate, shiftDate } from "../utils/date";
 import StateContext from './StateContext';
 
 const dates = {
-  "2026-04-26": [
+  "2026-05-10": [
     {
       id: "550e8400-e29b-41d4-a716-146655440000",
       time: "06:00",
