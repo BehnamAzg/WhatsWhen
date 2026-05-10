@@ -72,6 +72,16 @@ export default function Menu() {
             </Button>
           </div>
         </Accordion>
+        <div className="menu-row-container">
+          <Button type="capsule" width="fit">
+            <Icon name="github" />
+            <span>Github</span>
+          </Button>
+          <Button type="capsule" width="full">
+            <Icon name="clipboard" />
+            <span>Release Notes</span>
+          </Button>
+        </div>
 
         <div className="menu-row-container">
           <Button type="capsule" width="fit">
@@ -84,16 +94,7 @@ export default function Menu() {
           </Button>
         </div>
 
-        <div className="menu-row-container">
-          <Button type="capsule" width="fit">
-            <Icon name="github" />
-            <span>Github</span>
-          </Button>
-          <Button type="capsule" width="full">
-            <Icon name="clipboard" />
-            <span>Release Notes</span>
-          </Button>
-        </div>
+        
 
         <div className="menu-row-container">
           <Button type="capsule" width="full">
