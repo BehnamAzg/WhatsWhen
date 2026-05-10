@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from "react";
 import { formatDate, shiftDate } from "../utils/date";
-import StateContext from './StateContext';
+import StateContext from "./StateContext";
 
 const dates = {
   "2026-05-10": [
@@ -66,6 +66,7 @@ const initialState = {
   currentDate: formatDate(new Date()),
   viewDate: formatDate(new Date()),
   isEmojiPanelOpen: false,
+  activeCard: 0,
   // isPomodoroTimerSelected: false,
   // isAddTodoSelected: false,
   // goToCurrentTask
@@ -146,6 +147,18 @@ function reducer(state, action) {
         viewDate: action.payload ? action.payload : state.viewDate,
         // isCalendarPanelOpen: false,
       };
+    case "goToPrevCard":
+      if (state.activeCard > 0)
+        return {
+          ...state,
+          activeCard: state.activeCard - 1,
+        };
+      return initialState;
+    case "goToNextCard":
+      return {
+        ...state,
+        activeCard: state.activeCard + 1,
+      };
     // case "addNewTask":
     //   return {
 
@@ -156,7 +169,7 @@ function reducer(state, action) {
 }
 
 export default function StateProvider({ children }) {
-  const [{ isMenuPanelOpen, isCalendarPanelOpen, isCreateTaskPanelOpen, isShortcutsPanelOpen, currentDate, viewDate }, dispatch] = useReducer(reducer, initialState);
+  const [{ isMenuPanelOpen, isCalendarPanelOpen, isCreateTaskPanelOpen, isShortcutsPanelOpen, currentDate, viewDate, activeCard }, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -197,6 +210,16 @@ export default function StateProvider({ children }) {
           event.preventDefault();
           dispatch({ type: "goToPrevDay" });
         }
+
+        if (event.key === "w" || event.key === "ArrowUp") {
+          event.preventDefault();
+          dispatch({ type: "goToPrevCard" });
+        }
+
+        if (event.key === "s" || event.key === "ArrowDown") {
+          event.preventDefault();
+          dispatch({ type: "goToNextCard" });
+        }
       }
     };
 
@@ -218,6 +241,7 @@ export default function StateProvider({ children }) {
         isCreateTaskPanelOpen,
         isCalendarPanelOpen,
         isShortcutsPanelOpen,
+        activeCard,
       }}>
       {children}
     </StateContext.Provider>
