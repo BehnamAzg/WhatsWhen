@@ -27,7 +27,7 @@
   @apply transition-all duration-200;
 }
 @utility card-element {
-  @apply w-full h-[82%] rounded-3xl flex-center flex-col justify-start absolute transition-all duration-300 bg-blur px-4;
+  @apply w-full h-[82%] rounded-3xl flex-center flex-col justify-start absolute transition-all duration-300 bg-blur px-4 py-2;
 }
 
 @layer components {
@@ -36,6 +36,9 @@
   }
   .btn-circle {
     @apply w-10 h-10 bg-background;
+  }
+  .btn-circle-sm {
+    @apply w-8 h-8 bg-background;
   }
   .btn-capsule {
     @apply w-fit h-10 px-4 shrink  bg-background hover:px-5 text-nowrap;
@@ -117,12 +120,12 @@
   }
 
   .card.active {
-    top: 14.5%;
+    top: 16.5%;
     scale: 1;
   }
 
   .card.next {
-    top: 86%;
+    top: 84%;
   }
 
   .modal-container {

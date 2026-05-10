@@ -7,7 +7,7 @@ export default function CardHeader({ card, index }) {
           <h1 className="text-lg w-52 truncate text-black" title={card.title}>
             {card.title}
           </h1>
-          <time className="text-sm text-black/30">{card.time}</time>
+          <time className="text-sm text-black/40">{card.time}</time>
         </div>
         <span className="rounded-full h-[6vh] aspect-square flex-center text-[5vh] text-white/50">{String(index + 1).padStart(2, "0")}</span>
       </div>

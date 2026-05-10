@@ -2,8 +2,8 @@ import Icon from "./Icon";
 
 export default function CardBody({ card }) {
   return (
-    <ul className="w-full h-full px-4 py-2.5 min-h-0 rounded-2xl bg-white/20 my-4 overflow-y-auto font-medium">
-      <li className="mb-2">
+    <ul className="w-full h-full px-4 py-2.5 min-h-0 rounded-2xl bg-white/20 mt-4 mb-3 overflow-y-auto font-medium">
+      <li className="mb-2 text-sm">
         <p>{card.description}</p>
       </li>
       {card.todos.map((todo, index) => (

@@ -3,6 +3,7 @@ import useStateContext from "../context/useStateContext";
 const types = {
   default: "",
   circle: "btn-circle",
+  circleSm: "btn-circle-sm",
   capsule: "btn-capsule",
   popover: "btn-popover",
   navigateRight: "btn-navigate-right",
