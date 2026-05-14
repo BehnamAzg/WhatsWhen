@@ -3,7 +3,7 @@ import { formatDate, shiftDate } from "../utils/date";
 import StateContext from "./StateContext";
 
 const dates = {
-  "2026-05-10": [
+  "2026-05-15": [
     {
       id: "550e8400-e29b-41d4-a716-146655440000",
       time: "06:00",
@@ -28,7 +28,7 @@ const dates = {
       icon: "☕",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       color: "#FDE68A66",
-      tag: "Morning Routine",
+      tag: "",
       reminder: true,
       repeat: [1, 3, 6],
       todos: [
