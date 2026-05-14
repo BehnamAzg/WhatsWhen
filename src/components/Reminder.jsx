@@ -1,11 +1,16 @@
 export default function Reminder() {
   return (
-    <div className="flex-center rounded-full h-10 px-4 bg-white/50 border border-white w-1/2 gap-2">
+    <div className="flex-center h-10 w-1/2 gap-2 rounded-full border border-white bg-white/50 px-4">
       <h3 className="flex-center text-neutral-500">Reminder</h3>
-      <label className="relative inline-flex items-center cursor-pointer rounded-full ring-primary hover:ring-2 focus-within:ring-2 focus-within:ring-primary">
-        <input type="checkbox" name="reminder" defaultValue="on" className="sr-only peer" />
-        <div className="w-8 h-4 bg-gray-300 rounded-full peer-checked:bg-primary transition-colors"></div>
-        <div className="absolute left-0.5 top-0.5 w-3 h-3 bg-white rounded-full transform peer-checked:translate-x-4 transition-transform"></div>
+      <label className="ring-primary focus-within:ring-primary relative inline-flex cursor-pointer items-center rounded-full focus-within:ring-2 hover:ring-2">
+        <input
+          type="checkbox"
+          name="reminder"
+          defaultValue="on"
+          className="peer sr-only"
+        />
+        <div className="peer-checked:bg-primary h-4 w-8 rounded-full bg-gray-300 transition-colors"></div>
+        <div className="absolute top-0.5 left-0.5 h-3 w-3 transform rounded-full bg-white transition-transform peer-checked:translate-x-4"></div>
       </label>
     </div>
   );

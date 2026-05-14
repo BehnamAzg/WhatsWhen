@@ -9,10 +9,15 @@ export default function TaskCountDisplay() {
     <div className="popover-wrapper">
       <Button type="popover" popoverTarget="taskCountPopover">
         <span className="text-xl">?</span>
-        <span className="text-xs text-primary pt-1">/{cardsCount}</span>
+        <span className="text-primary pt-1 text-xs">/{cardsCount}</span>
       </Button>
 
-      <dialog id="taskCountPopover" popover="hint" role="tooltip" className="popover-body popover-task-count">
+      <dialog
+        id="taskCountPopover"
+        popover="hint"
+        role="tooltip"
+        className="popover-body popover-task-count"
+      >
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
       </dialog>
     </div>

@@ -2,7 +2,7 @@ import Icon from "./Icon";
 
 export default function Accordion({ children, icon, title }) {
   return (
-    <details className="rounded-3xl w-full">
+    <details className="w-full rounded-3xl">
       <summary className="accordian-summary">
         <Icon name={icon} />
         <span className="mr-auto">{title}</span>

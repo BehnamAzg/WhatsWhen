@@ -169,11 +169,25 @@ function reducer(state, action) {
 }
 
 export default function StateProvider({ children }) {
-  const [{ isMenuPanelOpen, isCalendarPanelOpen, isCreateTaskPanelOpen, isShortcutsPanelOpen, currentDate, viewDate, activeCard }, dispatch] = useReducer(reducer, initialState);
+  const [
+    {
+      isMenuPanelOpen,
+      isCalendarPanelOpen,
+      isCreateTaskPanelOpen,
+      isShortcutsPanelOpen,
+      currentDate,
+      viewDate,
+      activeCard,
+    },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      const isInputOrTextarea = event.target.tagName === "INPUT" || event.target.tagName === "TEXTAREA" || event.target.isContentEditable;
+      const isInputOrTextarea =
+        event.target.tagName === "INPUT" ||
+        event.target.tagName === "TEXTAREA" ||
+        event.target.isContentEditable;
 
       if (!isInputOrTextarea) {
         if (event.key === "n") {
@@ -242,7 +256,8 @@ export default function StateProvider({ children }) {
         isCalendarPanelOpen,
         isShortcutsPanelOpen,
         activeCard,
-      }}>
+      }}
+    >
       {children}
     </StateContext.Provider>
   );

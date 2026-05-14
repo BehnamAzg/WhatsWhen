@@ -15,13 +15,19 @@ export default function Menu() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isMenuPanelOpen && componentRef.current && !componentRef.current.contains(event.target)) {
+      if (
+        isMenuPanelOpen &&
+        componentRef.current &&
+        !componentRef.current.contains(event.target)
+      ) {
         dispatch({ type: "toggleMenu" });
       }
     };
 
     if (isMenuPanelOpen) {
-      const focusableElements = componentRef.current.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const focusableElements = componentRef.current.querySelectorAll(
+        'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
       if (focusableElements.length > 0) {
         focusableElements[0].focus();
       } else {
@@ -55,13 +61,21 @@ export default function Menu() {
 
       <div className="menu-row-container mt-2 flex-col gap-3">
         <Accordion icon="info" title="About WhatsWhen?">
-          <p className="accordian-details">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem sapiente similique natus eos incidunt esse, maxime labore repellat officia nulla rerum nihil.</p>
+          <p className="accordian-details">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem
+            sapiente similique natus eos incidunt esse, maxime labore repellat
+            officia nulla rerum nihil.
+          </p>
         </Accordion>
 
         <Accordion icon="import" title="Import / Export Data">
-          <p className="accordian-details">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem sapiente similique natus eos incidunt esse, maxime labore repellat officia nulla rerum nihil.</p>
+          <p className="accordian-details">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem
+            sapiente similique natus eos incidunt esse, maxime labore repellat
+            officia nulla rerum nihil.
+          </p>
 
-          <div className="menu-row-container mb-2 ">
+          <div className="menu-row-container mb-2">
             <Button type="capsule" width="full">
               <Icon name="download" />
               <span>Import Data</span>
@@ -93,8 +107,6 @@ export default function Menu() {
             <span>share</span>
           </Button>
         </div>
-
-        
 
         <div className="menu-row-container">
           <Button type="capsule" width="full">

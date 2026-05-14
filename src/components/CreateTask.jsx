@@ -15,13 +15,19 @@ export default function CreateTask() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isCreateTaskPanelOpen && componentRef.current && !componentRef.current.contains(event.target)) {
+      if (
+        isCreateTaskPanelOpen &&
+        componentRef.current &&
+        !componentRef.current.contains(event.target)
+      ) {
         dispatch({ type: "toggleCreateTask" });
       }
     };
 
     if (isCreateTaskPanelOpen) {
-      const focusableElements = componentRef.current.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const focusableElements = componentRef.current.querySelectorAll(
+        'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
       if (focusableElements.length > 0) {
         focusableElements[0].focus();
       } else {
@@ -53,12 +59,23 @@ export default function CreateTask() {
           </Button>
 
           {/* Title */}
-          <input type="text" name="title" placeholder="Title" required className="form-input" />
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            required
+            className="form-input"
+          />
         </div>
 
         <div className="form-row-container">
           {/* Time */}
-          <input type="time" name="time" required className="form-input w-1/2" />
+          <input
+            type="time"
+            name="time"
+            required
+            className="form-input w-1/2"
+          />
 
           {/* Reminder */}
           <Reminder />
@@ -66,7 +83,12 @@ export default function CreateTask() {
 
         <div className="form-row-container">
           {/* Tag */}
-          <input type="text" name="tag" placeholder="Tag" className="form-input" />
+          <input
+            type="text"
+            name="tag"
+            placeholder="Tag"
+            className="form-input"
+          />
         </div>
 
         <DayRepetition />
@@ -75,7 +97,12 @@ export default function CreateTask() {
 
         <div className="form-row-container">
           {/* Description */}
-          <textarea name="description" rows="2" placeholder="Description" className="form-input rounded-2xl py-2.5 h-auto"></textarea>
+          <textarea
+            name="description"
+            rows="2"
+            placeholder="Description"
+            className="form-input h-auto rounded-2xl py-2.5"
+          ></textarea>
         </div>
 
         <div className="form-row-container">

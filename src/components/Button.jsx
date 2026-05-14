@@ -23,11 +23,26 @@ const widths = {
   fit: "w-fit",
 };
 
-export default function Button({ children, type = "default", popoverTarget = "", actionType = "", width = "default" }) {
+export default function Button({
+  children,
+  type = "default",
+  popoverTarget = "",
+  actionType = "",
+  width = "default",
+}) {
   const { dispatch } = useStateContext();
 
   return (
-    <button type="button" className={`btn ${types[type]} ${widths[width]}`} onClick={type === "popover" ? () => "" : () => dispatch({ type: `${actionType}` })} popoverTarget={popoverTarget}>
+    <button
+      type="button"
+      className={`btn ${types[type]} ${widths[width]}`}
+      onClick={
+        type === "popover"
+          ? () => ""
+          : () => dispatch({ type: `${actionType}` })
+      }
+      popoverTarget={popoverTarget}
+    >
       {children}
     </button>
   );

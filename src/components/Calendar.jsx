@@ -22,14 +22,20 @@ export default function Calendar() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isCalendarPanelOpen && componentRef.current && !componentRef.current.contains(event.target)) {
+      if (
+        isCalendarPanelOpen &&
+        componentRef.current &&
+        !componentRef.current.contains(event.target)
+      ) {
         dispatch({ type: "toggleCalendar" });
       }
     };
 
     // Focusing on the first element after opening a panel (for tabindex accessibility)
     if (isCalendarPanelOpen) {
-      const focusableElements = componentRef.current.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const focusableElements = componentRef.current.querySelectorAll(
+        'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
       if (focusableElements.length > 0) {
         focusableElements[0].focus();
       } else {
@@ -53,7 +59,7 @@ export default function Calendar() {
         <span className="text-base">Calendar</span>
       </h1>
 
-      <div className="px-4 flex-center my-2">
+      <div className="flex-center my-2 px-4">
         <DayPicker mode="single" selected={selected} onSelect={setSelected} />
       </div>
     </div>

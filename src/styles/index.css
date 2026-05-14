@@ -2,7 +2,8 @@
 
 @font-face {
   font-family: "Albert Sans";
-  src: url("../assets/fonts/AlbertSans-VariableFont_wght.ttf") format("truetype");
+  src: url("../assets/fonts/AlbertSans-VariableFont_wght.ttf")
+    format("truetype");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -15,48 +16,48 @@
 }
 
 @utility flex-center {
-  @apply flex justify-center items-center;
+  @apply flex items-center justify-center;
 }
 @utility bg-blur {
-  @apply backdrop-blur-md border border-white/50;
+  @apply border border-white/50 backdrop-blur-md;
 }
 @utility focus-primary {
-  @apply focus:outline-none ring-primary focus-visible:ring-2  focus-within:ring-2;
+  @apply ring-primary focus-within:ring-2 focus:outline-none focus-visible:ring-2;
 }
 @utility transition-animation {
   @apply transition-all duration-200;
 }
 @utility card-element {
-  @apply w-full h-[82%] rounded-3xl flex-center flex-col justify-start absolute transition-all duration-300 bg-blur px-4 py-2;
+  @apply flex-center bg-blur absolute h-[82%] w-full flex-col justify-start rounded-3xl px-4 py-2 transition-all duration-300;
 }
 
 @layer components {
   .btn {
-    @apply cursor-pointer flex-center shrink-0 rounded-full border border-white/50 text-xs focus-primary hover:ring-2 min-h-0 gap-x-1.5 p-2 transition-animation;
+    @apply flex-center focus-primary transition-animation min-h-0 shrink-0 cursor-pointer gap-x-1.5 rounded-full border border-white/50 p-2 text-xs hover:ring-2;
   }
   .btn-circle {
-    @apply w-10 h-10 bg-background;
+    @apply bg-background h-10 w-10;
   }
   .btn-circle-sm {
-    @apply w-8 h-8 bg-background;
+    @apply bg-background h-8 w-8;
   }
   .btn-capsule {
-    @apply w-fit h-10 px-4 shrink  bg-background hover:px-5 text-nowrap;
+    @apply bg-background h-10 w-fit shrink px-4 text-nowrap hover:px-5;
   }
   .btn-navigate-right {
-    @apply bg-none hover:bg-white/25 focus-visible:bg-white/25 hover:ml-1 border-none hover:ring-0;
+    @apply border-none bg-none hover:ml-1 hover:bg-white/25 hover:ring-0 focus-visible:bg-white/25;
   }
   .btn-navigate-left {
-    @apply bg-none hover:bg-white/25 focus-visible:bg-white/25 hover:mr-1 border-none hover:ring-0;
+    @apply border-none bg-none hover:mr-1 hover:bg-white/25 hover:ring-0 focus-visible:bg-white/25;
   }
   .btn-popover {
-    @apply h-10 w-20 bg-background;
+    @apply bg-background h-10 w-20;
   }
   .btn-create-task {
-    @apply bg-primary hover:bg-violet-600 hover:scale-95 hover:ring-0;
+    @apply bg-primary hover:scale-95 hover:bg-violet-600 hover:ring-0;
   }
   .btn-close {
-    @apply bg-primary p-1.5 hover:bg-violet-600 hover:scale-95 absolute top-3 right-3 w-7 h-7 hover:ring-0;
+    @apply bg-primary absolute top-3 right-3 h-7 w-7 p-1.5 hover:scale-95 hover:bg-violet-600 hover:ring-0;
   }
   .btn-theme {
     @apply bg-white px-2 py-1 hover:px-2.5;
@@ -65,47 +66,47 @@
     @apply bg-primary px-2 py-1 text-white hover:px-2.5;
   }
   .btn-install {
-    @apply w-full h-10 text-sm bg-primary text-white;
+    @apply bg-primary h-10 w-full text-sm text-white;
   }
   .btn-capsule-cancel {
-    @apply w-fit h-8 px-4 shrink bg-background hover:px-5 text-nowrap;
+    @apply bg-background h-8 w-fit shrink px-4 text-nowrap hover:px-5;
   }
   .btn-capsule-add {
-    @apply w-fit h-8 px-4 shrink bg-primary hover:px-5 text-nowrap text-white;
+    @apply bg-primary h-8 w-fit shrink px-4 text-nowrap text-white hover:px-5;
   }
   .date-navigation-capsule-container {
-    @apply cursor-auto flex-center justify-between shrink-0 rounded-full bg-blur min-h-0 gap-x-3 p-1 w-auto h-10;
+    @apply flex-center bg-blur h-10 min-h-0 w-auto shrink-0 cursor-auto justify-between gap-x-3 rounded-full p-1;
   }
   .capsule-container {
-    @apply cursor-auto flex-center justify-between rounded-full bg-blur  min-h-0 text-xs px-4 w-full h-10;
+    @apply flex-center bg-blur h-10 min-h-0 w-full cursor-auto justify-between rounded-full px-4 text-xs;
   }
   .capsule-version-container {
-    @apply flex-center rounded-full bg-blur bg-none min-h-0 text-xs px-4 w-full h-10  gap-x-1.5;
+    @apply flex-center bg-blur h-10 min-h-0 w-full gap-x-1.5 rounded-full bg-none px-4 text-xs;
   }
 }
 
 @layer utilities {
   .app-outter-container {
-    @apply w-screen h-screen min-h-0 select-none flex justify-center items-center bg-neutral-200 font-albert font-bold;
+    @apply font-albert flex h-screen min-h-0 w-screen items-center justify-center bg-neutral-200 font-bold select-none;
   }
   .app-inner-container {
-    @apply w-[30%] h-full min-h-0 flex flex-col px-4 py-3 max-sm:w-full max-md:w-1/2 max-lg:w-1/2;
+    @apply flex h-full min-h-0 w-[30%] flex-col px-4 py-3 max-lg:w-1/2 max-md:w-1/2 max-sm:w-full;
   }
   .header-row-container {
-    @apply flex justify-between items-center py-2;
+    @apply flex items-center justify-between py-2;
   }
   .main-container {
     perspective: 1000px;
-    @apply w-full min-h-0 flex-1 my-2;
+    @apply my-2 min-h-0 w-full flex-1;
   }
   .cards-container {
-    @apply relative flex-center flex-col w-full h-full overflow-hidden;
+    @apply flex-center relative h-full w-full flex-col overflow-hidden;
   }
   .footer-container {
-    @apply w-full min-h-0 flex-center justify-between py-2;
+    @apply flex-center min-h-0 w-full justify-between py-2;
   }
   .header-title {
-    @apply rounded-full py-1 flex-center justify-start gap-2 px-3 focus:outline-none;
+    @apply flex-center justify-start gap-2 rounded-full px-3 py-1 focus:outline-none;
   }
 
   .card {
@@ -129,40 +130,40 @@
   }
 
   .modal-container {
-    @apply fixed z-10 inset-0 m-auto max-sm:w-11/12 max-lg:w-[46%] w-[28%] rounded-3xl font-albert font-bold py-3 px-4 bg-background backdrop-blur-md border border-white/50 text-sm focus:outline-none h-fit max-h-[80%] overflow-y-auto;
+    @apply font-albert bg-background fixed inset-0 z-10 m-auto h-fit max-h-[80%] w-[28%] overflow-y-auto rounded-3xl border border-white/50 px-4 py-3 text-sm font-bold backdrop-blur-md focus:outline-none max-lg:w-[46%] max-sm:w-11/12;
   }
   .menu-row-container {
-    @apply font-medium w-full flex gap-2;
+    @apply flex w-full gap-2 font-medium;
   }
   .accordian-summary {
-    @apply rounded-full text-xs h-10 px-4 w-full bg-blur flex-center justify-start cursor-pointer ring-primary hover:ring-2 min-h-0 transition-animation duration-200 gap-x-2 focus-primary select-none;
+    @apply bg-blur flex-center ring-primary transition-animation focus-primary h-10 min-h-0 w-full cursor-pointer justify-start gap-x-2 rounded-full px-4 text-xs duration-200 select-none hover:ring-2;
   }
   .accordian-details {
-    @apply rounded-2xl text-xs my-2 px-4 py-2.5 w-full bg-blur;
+    @apply bg-blur my-2 w-full rounded-2xl px-4 py-2.5 text-xs;
   }
 
   .create-task-form {
-    @apply font-medium text-xs my-2 flex flex-col gap-3 focus:outline-none rounded-2xl;
+    @apply my-2 flex flex-col gap-3 rounded-2xl text-xs font-medium focus:outline-none;
   }
   .form-row-container {
-    @apply w-full flex gap-2 items-stretch;
+    @apply flex w-full items-stretch gap-2;
   }
   .form-input {
-    @apply rounded-full h-10 px-4 w-full bg-background border border-white focus-primary;
+    @apply bg-background focus-primary h-10 w-full rounded-full border border-white px-4;
   }
 
   .day-select {
-    @apply bg-white rounded-xl px-2 py-1 flex-center peer-checked:bg-primary peer-checked:text-white peer-checked:border-transparent peer-checked:hover:bg-background peer-checked:hover:text-neutral-500 ring-primary hover:ring-2 peer-checked:hover:ring-0;
+    @apply flex-center peer-checked:bg-primary peer-checked:hover:bg-background ring-primary rounded-xl bg-white px-2 py-1 peer-checked:border-transparent peer-checked:text-white hover:ring-2 peer-checked:hover:text-neutral-500 peer-checked:hover:ring-0;
   }
   .color-dot {
-    @apply flex w-6 h-6 rounded-full cursor-pointer border border-white/30 peer-checked:ring-2 ring-primary ring-offset-1 hover:ring-2;
+    @apply ring-primary flex h-6 w-6 cursor-pointer rounded-full border border-white/30 ring-offset-1 peer-checked:ring-2 hover:ring-2;
   }
 
   .todo-checkbox-large {
-    @apply w-4 h-4 rounded-full border flex-center peer-checked:bg-primary peer-checked:border-none border-black transition-all text-transparent peer-checked:text-white shrink-0 mt-0.5;
+    @apply flex-center peer-checked:bg-primary mt-0.5 h-4 w-4 shrink-0 rounded-full border border-black text-transparent transition-all peer-checked:border-none peer-checked:text-white;
   }
   .todo-text {
-    @apply text-black text-sm peer-checked:line-through decoration-2 decoration-black/50;
+    @apply text-sm text-black decoration-black/50 decoration-2 peer-checked:line-through;
   }
 
   .btn-popover[popovertarget="taskCountPopover"] {
@@ -186,20 +187,20 @@
       display 200ms,
       opacity 200ms;
     transition-behavior: allow-discrete;
-    @apply bg-blur text-sm mt-2 px-4 py-2.5 rounded-2xl w-44 opacity-100 bg-background focus:outline-none scale-100 translate-y-0 transition-animation;
+    @apply bg-blur bg-background transition-animation mt-2 w-44 translate-y-0 scale-100 rounded-2xl px-4 py-2.5 text-sm opacity-100 focus:outline-none;
     @starting-style {
-      @apply opacity-0 scale-0 -translate-y-full;
+      @apply -translate-y-full scale-0 opacity-0;
     }
   }
 
   .popover-wrapper:has(.popover-body:popover-open) .btn-popover {
-    @apply ring-2 ring-primary;
+    @apply ring-primary ring-2;
   }
 
   .enter-transition {
-    @apply opacity-100 scale-100 translate-y-0 transition-animation;
+    @apply transition-animation translate-y-0 scale-100 opacity-100;
     @starting-style {
-      @apply opacity-0 scale-0 -translate-y-full;
+      @apply -translate-y-full scale-0 opacity-0;
     }
   }
 }
