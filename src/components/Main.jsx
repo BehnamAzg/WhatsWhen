@@ -4,7 +4,7 @@ import useStateContext from "../context/useStateContext";
 import Card from "./Card";
 
 export default function Main() {
-  const { dispatch, activeCard, sortedCards } = useStateContext();
+  const { dispatch, activeCard, sortedCards, currentTask } = useStateContext();
 
   const getCardClass = (index) => {
     if (index === activeCard) return "card active";
@@ -38,8 +38,7 @@ export default function Main() {
               index={index}
               key={card.id}
               style={getCardClass(index)}
-              // color={activeCard === index ? card.color : "#FFFFFF4D"}
-              color="#FFFFFF4D"
+              color={currentTask.id === card.id ? card.color : "#FFFFFF4D"}
             />
           ))}
         </section>

@@ -57,6 +57,59 @@ const dates = {
       pomodoroTimer: false,
     },
   ],
+  "2026-05-16": [
+    {
+      id: "550e8400-e29b-41d4-a716-146655440000",
+      time: "11:00",
+      title: "This is a long title for testing",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      icon: "🌞",
+      color: "#FDE68A66",
+      tag: "Morning Routine",
+      reminder: true,
+      repeat: [1, 3, 6],
+      todos: [
+        { text: "This is todo 1", done: true },
+        { text: "This is todo 2", done: false },
+        { text: "This is todo 3", done: false },
+      ],
+      pomodoroTimer: false,
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-246655440000",
+      time: "11:30",
+      title: "This is a long title for testing",
+      icon: "☕",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      color: "#FDE68A66",
+      tag: "",
+      reminder: true,
+      repeat: [1, 3, 6],
+      todos: [
+        { text: "This is todo 1", done: false },
+        { text: "This is todo 2", done: true },
+        { text: "This is todo 3", done: false },
+      ],
+      pomodoroTimer: false,
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-346655440000",
+      time: "12:30",
+      title: "This is a long title for testing",
+      icon: "🏃‍♂️",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      color: "#FDE68A66",
+      tag: "Morning Routine",
+      reminder: true,
+      repeat: [1, 3, 6],
+      todos: [
+        { text: "This is todo 1", done: false },
+        { text: "This is todo 2", done: true },
+        { text: "This is todo 3", done: false },
+      ],
+      pomodoroTimer: false,
+    },
+  ],
 };
 
 const initialState = {
@@ -64,12 +117,13 @@ const initialState = {
   isCalendarPanelOpen: false,
   isCreateTaskPanelOpen: false,
   isShortcutsPanelOpen: false,
+  isEmojiPanelOpen: false,
+  currentTime: new Date(),
   currentDate: formatDate(new Date()),
   viewDate: formatDate(new Date()),
-  isEmojiPanelOpen: false,
-  activeCard: 0,
-  currentTime: new Date(),
   sortedCards: [],
+  currentTask: "",
+  activeCard: 0,
   // isPomodoroTimerSelected: false,
   // isAddTodoSelected: false,
   // goToCurrentTask
@@ -174,6 +228,26 @@ function reducer(state, action) {
           (a, b) => timeToSeconds(a.time) - timeToSeconds(b.time),
         ),
       };
+    case "updateCurrentTask":
+      return {
+        ...state,
+        currentTask: state.sortedCards.reduce((latestTask, task) => {
+          const taskDateTime = new Date(`${state.viewDate}T${task.time}:00`);
+          if (taskDateTime <= state.currentTime) {
+            return task;
+          }
+          return latestTask;
+        }, null),
+      };
+    case "goToCurrentTask": {
+      const index = state.sortedCards.findIndex(
+        (obj) => obj.id === state.currentTask.id,
+      );
+      return {
+        ...state,
+        activeCard: index,
+      };
+    }
     // case "addNewTask":
     //   return {
 
@@ -194,6 +268,8 @@ export default function StateProvider({ children }) {
       viewDate,
       activeCard,
       sortedCards,
+      currentTime,
+      currentTask,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -201,6 +277,10 @@ export default function StateProvider({ children }) {
   useEffect(() => {
     dispatch({ type: "updateSortedCards" });
   }, [viewDate]);
+
+  useEffect(() => {
+    dispatch({ type: "updateCurrentTask" });
+  }, [viewDate, currentTime]);
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -285,6 +365,7 @@ export default function StateProvider({ children }) {
         isShortcutsPanelOpen,
         activeCard,
         sortedCards,
+        currentTask,
       }}
     >
       {children}
