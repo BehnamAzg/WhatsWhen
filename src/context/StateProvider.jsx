@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from "react";
 import { formatDate, shiftDate } from "../utils/date";
+import { timeToSeconds } from "../utils/time";
 import StateContext from "./StateContext";
 
 const dates = {
@@ -67,6 +68,8 @@ const initialState = {
   viewDate: formatDate(new Date()),
   isEmojiPanelOpen: false,
   activeCard: 0,
+  currentTime: new Date(),
+  sortedCards: [],
   // isPomodoroTimerSelected: false,
   // isAddTodoSelected: false,
   // goToCurrentTask
@@ -159,6 +162,18 @@ function reducer(state, action) {
         ...state,
         activeCard: state.activeCard + 1,
       };
+    case "updateTime":
+      return {
+        ...state,
+        currentTime: new Date(),
+      };
+    case "updateSortedCards":
+      return {
+        ...state,
+        sortedCards: [...(dates[state.viewDate] || [])].sort(
+          (a, b) => timeToSeconds(a.time) - timeToSeconds(b.time),
+        ),
+      };
     // case "addNewTask":
     //   return {
 
@@ -178,9 +193,22 @@ export default function StateProvider({ children }) {
       currentDate,
       viewDate,
       activeCard,
+      sortedCards,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    dispatch({ type: "updateSortedCards" });
+  }, [viewDate]);
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      dispatch({ type: "updateTime" });
+    }, 60000);
+
+    return () => clearInterval(timerId);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -256,6 +284,7 @@ export default function StateProvider({ children }) {
         isCalendarPanelOpen,
         isShortcutsPanelOpen,
         activeCard,
+        sortedCards,
       }}
     >
       {children}

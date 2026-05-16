@@ -1,12 +1,10 @@
 import { useEffect } from "react";
-
 import useStateContext from "../context/useStateContext";
-import { timeToSeconds } from "../utils/time";
 
 import Card from "./Card";
 
 export default function Main() {
-  const { cards, dispatch, activeCard } = useStateContext();
+  const { dispatch, activeCard, sortedCards } = useStateContext();
 
   const getCardClass = (index) => {
     if (index === activeCard) return "card active";
@@ -14,10 +12,6 @@ export default function Main() {
     if (index === activeCard + 1) return "card next";
     return "card";
   };
-
-  const sortedCards = [...(cards || [])].sort(
-    (a, b) => timeToSeconds(a.time) - timeToSeconds(b.time),
-  );
 
   useEffect(() => {
     function handleScroll(e) {
@@ -44,7 +38,8 @@ export default function Main() {
               index={index}
               key={card.id}
               style={getCardClass(index)}
-              color={activeCard === index ? card.color : "#FFFFFF4D"}
+              // color={activeCard === index ? card.color : "#FFFFFF4D"}
+              color="#FFFFFF4D"
             />
           ))}
         </section>
