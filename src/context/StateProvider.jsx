@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useCallback, useEffect, useReducer, useRef } from "react";
 import { formatDate, shiftDate, isDateFuture } from "../utils/date";
 import { timeToSeconds } from "../utils/time";
 import StateContext from "./StateContext";
@@ -94,7 +94,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "14:40",
+      time: "15:39",
       title: "This is a long title for testing",
       icon: "🏃‍♂️",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -359,12 +359,12 @@ export default function StateProvider({ children }) {
       viewDate,
       activeCard,
       sortedCards,
-      currentTime,
       currentTask,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
 
+  // Updating the current task ##################################################
   useEffect(() => {
     dispatch({ type: "updateSortedCards" });
     dispatch({ type: "updateCurrentTask" });
@@ -378,20 +378,47 @@ export default function StateProvider({ children }) {
     }
   }, [viewDate, currentDate]);
 
-  useEffect(() => {
+  // Timer for updating the current task ########################################
+  const scheduleNextUpdateRef = useRef(null);
+  const timerRef = useRef(null);
+
+  const updateAndSchedule = useCallback(() => {
+    dispatch({ type: "updateTime" });
     dispatch({ type: "updateCurrentTask" });
-  }, [viewDate, currentTime]);
+    dispatch({ type: "goToCurrentTask" });
 
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      dispatch({ type: "updateTime" });
-      dispatch({ type: "updateCurrentTask" });
-      dispatch({ type: "goToCurrentTask" });
-    }, 60000);
-
-    return () => clearInterval(timerId);
+    if (scheduleNextUpdateRef.current) {
+      scheduleNextUpdateRef.current();
+    }
   }, []);
 
+  useEffect(() => {
+    const setupTimer = () => {
+      const now = new Date();
+      const seconds = now.getSeconds();
+      const milliseconds = now.getMilliseconds();
+
+      const delay = (60 - seconds) * 1000 - milliseconds;
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      timerRef.current = setTimeout(updateAndSchedule, delay);
+    };
+
+    scheduleNextUpdateRef.current = setupTimer;
+    setupTimer();
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      scheduleNextUpdateRef.current = null;
+    };
+  }, [updateAndSchedule]);
+
+  // Mouse scroll handler ######################################################
   useEffect(() => {
     function handleScroll(e) {
       if (e.deltaY > 50 && activeCard < sortedCards.length - 1) {
@@ -407,6 +434,7 @@ export default function StateProvider({ children }) {
     };
   }, [activeCard, sortedCards]);
 
+  // Shortcuts key handler ######################################################
   useEffect(() => {
     const handleKeyDown = (event) => {
       const isInputOrTextarea =
@@ -478,6 +506,7 @@ export default function StateProvider({ children }) {
     };
   }, []);
 
+  // Return body of the provider ################################################
   return (
     <StateContext.Provider
       value={{
