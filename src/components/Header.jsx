@@ -70,7 +70,7 @@ export default function Header() {
       <div className="header-row-container">
         <TaskCountDisplay />
         <DateNavigation dateInfo={dateInfoDisplay(viewDate, currentDate)} />
-        <TaskPercentageDisplay taskPercent="??" />
+        <TaskPercentageDisplay />
       </div>
     </header>
   );
