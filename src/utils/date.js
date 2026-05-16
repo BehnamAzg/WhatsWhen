@@ -11,8 +11,13 @@ function formatDate(date) {
 function shiftDate(dateString, days) {
   const date = new Date(dateString);
   date.setDate(date.getDate() + days);
-  // return date.toISOString().split("T")[0];
   return formatDate(date);
 }
 
-export { formatDate, shiftDate };
+function isDateFuture(currentDateString, viewDateString) {
+  const currentDate = new Date(currentDateString);
+  const viewDate = new Date(viewDateString);
+  return viewDate.getTime() > currentDate.getTime();
+}
+
+export { formatDate, shiftDate, isDateFuture };

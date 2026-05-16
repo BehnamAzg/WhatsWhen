@@ -3,7 +3,7 @@ import Button from "./Button";
 import Icon from "./Icon";
 
 export default function Footer() {
-  const { dispatch, currentTask, activeCard, sortedCards } = useStateContext();
+  const { currentTask, activeCard, sortedCards } = useStateContext();
 
   return (
     <footer className="footer-container">
