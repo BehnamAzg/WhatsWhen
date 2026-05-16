@@ -304,9 +304,21 @@ function reducer(state, action) {
       const index = state.sortedCards.findIndex(
         (obj) => obj.id === state.currentTask?.id,
       );
+
+      if (state.viewDate === state.currentDate)
+        return {
+          ...state,
+          activeCard: index,
+        };
+      if (isDateFuture(state.currentDate, state.viewDate))
+        return {
+          ...state,
+          activeCard: 0,
+        };
+
       return {
         ...state,
-        activeCard: index,
+        activeCard: state.sortedCards.length - 1,
       };
     }
     case "goToFirstTask": {
@@ -319,6 +331,12 @@ function reducer(state, action) {
       return {
         ...state,
         activeCard: state.sortedCards.length - 1,
+      };
+    }
+    case "goToCurrentDay": {
+      return {
+        ...state,
+        viewDate: state.currentDate,
       };
     }
     // case "addNewTask":
@@ -410,6 +428,16 @@ export default function StateProvider({ children }) {
         if (event.key === "c") {
           event.preventDefault();
           dispatch({ type: "toggleCalendar" });
+        }
+
+        if (event.key === "t") {
+          event.preventDefault();
+          dispatch({ type: "goToCurrentTask" });
+        }
+
+        if (event.key === "r") {
+          event.preventDefault();
+          dispatch({ type: "goToCurrentDay" });
         }
 
         if (event.key === "/") {
