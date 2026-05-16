@@ -1,7 +1,11 @@
+import useStateContext from "../context/useStateContext";
+
 import Icon from "./Icon";
 import Button from "./Button";
 
 export default function CardFooter({ card }) {
+  const { activeCard, sortedCards, currentTask, viewDate, currentDate } = useStateContext();
+
   return (
     <div className="flex w-full justify-between pb-[8.2vh] select-none">
       <time className="rounded-full bg-white/40 px-3 py-1.5 text-sm font-bold tracking-wider">

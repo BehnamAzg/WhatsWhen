@@ -3,13 +3,13 @@ import useStateContext from "../context/useStateContext";
 import Button from "./Button";
 
 export default function TaskCountDisplay() {
-  const { cardsCount } = useStateContext();
+  const { cardsCount, currentTaskIndex } = useStateContext();
 
   return (
     <div className="popover-wrapper">
       <Button type="popover" popoverTarget="taskCountPopover">
-        <span className="text-xl">?</span>
-        <span className="text-primary pt-1 text-xs">/{cardsCount}</span>
+        <span className="text-xl">{currentTaskIndex + 1}</span>
+        <span className="text-primary pt-1 text-xs">/ {cardsCount}</span>
       </Button>
 
       <dialog

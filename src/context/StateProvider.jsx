@@ -77,7 +77,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "11:30",
+      time: "16:30",
       title: "This is a long title for testing",
       icon: "☕",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -94,7 +94,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "15:39",
+      time: "17:39",
       title: "This is a long title for testing",
       icon: "🏃‍♂️",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -130,7 +130,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "14:30",
+      time: "16:30",
       title: "This is a long title for testing",
       icon: "☕",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -147,7 +147,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "15:30",
+      time: "17:30",
       title: "This is a long title for testing",
       icon: "🏃‍♂️",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -514,7 +514,7 @@ export default function StateProvider({ children }) {
         currentDate,
         viewDate,
         cardsCount: dates[viewDate]?.length || 0,
-        cards: dates[viewDate],
+        // cards: dates[viewDate],
         isMenuPanelOpen,
         isCreateTaskPanelOpen,
         isCalendarPanelOpen,
@@ -522,6 +522,9 @@ export default function StateProvider({ children }) {
         activeCard,
         sortedCards,
         currentTask,
+        currentTaskIndex: sortedCards.findIndex(
+          (obj) => obj.id === currentTask?.id,
+        ),
       }}
     >
       {children}
