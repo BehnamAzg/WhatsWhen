@@ -10,7 +10,7 @@ export default function Card({ card, index, style, color }) {
     >
       <CardHeader card={card} index={index} />
       <CardBody card={card} />
-      <CardFooter card={card} />
+      <CardFooter index={index} />
     </article>
   );
 }

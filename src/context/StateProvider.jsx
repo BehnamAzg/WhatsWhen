@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useReducer, useRef } from "react";
+import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import { formatDate, shiftDate, isDateFuture } from "../utils/date";
-import { timeToSeconds } from "../utils/time";
+import { timeToSeconds, getTimeDifference } from "../utils/time";
 import StateContext from "./StateContext";
 
 const dates = {
@@ -113,7 +113,7 @@ const dates = {
   "2026-05-17": [
     {
       id: "550e8400-e29b-41d4-a716-146655440000",
-      time: "07:27",
+      time: "13:00",
       title: "This is a long title for testing",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       icon: "",
@@ -130,7 +130,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "16:30",
+      time: "14:30",
       title: "This is a long title for testing",
       icon: "☕",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -147,7 +147,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "17:30",
+      time: "16:15",
       title: "This is a long title for testing",
       icon: "🏃‍♂️",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -371,6 +371,14 @@ export default function StateProvider({ children }) {
   const isCurrentTaskToday =
     currentTaskIndex === activeCard && currentDate === viewDate;
 
+  const durations = useMemo(
+    () =>
+      sortedCards.map((card, index) =>
+        getTimeDifference(card.time, sortedCards[index + 1]?.time || ""),
+      ),
+    [sortedCards],
+  );
+
   // Updating the current task ##################################################
   useEffect(() => {
     dispatch({ type: "updateSortedCards" });
@@ -531,6 +539,7 @@ export default function StateProvider({ children }) {
         currentTask,
         currentTaskIndex,
         isCurrentTaskToday,
+        durations,
       }}
     >
       {children}

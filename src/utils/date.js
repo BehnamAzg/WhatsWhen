@@ -20,4 +20,11 @@ function isDateFuture(currentDateString, viewDateString) {
   return viewDate.getTime() > currentDate.getTime();
 }
 
-export { formatDate, shiftDate, isDateFuture };
+function getTargetDate(timeString) {
+  const [hours, minutes] = timeString.split(':').map(Number);
+  const target = new Date();
+  target.setHours(hours, minutes, 0, 0);
+  return target;
+}
+
+export { formatDate, shiftDate, isDateFuture, getTargetDate };
