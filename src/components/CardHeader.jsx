@@ -17,7 +17,7 @@ export default function CardHeader({ card, index }) {
       </div>
       {card.tag && (
         <div className="mt-2 w-full max-sm:mt-3.5">
-          <span className="rounded-full bg-white/40 px-3 py-2 text-xs">
+          <span className="rounded-full bg-white/40 px-3 py-2 text-xs ">
             {card.tag}
           </span>
         </div>

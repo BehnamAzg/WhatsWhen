@@ -113,7 +113,7 @@ const dates = {
   "2026-05-17": [
     {
       id: "550e8400-e29b-41d4-a716-146655440000",
-      time: "14:27",
+      time: "07:27",
       title: "This is a long title for testing",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       icon: "🌞",
@@ -418,7 +418,7 @@ export default function StateProvider({ children }) {
     };
   }, [updateAndSchedule]);
 
-  // Mouse scroll handler ######################################################
+  // Mouse scroll handler ###########################################################
   useEffect(() => {
     function handleScroll(e) {
       if (e.deltaY > 50 && activeCard < sortedCards.length - 1) {
@@ -434,7 +434,7 @@ export default function StateProvider({ children }) {
     };
   }, [activeCard, sortedCards]);
 
-  // Shortcuts key handler ######################################################
+  // Keyboard shortcuts handler #####################################################
   useEffect(() => {
     const handleKeyDown = (event) => {
       const isInputOrTextarea =
@@ -458,7 +458,7 @@ export default function StateProvider({ children }) {
           dispatch({ type: "toggleCalendar" });
         }
 
-        if (event.key === "t") {
+        if (event.key === "e") {
           event.preventDefault();
           dispatch({ type: "goToCurrentTask" });
         }
@@ -506,7 +506,7 @@ export default function StateProvider({ children }) {
     };
   }, []);
 
-  // Return body of the provider ################################################
+  // Return body of the provider ####################################################
   return (
     <StateContext.Provider
       value={{

@@ -33,8 +33,7 @@
 
 @layer components {
   .btn {
-    @apply flex-center focus-primary transition-animation min-h-0 shrink-0 cursor-pointer gap-x-1.5 rounded-full border border-white/50 p-2 text-xs hover:ring-2;
-    @apply transition-animation scale-100 opacity-100;
+    @apply flex-center focus-primary transition-animation min-h-0 shrink-0 cursor-pointer gap-x-1.5 rounded-full border border-white/50 p-2 text-xs hover:ring-2 scale-100 opacity-100;
     @starting-style {
       @apply scale-0 opacity-0;
     }
