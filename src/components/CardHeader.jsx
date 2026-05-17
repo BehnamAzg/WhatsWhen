@@ -1,9 +1,11 @@
+import Icon from "./Icon";
+
 export default function CardHeader({ card, index }) {
   return (
     <>
       <div className="flex-center h-[14.5%] w-full justify-between rounded-t-3xl py-2 select-none max-sm:h-[13.5%]">
         <span className="flex-center aspect-square h-[6vh] rounded-full bg-white/40 text-[3vh]">
-          {card.icon}
+          {card.icon ? card.icon : <Icon name="smiley" size="24" color="gray" />}
         </span>
         <div className="flex h-fit flex-col justify-center">
           <h1 className="w-52 truncate text-lg text-black" title={card.title}>
