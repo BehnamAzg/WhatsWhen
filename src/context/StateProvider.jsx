@@ -364,6 +364,13 @@ export default function StateProvider({ children }) {
     dispatch,
   ] = useReducer(reducer, initialState);
 
+  const currentTaskIndex = sortedCards.findIndex(
+    (obj) => obj.id === currentTask?.id,
+  );
+
+  const isCurrentTaskToday =
+    currentTaskIndex === activeCard && currentDate === viewDate;
+
   // Updating the current task ##################################################
   useEffect(() => {
     dispatch({ type: "updateSortedCards" });
@@ -378,7 +385,7 @@ export default function StateProvider({ children }) {
     }
   }, [viewDate, currentDate]);
 
-  // Timer for updating the current task ########################################
+  // Timer for updating the current task ##########################################
   const scheduleNextUpdateRef = useRef(null);
   const timerRef = useRef(null);
 
@@ -506,7 +513,7 @@ export default function StateProvider({ children }) {
     };
   }, []);
 
-  // Return body of the provider ####################################################
+  // Return body of the provider ###################################################
   return (
     <StateContext.Provider
       value={{
@@ -522,9 +529,8 @@ export default function StateProvider({ children }) {
         activeCard,
         sortedCards,
         currentTask,
-        currentTaskIndex: sortedCards.findIndex(
-          (obj) => obj.id === currentTask?.id,
-        ),
+        currentTaskIndex,
+        isCurrentTaskToday,
       }}
     >
       {children}

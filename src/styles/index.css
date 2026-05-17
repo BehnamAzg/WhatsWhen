@@ -33,7 +33,7 @@
 
 @layer components {
   .btn {
-    @apply flex-center focus-primary transition-animation min-h-0 shrink-0 cursor-pointer gap-x-1.5 rounded-full border border-white/50 p-2 text-xs hover:ring-2 scale-100 opacity-100;
+    @apply flex-center focus-primary transition-animation min-h-0 shrink-0 scale-100 cursor-pointer gap-x-1.5 rounded-full border border-white/50 p-2 text-xs opacity-100 hover:ring-2;
     @starting-style {
       @apply scale-0 opacity-0;
     }
@@ -130,6 +130,17 @@
 
   .card.next {
     top: 84%;
+  }
+
+  .current-task-timer {
+    @apply rounded-full bg-white/40 text-center  w-24 py-1.5 text-sm font-bold tracking-wider scale-100 opacity-100 transition-animation;
+    @starting-style {
+      @apply scale-0 opacity-0;
+    }
+  }
+
+  .current-task-timer-active {
+    @apply bg-primary text-white;
   }
 
   .modal-container {

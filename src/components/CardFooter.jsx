@@ -12,7 +12,10 @@ export default function CardFooter({ card }) {
     currentTask,
     viewDate,
     currentDate,
+    isCurrentTaskToday
   } = useStateContext();
+
+
 
   /*
   const [timeLeft, setTimeLeft] = useState(null);
@@ -52,9 +55,11 @@ export default function CardFooter({ card }) {
     }, [isCurrentTaskActive, timeLeft]); // Depend on state that controls the interval
     */
 
+  
+  
   return (
     <div className="flex w-full justify-between pb-[8.2vh] select-none">
-      <time className="rounded-full bg-white/40 px-3 py-1.5 text-sm font-bold tracking-wider">
+      <time className={`current-task-timer ${isCurrentTaskToday && "current-task-timer-active"}`}>
         01:30:59
       </time>
       <div className="flex-center gap-2">
