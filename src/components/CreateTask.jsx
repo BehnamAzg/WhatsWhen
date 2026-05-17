@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import useStateContext from "../context/useStateContext";
 
@@ -11,7 +11,26 @@ import Reminder from "./Reminder";
 export default function CreateTask() {
   const { dispatch, isCreateTaskPanelOpen } = useStateContext();
 
+  const [newTask, setNewTask] = useState({
+    id: crypto.randomUUID(),
+    time: "",
+    title: "",
+    icon: "",
+    description: "",
+    color: "",
+    tag: "",
+    reminder: false,
+    repeat: [],
+    todos: [],
+    pomodoroTimer: false,
+  });
+
   const componentRef = useRef(null);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(newTask);
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -51,15 +70,21 @@ export default function CreateTask() {
         <span className="text-base">Create a New Task</span>
       </h1>
 
-      <form className="create-task-form" onSubmit="">
+      <form className="create-task-form">
         <div className="form-row-container">
           {/* Icon */}
           <Button type="circle">
-            <Icon name="smiley" size="22" color="gray" />
+            {newTask.icon ? (
+              newTask.icon
+            ) : (
+              <Icon name="smiley" size="22" color="gray" />
+            )}
           </Button>
 
           {/* Title */}
           <input
+            value={newTask.title}
+            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
             type="text"
             name="title"
             placeholder="Title"
@@ -71,6 +96,8 @@ export default function CreateTask() {
         <div className="form-row-container">
           {/* Time */}
           <input
+            value={newTask.time}
+            onChange={(e) => setNewTask({ ...newTask, time: e.target.value })}
             type="time"
             name="time"
             required
@@ -78,12 +105,14 @@ export default function CreateTask() {
           />
 
           {/* Reminder */}
-          <Reminder />
+          <Reminder newTask={newTask} setNewTask={setNewTask} />
         </div>
 
         <div className="form-row-container">
           {/* Tag */}
           <input
+            value={newTask.tag}
+            onChange={(e) => setNewTask({ ...newTask, tag: e.target.value })}
             type="text"
             name="tag"
             placeholder="Tag"
@@ -98,6 +127,10 @@ export default function CreateTask() {
         <div className="form-row-container">
           {/* Description */}
           <textarea
+            value={newTask.description}
+            onChange={(e) =>
+              setNewTask({ ...newTask, description: e.target.value })
+            }
             name="description"
             rows="2"
             placeholder="Description"
@@ -106,11 +139,11 @@ export default function CreateTask() {
         </div>
 
         <div className="form-row-container">
-          <Button type="capsule">
+          <Button type="capsule" width="full">
             <Icon name="todo" />
             <span>Add To-do Item</span>
           </Button>
-          <Button type="capsule">
+          <Button type="capsule" width="full">
             <Icon name="timer" />
             <span>Pomodoro Timer</span>
           </Button>
@@ -120,7 +153,8 @@ export default function CreateTask() {
           <Button type="cancel" actionType="toggleCreateTask">
             Cancel
           </Button>
-          <Button type="add" actionType="">
+          <button onClick={handleSubmit}>test</button>
+          <Button type="add" actionType="createNewTask">
             Add Task
           </Button>
         </div>

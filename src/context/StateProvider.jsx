@@ -4,7 +4,7 @@ import { timeToSeconds, getTimeDifference } from "../utils/time";
 import StateContext from "./StateContext";
 
 const dates = {
-  "2026-05-15": [
+  "2026-05-17": [
     {
       id: "550e8400-e29b-41d4-a716-146655440000",
       time: "06:00",
@@ -24,7 +24,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "06:30",
+      time: "17:30",
       title: "This is a long title for testing",
       icon: "☕",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -41,7 +41,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "07:30",
+      time: "19:30",
       title: "This is a long title for testing",
       icon: "🏃‍♂️",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -57,7 +57,7 @@ const dates = {
       pomodoroTimer: false,
     },
   ],
-  "2026-05-16": [
+  "2026-05-18": [
     {
       id: "550e8400-e29b-41d4-a716-146655440000",
       time: "11:00",
@@ -110,7 +110,7 @@ const dates = {
       pomodoroTimer: false,
     },
   ],
-  "2026-05-17": [
+  "2026-05-19": [
     {
       id: "550e8400-e29b-41d4-a716-146655440000",
       time: "13:00",
@@ -182,7 +182,6 @@ const initialState = {
   // goToCurrentTask
   // toggleTheme
   // installApp
-  // createNewTask
   // toggleNotification
   newTask: {
     id: crypto.randomUUID(),
@@ -233,6 +232,10 @@ function reducer(state, action) {
         isCreateTaskPanelOpen: false,
         isMenuPanelOpen: false,
       };
+    case "toggleEmoji":
+      return {
+        ...state,
+      };
     case "closeAllPanels":
       return {
         ...state,
@@ -255,7 +258,6 @@ function reducer(state, action) {
       return {
         ...state,
         viewDate: action.payload ? action.payload : state.viewDate,
-        // isCalendarPanelOpen: false,
       };
     case "goToPrevCard":
       if (state.activeCard > 0)
@@ -321,24 +323,25 @@ function reducer(state, action) {
         activeCard: state.sortedCards.length - 1,
       };
     }
-    case "goToFirstTask": {
+    case "goToFirstTask":
       return {
         ...state,
         activeCard: 0,
       };
-    }
-    case "goToLastTask": {
+    case "goToLastTask":
       return {
         ...state,
         activeCard: state.sortedCards.length - 1,
       };
-    }
-    case "goToCurrentDay": {
+    case "goToCurrentDay":
       return {
         ...state,
         viewDate: state.currentDate,
       };
-    }
+    case "createNewTask":
+      console.log(action.payload);
+      break;
+
     // case "addNewTask":
     //   return {
 

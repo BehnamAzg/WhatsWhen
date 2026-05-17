@@ -1,4 +1,4 @@
-export default function Reminder() {
+export default function Reminder({ newTask, setNewTask }) {
   return (
     <div className="flex-center h-10 w-1/2 gap-2 rounded-full border border-white bg-white/50 px-4">
       <h3 className="flex-center text-neutral-500">Reminder</h3>
@@ -6,7 +6,10 @@ export default function Reminder() {
         <input
           type="checkbox"
           name="reminder"
-          defaultValue="on"
+          checked={newTask.reminder}
+          onChange={(e) =>
+            setNewTask({ ...newTask, reminder: e.target.checked })
+          }
           className="peer sr-only"
         />
         <div className="peer-checked:bg-primary h-4 w-8 rounded-full bg-gray-300 transition-colors"></div>

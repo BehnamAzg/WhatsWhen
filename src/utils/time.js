@@ -19,7 +19,7 @@ function getTimeDifference(time1, time2) {
   }
   return {
     totalSeconds: 0,
-    formatted: "00:00:00",
+    formatted: "--:--:--",
   };
 }
 
@@ -34,7 +34,7 @@ function calculateRemainingSeconds(targetDate) {
 }
 
 function formatCountdownTime(seconds) {
-  if (seconds === null || seconds === undefined) return "00:00:00";
+  if (seconds === null || seconds === undefined) return "--:--:--";
   const hrs = Math.floor(seconds / 3600);
   const mins = Math.floor((seconds % 3600) / 60);
   const secs = seconds % 60;
