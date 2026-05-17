@@ -11,7 +11,7 @@ export default function CardHeader({ card, index }) {
           </h1>
           <time className="text-sm text-black/40">{card.time}</time>
         </div>
-        <span className="flex-center aspect-square h-[6vh] rounded-full text-[5vh] text-white/50">
+        <span className="flex-center aspect-square h-[6vh] rounded-full text-[5vh] text-black/10">
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>
