@@ -11,9 +11,9 @@ export default function CardHeader({ card, index }) {
           <h1 className="w-52 truncate text-lg text-black" title={card.title}>
             {card.title}
           </h1>
-          <time className="text-sm text-black/40">{card.time}</time>
+          <time className="text-sm tracking-widest text-primary">{card.time}</time>
         </div>
-        <span className="flex-center aspect-square h-[6vh] rounded-full text-[5vh] text-black/10">
+        <span className="flex-center aspect-square h-[6vh] rounded-full text-[5vh] text-black/5">
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>
