@@ -7,6 +7,7 @@ import ColorSelection from "./ColorSelection";
 import DayRepetition from "./DayRepetition";
 import Icon from "./Icon";
 import Reminder from "./Reminder";
+import PomodoroTimerCreate from "./PomodoroTimerCreate";
 
 export default function CreateTask() {
   const { dispatch, isCreateTaskPanelOpen } = useStateContext();
@@ -148,6 +149,9 @@ export default function CreateTask() {
             <span>Pomodoro Timer</span>
           </Button>
         </div>
+
+
+          <PomodoroTimerCreate />
 
         <div className="form-row-container mt-2 justify-end">
           <Button type="cancel" actionType="toggleCreateTask">

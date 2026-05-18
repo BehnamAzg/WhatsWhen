@@ -165,6 +165,9 @@
   .form-input {
     @apply bg-background focus-primary h-10 w-full rounded-full border border-white px-4;
   }
+  .form-input-pomodoro {
+    @apply bg-background focus-primary h-10 border border-white p-4 text-center rounded-2xl;
+  }
 
   .day-select {
     @apply flex-center peer-checked:bg-primary peer-checked:hover:bg-background ring-primary rounded-xl bg-white px-2 py-1 peer-checked:border-transparent peer-checked:text-white hover:ring-2 peer-checked:hover:text-neutral-500 peer-checked:hover:ring-0;
