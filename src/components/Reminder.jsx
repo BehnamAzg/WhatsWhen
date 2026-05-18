@@ -1,4 +1,8 @@
-export default function Reminder({ newTask, setNewTask }) {
+import useStateContext from "../context/useStateContext";
+
+export default function Reminder() {
+  const { dispatch, newTask } = useStateContext();
+
   return (
     <div className="flex-center h-10 w-1/2 gap-2 rounded-full border border-white bg-white/50 px-4">
       <h3 className="flex-center text-neutral-500">Reminder</h3>
@@ -8,7 +12,10 @@ export default function Reminder({ newTask, setNewTask }) {
           name="reminder"
           checked={newTask.reminder}
           onChange={(e) =>
-            setNewTask({ ...newTask, reminder: e.target.checked })
+            dispatch({
+              type: "updateNewTaskReminder",
+              payload: e.target.checked,
+            })
           }
           className="peer sr-only"
         />

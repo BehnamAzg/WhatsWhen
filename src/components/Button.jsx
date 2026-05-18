@@ -4,6 +4,7 @@ const types = {
   default: "",
   circle: "btn-circle",
   circleSm: "btn-circle-sm",
+  circleXs: "btn-circle-xs",
   capsule: "btn-capsule",
   popover: "btn-popover",
   navigateRight: "btn-navigate-right",
@@ -28,6 +29,7 @@ export default function Button({
   type = "default",
   popoverTarget = "",
   actionType = "",
+  actionPayload = "",
   width = "default",
 }) {
   const { dispatch } = useStateContext();
@@ -39,7 +41,7 @@ export default function Button({
       onClick={
         type === "popover"
           ? () => ""
-          : () => dispatch({ type: `${actionType}` })
+          : () => dispatch({ type: actionType, payload: actionPayload })
       }
       popoverTarget={popoverTarget}
     >

@@ -172,15 +172,13 @@ const initialState = {
   isShortcutsPanelOpen: false,
   isEmojiPanelOpen: false,
   isPomodoroActive: false,
+  isTodoItemActive: false,
   currentTime: new Date(),
   currentDate: formatDate(new Date()),
   viewDate: formatDate(new Date()),
   sortedCards: [],
   currentTask: "",
   activeCard: 0,
-  // isPomodoroTimerSelected: false,
-  // isAddTodoSelected: false,
-  // goToCurrentTask
   // toggleTheme
   // installApp
   // toggleNotification
@@ -347,6 +345,105 @@ function reducer(state, action) {
         ...state,
         isPomodoroActive: !state.isPomodoroActive,
       };
+    case "addTodo":
+      return {
+        ...state,
+        isTodoItemActive: true,
+        newTask: {
+          ...state.newTask,
+          todos: [...state.newTask.todos, ""],
+        },
+      };
+    case "deleteTodo": {
+      const newTodos = state.newTask.todos.filter(
+        (_, index) => index !== action.payload,
+      );
+      return {
+        ...state,
+        isTodoItemActive: newTodos.length > 0 ? true : false,
+        newTask: {
+          ...state.newTask,
+          todos: newTodos,
+        },
+      };
+    }
+    case "updateNewTaskTodos": {
+      const newTodos = state.newTask.todos.map((todo, index) =>
+        index === action.index ? action.payload : todo,
+      );
+      return {
+        ...state,
+        newTask: {
+          ...state.newTask,
+          todos: newTodos,
+        },
+      };
+    }
+    case "updateNewTaskTime":
+      return {
+        ...state,
+        newTask: {
+          ...state.newTask,
+          time: action.payload,
+        },
+      };
+    case "updateNewTaskTitle":
+      return {
+        ...state,
+        newTask: {
+          ...state.newTask,
+          title: action.payload,
+        },
+      };
+    case "updateNewTaskIcon":
+      return {
+        ...state,
+        newTask: {
+          ...state.newTask,
+          icon: action.payload,
+        },
+      };
+    case "updateNewTaskDescription":
+      return {
+        ...state,
+        newTask: {
+          ...state.newTask,
+          description: action.payload,
+        },
+      };
+    case "updateNewTaskColor":
+      return {
+        ...state,
+        newTask: {
+          ...state.newTask,
+          color: action.payload,
+        },
+      };
+    case "updateNewTaskTag":
+      return {
+        ...state,
+        newTask: {
+          ...state.newTask,
+          tag: action.payload,
+        },
+      };
+    case "updateNewTaskReminder":
+      return {
+        ...state,
+        newTask: {
+          ...state.newTask,
+          reminder: action.payload,
+        },
+      };
+    case "updateNewTaskRepeat":
+      return {
+        ...state,
+        newTask: {
+          ...state.newTask,
+          repeat: action.payload,
+        },
+      };
+
     // case "addNewTask":
     //   return {
 
@@ -369,6 +466,8 @@ export default function StateProvider({ children }) {
       sortedCards,
       currentTask,
       isPomodoroActive,
+      isTodoItemActive,
+      newTask,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -559,6 +658,8 @@ export default function StateProvider({ children }) {
         isCurrentTaskToday,
         durations,
         isPomodoroActive,
+        isTodoItemActive,
+        newTask,
       }}
     >
       {children}

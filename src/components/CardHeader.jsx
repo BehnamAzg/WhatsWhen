@@ -13,7 +13,7 @@ export default function CardHeader({ card, index }) {
           </h1>
           <time className="text-sm tracking-widest text-primary">{card.time}</time>
         </div>
-        <span className="flex-center aspect-square h-[6vh] rounded-full text-[5vh] text-black/5">
+        <span className="flex-center aspect-square h-[6vh] rounded-full text-[5vh] text-white/40">
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>
