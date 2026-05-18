@@ -4,17 +4,14 @@ import Icon from "./Icon";
 export default function ColorSelection() {
   return (
     <div className="flex-center h-10 flex-none justify-between gap-2 rounded-full border border-white bg-white/50 px-4">
-      <ColorButton value="bg-red-300/40" classList="bg-red-300/50" />
-      <ColorButton value="bg-orange-300/40" classList="bg-orange-300/50" />
-      <ColorButton
-        value="bg-amber-300/40"
-        classList="bg-amber-300/50"
-        isChecked={true}
-      />
-      <ColorButton value="bg-emerald-300/40" classList="bg-emerald-300/50" />
-      <ColorButton value="bg-blue-300/40" classList="bg-blue-300/50" />
-      <ColorButton value="bg-fuchsia-300/40" classList="bg-fuchsia-300/50" />
-      <ColorButton value="bg-pink-300/40" classList="bg-pink-300/50" />
+      <ColorButton value="#fca5a5" classList="bg-white/50" isChecked={true} />
+      <ColorButton value="#fca5a5" classList="bg-red-300/50" />
+      <ColorButton value="#fdba74" classList="bg-orange-300/50" />
+      <ColorButton value="#fcd34d" classList="bg-amber-300/50" />
+      <ColorButton value="#6ee7b7" classList="bg-emerald-300/50" />
+      <ColorButton value="#93c5fd" classList="bg-blue-300/50" />
+      <ColorButton value="#f0abfc" classList="bg-fuchsia-300/50" />
+      {/* <ColorButton value="#f9a8d4" classList="bg-pink-300/50" /> */}
 
       <label className="focus-within:ring-primary rounded-full focus-within:ring-2">
         <input
