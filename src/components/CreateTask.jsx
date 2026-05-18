@@ -133,9 +133,9 @@ export default function CreateTask() {
               setNewTask({ ...newTask, description: e.target.value })
             }
             name="description"
-            rows="2"
+            rows="3"
             placeholder="Description"
-            className="form-input h-auto rounded-2xl py-2.5"
+            className="bg-background focus-primary h-auto w-full rounded-2xl border border-white px-4 py-2.5"
           ></textarea>
         </div>
 
@@ -150,8 +150,7 @@ export default function CreateTask() {
           </Button>
         </div>
 
-
-          <PomodoroTimerCreate />
+        <PomodoroTimerCreate />
 
         <div className="form-row-container mt-2 justify-end">
           <Button type="cancel" actionType="toggleCreateTask">
