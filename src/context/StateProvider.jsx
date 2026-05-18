@@ -20,7 +20,7 @@ const dates = {
         { text: "This is todo 2", done: false },
         { text: "This is todo 3", done: false },
       ],
-      pomodoroTimer: false,
+      pomodoroTimer: [],
     },
     {
       id: "550e8400-e29b-41d4-a716-246655440000",
@@ -37,7 +37,7 @@ const dates = {
         { text: "This is todo 2", done: true },
         { text: "This is todo 3", done: false },
       ],
-      pomodoroTimer: false,
+      pomodoroTimer: [],
     },
     {
       id: "550e8400-e29b-41d4-a716-346655440000",
@@ -54,7 +54,7 @@ const dates = {
         { text: "This is todo 2", done: true },
         { text: "This is todo 3", done: false },
       ],
-      pomodoroTimer: false,
+      pomodoroTimer: [],
     },
   ],
   "2026-05-18": [
@@ -73,7 +73,7 @@ const dates = {
         { text: "This is todo 2", done: false },
         { text: "This is todo 3", done: false },
       ],
-      pomodoroTimer: false,
+      pomodoroTimer: [],
     },
     {
       id: "550e8400-e29b-41d4-a716-246655440000",
@@ -90,7 +90,7 @@ const dates = {
         { text: "This is todo 2", done: true },
         { text: "This is todo 3", done: false },
       ],
-      pomodoroTimer: false,
+      pomodoroTimer: [],
     },
     {
       id: "550e8400-e29b-41d4-a716-346655440000",
@@ -107,7 +107,7 @@ const dates = {
         { text: "This is todo 2", done: true },
         { text: "This is todo 3", done: false },
       ],
-      pomodoroTimer: false,
+      pomodoroTimer: [],
     },
   ],
   "2026-05-19": [
@@ -126,7 +126,7 @@ const dates = {
         { text: "This is todo 2", done: false },
         { text: "This is todo 3", done: false },
       ],
-      pomodoroTimer: false,
+      pomodoroTimer: [],
     },
     {
       id: "550e8400-e29b-41d4-a716-246655440000",
@@ -143,7 +143,7 @@ const dates = {
         { text: "This is todo 2", done: true },
         { text: "This is todo 3", done: false },
       ],
-      pomodoroTimer: false,
+      pomodoroTimer: [],
     },
     {
       id: "550e8400-e29b-41d4-a716-346655440000",
@@ -160,7 +160,7 @@ const dates = {
         { text: "This is todo 2", done: true },
         { text: "This is todo 3", done: false },
       ],
-      pomodoroTimer: false,
+      pomodoroTimer: [],
     },
   ],
 };
@@ -193,7 +193,7 @@ const initialState = {
     reminder: false,
     repeat: [],
     todos: [],
-    pomodoroTimer: false,
+    pomodoroTimer: [25, 5, 25, 5, 25, 5, 25, 15],
   },
 };
 

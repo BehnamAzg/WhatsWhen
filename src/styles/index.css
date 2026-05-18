@@ -168,8 +168,11 @@
   .form-input {
     @apply bg-background focus-primary h-10 w-full rounded-full border border-white px-4;
   }
+  .form-container-pomodoro {
+    @apply bg-background flex-center h-8 w-full gap-1 rounded-2xl border border-white px-3 py-4 text-center text-xs;
+  }
   .form-input-pomodoro {
-    @apply bg-background focus-primary h-10 rounded-2xl border border-white p-4 text-center;
+    @apply bg-primary focus-primary flex-center h-6 w-12 rounded-lg  px-2 text-center text-white ;
   }
 
   .day-select {

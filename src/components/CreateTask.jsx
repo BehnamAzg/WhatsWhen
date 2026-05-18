@@ -19,20 +19,6 @@ export default function CreateTask() {
     newTask,
   } = useStateContext();
 
-  // const [newTask, setNewTask] = useState({
-  //   id: crypto.randomUUID(),
-  //   time: "",
-  //   title: "",
-  //   icon: "",
-  //   description: "",
-  //   color: "",
-  //   tag: "",
-  //   reminder: false,
-  //   repeat: [],
-  //   todos: [""],
-  //   pomodoroTimer: false,
-  // });
-
   const componentRef = useRef(null);
 
   function handleSubmit(e) {
