@@ -45,7 +45,7 @@
     @apply bg-background h-8 w-8;
   }
   .btn-circle-xs {
-    @apply bg-background h-6 w-6 p-1;
+    @apply bg-background h-5 w-5 p-1;
   }
   .btn-capsule {
     @apply bg-background h-10 w-fit shrink px-4 text-nowrap hover:px-5;

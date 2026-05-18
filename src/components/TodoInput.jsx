@@ -23,7 +23,7 @@ export default function TodoInput({ todo, index }) {
         }
       />
       <Button type="circleXs" actionType="deleteTodo" actionPayload={index}>
-        <Icon name="trash" size="12" color="gray" />
+        <Icon name="x" size="12" color="gray" />
       </Button>
     </li>
   );
