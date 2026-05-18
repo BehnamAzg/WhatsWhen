@@ -10,7 +10,8 @@ import Reminder from "./Reminder";
 import PomodoroTimerCreate from "./PomodoroTimerCreate";
 
 export default function CreateTask() {
-  const { dispatch, isCreateTaskPanelOpen } = useStateContext();
+  const { dispatch, isCreateTaskPanelOpen, isPomodoroActive } =
+    useStateContext();
 
   const [newTask, setNewTask] = useState({
     id: crypto.randomUUID(),
@@ -144,13 +145,13 @@ export default function CreateTask() {
             <Icon name="todo" />
             <span>Add To-do Item</span>
           </Button>
-          <Button type="capsule" width="full">
+          <Button type="capsule" width="full" actionType="togglePomodoro">
             <Icon name="timer" />
             <span>Pomodoro Timer</span>
           </Button>
         </div>
 
-        <PomodoroTimerCreate />
+        {isPomodoroActive && <PomodoroTimerCreate />}
 
         <div className="form-row-container mt-2 justify-end">
           <Button type="cancel" actionType="toggleCreateTask">

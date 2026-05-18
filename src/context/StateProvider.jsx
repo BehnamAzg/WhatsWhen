@@ -171,6 +171,7 @@ const initialState = {
   isCreateTaskPanelOpen: false,
   isShortcutsPanelOpen: false,
   isEmojiPanelOpen: false,
+  isPomodoroActive: false,
   currentTime: new Date(),
   currentDate: formatDate(new Date()),
   viewDate: formatDate(new Date()),
@@ -341,7 +342,11 @@ function reducer(state, action) {
     case "createNewTask":
       console.log(action.payload);
       break;
-
+    case "togglePomodoro":
+      return {
+        ...state,
+        isPomodoroActive: !state.isPomodoroActive,
+      };
     // case "addNewTask":
     //   return {
 
@@ -363,6 +368,7 @@ export default function StateProvider({ children }) {
       activeCard,
       sortedCards,
       currentTask,
+      isPomodoroActive,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -441,7 +447,7 @@ export default function StateProvider({ children }) {
     function handleScroll(e) {
       if (isMenuPanelOpen || isCalendarPanelOpen || isCreateTaskPanelOpen)
         return;
-      
+
       if (e.deltaY > 50 && activeCard < sortedCards.length - 1) {
         dispatch({ type: "goToNextCard" });
       } else if (e.deltaY < 50) {
@@ -552,6 +558,7 @@ export default function StateProvider({ children }) {
         currentTaskIndex,
         isCurrentTaskToday,
         durations,
+        isPomodoroActive,
       }}
     >
       {children}
