@@ -439,6 +439,9 @@ export default function StateProvider({ children }) {
   // Mouse scroll handler ###########################################################
   useEffect(() => {
     function handleScroll(e) {
+      if (isMenuPanelOpen || isCalendarPanelOpen || isCreateTaskPanelOpen)
+        return;
+      
       if (e.deltaY > 50 && activeCard < sortedCards.length - 1) {
         dispatch({ type: "goToNextCard" });
       } else if (e.deltaY < 50) {
@@ -450,7 +453,13 @@ export default function StateProvider({ children }) {
     return () => {
       window.removeEventListener("wheel", handleScroll);
     };
-  }, [activeCard, sortedCards]);
+  }, [
+    activeCard,
+    sortedCards,
+    isMenuPanelOpen,
+    isCalendarPanelOpen,
+    isCreateTaskPanelOpen,
+  ]);
 
   // Keyboard shortcuts handler #####################################################
   useEffect(() => {
