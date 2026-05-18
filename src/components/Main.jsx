@@ -22,7 +22,8 @@ export default function Main() {
               index={index}
               key={card.id}
               style={getCardClass(index)}
-              color={(currentTask?.id === card.id && viewDate === currentDate) ? card.color : "#FFFFFF66"}
+              // color={(currentTask?.id === card.id && viewDate === currentDate) ? card.color : "#FFFFFF66"}
+              color={card.color}
             />
           ))}
         </section>
