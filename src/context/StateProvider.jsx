@@ -188,7 +188,7 @@ const initialState = {
     title: "",
     icon: "",
     description: "",
-    color: "",
+    color: "#ffffff66",
     tag: "",
     reminder: false,
     repeat: [],
@@ -416,7 +416,7 @@ function reducer(state, action) {
         ...state,
         newTask: {
           ...state.newTask,
-          color: action.payload,
+          color: action.payload + "66",
         },
       };
     case "updateNewTaskTag":

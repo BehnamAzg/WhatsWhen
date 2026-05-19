@@ -1,8 +1,12 @@
+import useStateContext from "../context/useStateContext";
+
 export default function ColorButton({
   value = "",
   isChecked = false,
   classList = "",
 }) {
+  const { dispatch } = useStateContext();
+
   return (
     <label className="focus-within:ring-primary rounded-full focus-within:ring-2">
       <input
@@ -11,10 +15,12 @@ export default function ColorButton({
         defaultValue={value}
         className="peer sr-only"
         defaultChecked={isChecked}
+        onChange={(e) => dispatch({type: "updateNewTaskColor", payload: e.target.value})}
+        
       />
       <span
         className={`color-dot focus:outline-none ${classList}`}
-        tabIndex="0"
+        tabIndex="-1"
       ></span>
     </label>
   );
