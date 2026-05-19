@@ -56,7 +56,11 @@ export default function CreateTask() {
   }, [isCreateTaskPanelOpen, dispatch]);
 
   return (
-    <div ref={componentRef} className="modal-container enter-transition" style={{background: newTask.color}}>
+    <div
+      ref={componentRef}
+      className="modal-container enter-transition scrollbar-none"
+      style={{ background: newTask.color }}
+    >
       <h1 className="header-title">
         <Button type="close" dispatch={dispatch} actionType="toggleCreateTask">
           <Icon name="x" color="white" />

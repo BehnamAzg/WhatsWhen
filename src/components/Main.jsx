@@ -3,7 +3,7 @@ import useStateContext from "../context/useStateContext";
 import Card from "./Card";
 
 export default function Main() {
-  const { activeCard, sortedCards, currentTask, viewDate, currentDate } = useStateContext();
+  const { activeCard, sortedCards } = useStateContext();
 
   const getCardClass = (index) => {
     if (index === activeCard) return "card active";
@@ -22,7 +22,6 @@ export default function Main() {
               index={index}
               key={card.id}
               style={getCardClass(index)}
-              // color={(currentTask?.id === card.id && viewDate === currentDate) ? card.color : "#FFFFFF66"}
               color={card.color}
             />
           ))}

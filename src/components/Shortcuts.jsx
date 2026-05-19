@@ -40,7 +40,7 @@ export default function Shortcuts() {
   }, [isShortcutsPanelOpen, dispatch]);
 
   return (
-    <div ref={componentRef} className="modal-container enter-transition">
+    <div ref={componentRef} className="modal-container enter-transition scrollbar-none">
       <h1 className="header-title">
         <Button type="close" dispatch={dispatch} actionType="toggleShortcuts">
           <Icon name="x" color="white" />
