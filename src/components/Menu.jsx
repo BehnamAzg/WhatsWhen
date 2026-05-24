@@ -43,9 +43,12 @@ export default function Menu() {
   }, [isMenuPanelOpen, dispatch]);
 
   return (
-    <div ref={componentRef} className="modal-container enter-transition scrollbar-none">
+    <div
+      ref={componentRef}
+      className="modal-container enter-transition scrollbar-none"
+    >
       <h1 className="header-title">
-        <Button type="close" dispatch={dispatch} actionType="toggleMenu">
+        <Button type="close" actionType="toggleMenu">
           <Icon name="x" color="white" />
         </Button>
         <span className="text-base">WhatsWhen?</span>
@@ -53,7 +56,7 @@ export default function Menu() {
 
       <div className="menu-row-container mt-4">
         <ThemeSelector />
-        <Button type="capsule" dispatch={dispatch} actionType="toggleShortcuts">
+        <Button type="capsule" actionType="toggleShortcuts">
           <Icon name="command" size="14" />
           <span>Shortcuts</span>
         </Button>

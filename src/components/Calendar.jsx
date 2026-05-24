@@ -53,7 +53,7 @@ export default function Calendar() {
   return (
     <div ref={componentRef} className="modal-container enter-transition scrollbar-none">
       <h1 className="header-title">
-        <Button type="close" dispatch={dispatch} actionType="toggleCalendar">
+        <Button type="close"  actionType="toggleCalendar">
           <Icon name="x" color="white" />
         </Button>
         <span className="text-base">Calendar</span>

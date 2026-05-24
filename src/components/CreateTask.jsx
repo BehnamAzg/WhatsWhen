@@ -62,7 +62,7 @@ export default function CreateTask() {
       style={{ background: newTask.color }}
     >
       <h1 className="header-title">
-        <Button type="close" dispatch={dispatch} actionType="toggleCreateTask">
+        <Button type="close" actionType="toggleCreateTask">
           <Icon name="x" color="white" />
         </Button>
         <span className="text-base">Create a New Task</span>
