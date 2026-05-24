@@ -1,18 +1,11 @@
-export default function RepeatButton({
-  text = "",
-  role = "",
-  value = "",
-  isChecked = false,
-}) {
+export default function RepeatButton({ text, role, value, checked, onChange }) {
   return (
     <label className="focus-within:ring-primary cursor-pointer rounded-full focus-within:ring-2">
       <input
         type="checkbox"
-        name="repeat"
         className="peer sr-only"
-        data-role={role}
-        {...(isChecked ? { defaultChecked: true } : {})}
-        defaultValue={value}
+        checked={checked}
+        onChange={() => onChange(role, value)}
       />
       <span className="day-select"> {text} </span>
     </label>
