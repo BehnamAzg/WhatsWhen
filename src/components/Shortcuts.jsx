@@ -40,36 +40,66 @@ export default function Shortcuts() {
   }, [isShortcutsPanelOpen, dispatch]);
 
   return (
-    <div ref={componentRef} className="modal-container enter-transition scrollbar-none">
+    <div
+      ref={componentRef}
+      className="modal-container enter-transition scrollbar-none"
+    >
       <h1 className="header-title">
-        <Button type="close" dispatch={dispatch} actionType="toggleShortcuts">
+        <Button type="close" actionType="toggleShortcuts">
           <Icon name="x" color="white" />
         </Button>
         <span className="text-base">Shortcuts</span>
       </h1>
 
-      <div className="menu-row-container mt-4 mb-2 flex-col gap-3">
-        <ul className="px-4">
-          <li>
-            <kbd>/</kbd> Open Shortcuts List
+      <div className="mt-3 mb-2 flex w-full font-medium">
+        <ul className="flex w-full flex-col gap-2 px-3">
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">/</kbd>
+            <span className="shortcuts-des">Open Shortcuts List</span>
           </li>
-          <li>
-            <kbd>N</kbd> Create New Task
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">N</kbd>
+            <span className="shortcuts-des">Create New Task</span>
           </li>
-          <li>
-            <kbd>D</kbd> or <kbd>Right Arrow</kbd> Next Day
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">M</kbd>
+            <span className="shortcuts-des">Open Menu</span>
           </li>
-          <li>
-            <kbd>A</kbd> or <kbd>Left Arrow</kbd> Previous Day
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">C</kbd>
+            <span className="shortcuts-des">Open Calendar</span>
           </li>
-          <li>
-            <kbd>C</kbd> Open Calendar
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd text-xs">ESC</kbd>
+            <span className="shortcuts-des">Close Panels</span>
           </li>
-          <li>
-            <kbd>M</kbd> Open Menu
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">E</kbd>
+            <span className="shortcuts-des">Go to Current Task</span>
           </li>
-          <li>
-            <kbd>ESC</kbd> Close Tabs
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">W</kbd>
+            <kbd className="shortcuts-kbd">↑</kbd>
+            <span className="shortcuts-des">Go to Previous Task</span>
+          </li>
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">S</kbd>
+            <kbd className="shortcuts-kbd">↓</kbd>
+            <span className="shortcuts-des">Go to Next Task</span>
+          </li>
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">R</kbd>
+            <span className="shortcuts-des">Go to Current Day</span>
+          </li>
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">A</kbd>
+            <kbd className="shortcuts-kbd">←</kbd>
+            <span className="shortcuts-des">Go to Previous Day</span>
+          </li>
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">D</kbd>
+            <kbd className="shortcuts-kbd">→</kbd>
+            <span className="shortcuts-des">Go to Next Day</span>
           </li>
         </ul>
       </div>

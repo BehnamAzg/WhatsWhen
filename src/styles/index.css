@@ -173,7 +173,7 @@
     @apply bg-background flex-center h-8 w-full gap-1 rounded-2xl border border-white px-2 py-4 text-center text-xs;
   }
   .form-input-pomodoro {
-    @apply focus-primary flex-center h-6 w-12 rounded-lg  px-2 text-center text-primary ;
+    @apply focus-primary flex-center text-primary h-6 w-12 rounded-lg px-2 text-center;
   }
 
   .day-select {
@@ -188,6 +188,16 @@
   }
   .todo-text {
     @apply text-sm text-black decoration-black/50 decoration-2 peer-checked:line-through;
+  }
+
+  .shortcuts-li {
+    @apply flex-center w-full justify-start gap-1.5;
+  }
+  .shortcuts-kbd {
+    @apply bg-primary flex-center h-8 w-8 rounded-full border border-white/50 text-white shrink-0 ;
+  }
+  .shortcuts-des {
+    @apply bg-background flex-center justify-start h-8 w-full rounded-full border border-white/50 shrink px-4 text-nowrap text-xs;
   }
 
   .btn-popover[popovertarget="taskCountPopover"] {
