@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import Calendar from "./Calendar";
 import CreateTask from "./CreateTask";
 import Shortcuts from "./Shortcuts";
+import Emoji from "./Emoji";
 
 export default function Panel() {
   const {
@@ -11,6 +12,7 @@ export default function Panel() {
     isMenuPanelOpen,
     isCreateTaskPanelOpen,
     isShortcutsPanelOpen,
+    isEmojiPanelOpen,
   } = useStateContext();
   return (
     <>
@@ -18,6 +20,7 @@ export default function Panel() {
       {isMenuPanelOpen && <Menu />}
       {isCreateTaskPanelOpen && <CreateTask />}
       {isShortcutsPanelOpen && <Shortcuts />}
+      {isEmojiPanelOpen && <Emoji />}
     </>
   );
 }

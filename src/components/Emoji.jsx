@@ -1,34 +1,31 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import useStateContext from "../context/useStateContext";
-import { formatDate } from "../utils/date";
+import { EmojiPicker } from "@ferrucc-io/emoji-picker";
 
 import Button from "./Button";
 import Icon from "./Icon";
 
 export default function Emoji() {
-  const { dispatch, isCalendarPanelOpen } = useStateContext();
-
-  const [selected, setSelected] = useState(new Date());
+  const { dispatch, isEmojiPanelOpen } = useStateContext();
   const componentRef = useRef(null);
 
-  useEffect(() => {
-    dispatch({ type: "setViewDate", payload: formatDate(selected) });
-    dispatch({ type: "toggleCalendar" });
-  }, [selected, dispatch]);
+  function handleEmojiSelect(emoji) {
+    console.log(emoji);
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        isCalendarPanelOpen &&
+        isEmojiPanelOpen &&
         componentRef.current &&
         !componentRef.current.contains(event.target)
       ) {
-        dispatch({ type: "toggleCalendar" });
+        dispatch({ type: "toggleEmoji" });
       }
     };
 
     // Focusing on the first element after opening a panel (for tabindex accessibility)
-    if (isCalendarPanelOpen) {
+    if (isEmojiPanelOpen) {
       const focusableElements = componentRef.current.querySelectorAll(
         'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
@@ -44,7 +41,7 @@ export default function Emoji() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isCalendarPanelOpen, dispatch]);
+  }, [isEmojiPanelOpen, dispatch]);
 
   return (
     <div
@@ -52,14 +49,25 @@ export default function Emoji() {
       className="modal-container enter-transition scrollbar-none"
     >
       <h1 className="header-title">
-        <Button type="close" dispatch={dispatch} actionType="toggleCalendar">
+        <Button type="close" actionType="toggleEmoji">
           <Icon name="x" color="white" />
         </Button>
-        <span className="text-base">Calendar</span>
+        <span className="text-base">Emoji</span>
       </h1>
 
-      <div className="flex-center my-2 px-4">
-        <DayPicker mode="single" selected={selected} onSelect={setSelected} />
+      <div className="flex-center scrollbar-thumb-primary my-2">
+        <EmojiPicker
+          className="bg-background border-none"
+          onEmojiSelect={handleEmojiSelect}
+          emojisPerRow={10}
+        >
+          <EmojiPicker.Header>
+            <EmojiPicker.Input className="bg-white" placeholder="Search emoji" />
+          </EmojiPicker.Header>
+          <EmojiPicker.Group>
+            <EmojiPicker.List />
+          </EmojiPicker.Group>
+        </EmojiPicker>
       </div>
     </div>
   );

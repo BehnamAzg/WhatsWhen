@@ -234,6 +234,7 @@ function reducer(state, action) {
     case "toggleEmoji":
       return {
         ...state,
+        isEmojiPanelOpen: !state.isEmojiPanelOpen,
       };
     case "closeAllPanels":
       return {
@@ -460,6 +461,7 @@ export default function StateProvider({ children }) {
       isCalendarPanelOpen,
       isCreateTaskPanelOpen,
       isShortcutsPanelOpen,
+      isEmojiPanelOpen,
       currentDate,
       viewDate,
       activeCard,
@@ -651,6 +653,7 @@ export default function StateProvider({ children }) {
         isCreateTaskPanelOpen,
         isCalendarPanelOpen,
         isShortcutsPanelOpen,
+        isEmojiPanelOpen,
         activeCard,
         sortedCards,
         currentTask,

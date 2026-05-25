@@ -71,7 +71,7 @@ export default function CreateTask() {
       <form className="create-task-form">
         <div className="form-row-container">
           {/* Icon */}
-          <Button type="circle">
+          <Button type="circle" actionType="toggleEmoji">
             {newTask.icon ? (
               newTask.icon
             ) : (
