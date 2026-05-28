@@ -14,6 +14,7 @@ export default function CreateTask() {
   const {
     dispatch,
     isCreateTaskPanelOpen,
+    isEmojiPanelOpen,
     isPomodoroActive,
     isTodoItemActive,
     newTask,
@@ -28,6 +29,7 @@ export default function CreateTask() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
+      if (isEmojiPanelOpen) return;
       if (
         isCreateTaskPanelOpen &&
         componentRef.current &&
@@ -53,7 +55,7 @@ export default function CreateTask() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isCreateTaskPanelOpen, dispatch]);
+  }, [isCreateTaskPanelOpen, dispatch, isEmojiPanelOpen]);
 
   return (
     <div
@@ -73,7 +75,7 @@ export default function CreateTask() {
           {/* Icon */}
           <Button type="circle" actionType="toggleEmoji">
             {newTask.icon ? (
-              newTask.icon
+              <span className="flex-center w-full h-full text-lg">{newTask.icon}</span>
             ) : (
               <Icon name="smiley" size="22" color="gray" />
             )}

@@ -10,7 +10,8 @@ export default function Emoji() {
   const componentRef = useRef(null);
 
   function handleEmojiSelect(emoji) {
-    console.log(emoji);
+    dispatch({ type: "updateNewTaskIcon", payload: emoji });
+    dispatch({ type: "toggleEmoji" });
   }
 
   useEffect(() => {
@@ -62,7 +63,10 @@ export default function Emoji() {
           emojisPerRow={10}
         >
           <EmojiPicker.Header>
-            <EmojiPicker.Input className="bg-white" placeholder="Search emoji" />
+            <EmojiPicker.Input
+              className="bg-white"
+              placeholder="Search emoji"
+            />
           </EmojiPicker.Header>
           <EmojiPicker.Group>
             <EmojiPicker.List />

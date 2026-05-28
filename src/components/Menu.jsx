@@ -9,12 +9,13 @@ import ThemeSelector from "./ThemeSelector";
 import Version from "./Version";
 
 export default function Menu() {
-  const { dispatch, isMenuPanelOpen } = useStateContext();
+  const { dispatch, isMenuPanelOpen, isShortcutsPanelOpen } = useStateContext();
 
   const componentRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
+      if (isShortcutsPanelOpen) return;
       if (
         isMenuPanelOpen &&
         componentRef.current &&
@@ -40,7 +41,7 @@ export default function Menu() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isMenuPanelOpen, dispatch]);
+  }, [isMenuPanelOpen, dispatch, isShortcutsPanelOpen]);
 
   return (
     <div

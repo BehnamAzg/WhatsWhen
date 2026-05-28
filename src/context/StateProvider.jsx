@@ -180,8 +180,6 @@ const initialState = {
   currentTask: "",
   activeCard: 0,
   theme: "light",
-  // installApp
-  // toggleNotification
   newTask: {
     id: crypto.randomUUID(),
     time: "",
@@ -227,9 +225,6 @@ function reducer(state, action) {
       return {
         ...state,
         isShortcutsPanelOpen: !state.isShortcutsPanelOpen,
-        isCalendarPanelOpen: false,
-        isCreateTaskPanelOpen: false,
-        isMenuPanelOpen: false,
       };
     case "toggleEmoji":
       return {
