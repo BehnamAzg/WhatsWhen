@@ -179,7 +179,7 @@ const initialState = {
   sortedCards: [],
   currentTask: "",
   activeCard: 0,
-  // toggleTheme
+  theme: "light",
   // installApp
   // toggleNotification
   newTask: {
@@ -235,6 +235,11 @@ function reducer(state, action) {
       return {
         ...state,
         isEmojiPanelOpen: !state.isEmojiPanelOpen,
+      };
+    case "changeTheme":
+      return {
+        ...state,
+        theme: action.payload,
       };
     case "closeAllPanels":
       return {
@@ -470,6 +475,7 @@ export default function StateProvider({ children }) {
       isPomodoroActive,
       isTodoItemActive,
       newTask,
+      theme,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -663,6 +669,7 @@ export default function StateProvider({ children }) {
         isPomodoroActive,
         isTodoItemActive,
         newTask,
+        theme
       }}
     >
       {children}

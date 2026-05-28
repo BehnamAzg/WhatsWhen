@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @source "../../node_modules/@ferrucc-io/emoji-picker";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @font-face {
   font-family: "Albert Sans";
   src: url("../assets/fonts/AlbertSans-VariableFont_wght.ttf")
@@ -94,7 +96,7 @@
 
 @layer utilities {
   .app-outter-container {
-    @apply font-albert flex h-screen min-h-0 w-screen items-center justify-center bg-neutral-200 font-bold select-none;
+    @apply font-albert flex h-screen min-h-0 w-screen items-center justify-center bg-neutral-200 dark:bg-sky-950 font-bold select-none;
   }
   .app-inner-container {
     @apply flex h-full min-h-0 w-[30%] flex-col px-4 py-3 max-lg:w-1/2 max-md:w-1/2 max-sm:w-full;
