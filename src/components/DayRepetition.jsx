@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RepeatButton from "./RepeatButton";
+import useStateContext from "../context/useStateContext";
 
 export default function DayRepetition() {
+  const { dispatch } = useStateContext();
+
   const [selection, setSelection] = useState({
     once: true,
     everyday: false,
@@ -43,15 +46,18 @@ export default function DayRepetition() {
     });
   };
 
-  /*
-    const payload = {
-      ...selection,
-      days: Array.from(selection.days)
-    };
-  */
+  useEffect(() => {
+    dispatch({
+      type: "updateNewTaskRepeat",
+      payload: {
+        ...selection,
+        days: Array.from(selection.days),
+      },
+    });
+  }, [selection, dispatch]);
 
   return (
-    <div className="flex w-full flex-wrap items-stretch gap-2 rounded-2xl border border-white bg-white/50 px-4 py-2.5 text-xs text-neutral-500 select-none">
+    <div className="flex w-full flex-wrap items-stretch gap-2 rounded-2xl border border-white bg-white/50 px-4 py-2.5 text-xs text-neutral-600 select-none">
       <h3 className="flex-center mr-1 text-sm text-neutral-500">Repeat</h3>
 
       <RepeatButton

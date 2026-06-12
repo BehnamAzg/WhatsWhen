@@ -1,169 +1,81 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import { formatDate, shiftDate, isDateFuture } from "../utils/date";
-import { timeToSeconds, getTimeDifference } from "../utils/time";
+import { formatTime, timeToSeconds, getTimeDifference } from "../utils/time";
 import StateContext from "./StateContext";
 
 const dates = {
-  "2026-05-17": [
-    {
-      id: "550e8400-e29b-41d4-a716-146655440000",
-      time: "06:00",
-      title: "This is a long title for testing",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      icon: "🌞",
-      color: "#FFFFFF66",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: true },
-        { text: "This is todo 2", done: false },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "17:30",
-      title: "This is a long title for testing",
-      icon: "☕",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#7dd3fc66",
-      tag: "",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "19:30",
-      title: "This is a long title for testing",
-      icon: "🏃‍♂️",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#FDE68A66",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-  ],
-  "2026-05-18": [
-    {
-      id: "550e8400-e29b-41d4-a716-146655440000",
-      time: "08:00",
-      title: "This is a long title for testing",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      icon: "🌞",
-      color: "#6ee7b766",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: true },
-        { text: "This is todo 2", done: false },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "16:30",
-      title: "This is a long title for testing",
-      icon: "☕",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#c4b5fd66",
-      tag: "",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "17:39",
-      title: "This is a long title for testing",
-      icon: "🏃‍♂️",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#fdba7466",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-  ],
-  "2026-05-19": [
-    {
-      id: "550e8400-e29b-41d4-a716-146655440000",
-      time: "13:00",
-      title: "This is a long title for testing",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      icon: "",
-      color: "#6ee7b766",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: true },
-        { text: "This is todo 2", done: false },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "14:30",
-      title: "This is a long title for testing",
-      icon: "☕",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#FDE68A66",
-      tag: "",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "16:15",
-      title: "This is a long title for testing",
-      icon: "🏃‍♂️",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#FDE68A66",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-  ],
+  // "2026-05-19": [
+  //   {
+  //     id: "550e8400-e29b-41d4-a716-146655440000",
+  //     time: "13:00",
+  //     title: "This is a long title for testing",
+  //     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  //     icon: "",
+  //     color: "#6ee7b766",
+  //     tag: "Morning Routine",
+  //     reminder: true,
+  //     repeat: [1, 3, 6],
+  //     todos: [
+  //       { text: "This is todo 1", done: true },
+  //       { text: "This is todo 2", done: false },
+  //       { text: "This is todo 3", done: false },
+  //     ],
+  //     pomodoroTimer: [],
+  //   },
+  //   {
+  //     id: "550e8400-e29b-41d4-a716-246655440000",
+  //     time: "14:30",
+  //     title: "This is a long title for testing",
+  //     icon: "☕",
+  //     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  //     color: "#FDE68A66",
+  //     tag: "",
+  //     reminder: true,
+  //     repeat: [1, 3, 6],
+  //     todos: [
+  //       { text: "This is todo 1", done: false },
+  //       { text: "This is todo 2", done: true },
+  //       { text: "This is todo 3", done: false },
+  //     ],
+  //     pomodoroTimer: [],
+  //   },
+  //   {
+  //     id: "550e8400-e29b-41d4-a716-346655440000",
+  //     time: "16:15",
+  //     title: "This is a long title for testing",
+  //     icon: "🏃‍♂️",
+  //     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  //     color: "#FDE68A66",
+  //     tag: "Morning Routine",
+  //     reminder: true,
+  //     repeat: [1, 3, 6],
+  //     todos: [
+  //       { text: "This is todo 1", done: false },
+  //       { text: "This is todo 2", done: true },
+  //       { text: "This is todo 3", done: false },
+  //     ],
+  //     pomodoroTimer: [],
+  //   },
+  // ],
 };
+
+function addNewTask(date, task) {
+  console.log("Date parameter:", date, typeof date);
+  console.log("Dates object keys:", Object.keys(dates));
+  console.log("dates[date] exists?", dates[date]);
+  console.log("Boolean check:", !dates[date]);
+  // console.log(dates[date]);
+  // if (!dates[date]) {
+  //   dates[date] = [task];
+  // } else {
+  //   console.log("test");
+  //   if (!dates[date].some((t) => t.time === task.time)) {
+  //     dates[date].push(task);
+  //   } else {
+  //     console.log("Task with the same time already exists!");
+  //   }
+  // }
+}
 
 const initialState = {
   isMenuPanelOpen: false,
@@ -179,10 +91,13 @@ const initialState = {
   sortedCards: [],
   currentTask: "",
   activeCard: 0,
-  theme: "light",
+  preferences: {
+    theme: "light",
+  },
   newTask: {
-    id: crypto.randomUUID(),
+    id: "",
     time: "",
+    date: "",
     title: "",
     icon: "",
     description: "",
@@ -191,7 +106,12 @@ const initialState = {
     reminder: false,
     repeat: [],
     todos: [],
-    pomodoroTimer: [25, 5, 25, 5, 25, 5, 25, 15],
+    pomodoroTimer: {
+      cycle: 4,
+      work: 25,
+      shortBreak: 5,
+      longBreak: 15,
+    },
   },
 };
 
@@ -234,7 +154,10 @@ function reducer(state, action) {
     case "changeTheme":
       return {
         ...state,
-        theme: action.payload,
+        preferences: {
+          ...state.preferences,
+          theme: action.payload,
+        },
       };
     case "closeAllPanels":
       return {
@@ -338,9 +261,6 @@ function reducer(state, action) {
         ...state,
         viewDate: state.currentDate,
       };
-    case "createNewTask":
-      console.log(action.payload);
-      break;
     case "togglePomodoro":
       return {
         ...state,
@@ -444,11 +364,23 @@ function reducer(state, action) {
           repeat: action.payload,
         },
       };
-
-    // case "addNewTask":
-    //   return {
-
-    //   }
+    case "createNewTask": {
+      const newTask = {
+        ...state.newTask,
+        id: crypto.randomUUID(),
+        time: state.newTask.time || formatTime(new Date()),
+        title: state.newTask.title || "Untitled",
+      };
+      // console.log(newTask);
+      addNewTask(state.viewDate, newTask);
+      return {
+        ...state,
+        newTask: initialState.newTask,
+        isCreateTaskPanelOpen: false,
+        isTodoItemActive: false,
+        isPomodoroActive: false,
+      };
+    }
     default:
       console.log("Unknown action!");
   }
@@ -470,7 +402,7 @@ export default function StateProvider({ children }) {
       isPomodoroActive,
       isTodoItemActive,
       newTask,
-      theme,
+      preferences,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -664,7 +596,7 @@ export default function StateProvider({ children }) {
         isPomodoroActive,
         isTodoItemActive,
         newTask,
-        theme
+        preferences,
       }}
     >
       {children}

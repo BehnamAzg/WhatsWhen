@@ -22,11 +22,6 @@ export default function CreateTask() {
 
   const componentRef = useRef(null);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(newTask);
-  }
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isEmojiPanelOpen) return;
@@ -90,7 +85,6 @@ export default function CreateTask() {
             type="text"
             name="title"
             placeholder="Title"
-            required
             className="form-input"
           />
         </div>
@@ -104,7 +98,6 @@ export default function CreateTask() {
             }
             type="time"
             name="time"
-            required
             className="form-input w-1/2"
           />
 
@@ -174,7 +167,6 @@ export default function CreateTask() {
           <Button type="cancel" actionType="toggleCreateTask">
             Cancel
           </Button>
-          <button onClick={handleSubmit}>test</button>
           <Button type="add" actionType="createNewTask">
             Add Task
           </Button>
