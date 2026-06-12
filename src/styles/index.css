@@ -179,7 +179,7 @@
   }
 
   .day-select {
-    @apply flex-center peer-checked:bg-primary peer-checked:hover:bg-background ring-primary rounded-xl bg-white px-2 py-1 peer-checked:border-transparent peer-checked:text-white hover:ring-2 peer-checked:hover:text-neutral-500 peer-checked:hover:ring-0;
+    @apply flex-center peer-checked:bg-primary peer-checked:hover:bg-background ring-primary rounded-xl bg-white px-2 py-1 peer-checked:border-transparent peer-checked:text-white hover:ring-2 peer-checked:hover:text-neutral-500 peer-checked:hover:ring-0 text-xs;
   }
   .color-dot {
     @apply ring-primary flex h-6 w-6 cursor-pointer rounded-full border border-white/30 ring-offset-1 peer-checked:ring-2 hover:ring-2;
