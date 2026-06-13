@@ -27,7 +27,7 @@ export default function TaskPercentageDisplay() {
         role="tooltip"
         className="popover-body popover-task-percentage"
       >
-        Percentage of done tasks
+        Percentage of Completed Tasks
       </dialog>
     </div>
   );

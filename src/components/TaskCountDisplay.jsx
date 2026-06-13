@@ -21,7 +21,7 @@ export default function TaskCountDisplay() {
         role="tooltip"
         className="popover-body popover-task-count"
       >
-        Amount of done tasks
+        Count of Completed Tasks
       </dialog>
     </div>
   );
