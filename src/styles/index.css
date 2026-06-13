@@ -81,7 +81,7 @@
     @apply bg-primary absolute top-3 right-3 h-7 w-7 p-1.5 hover:scale-95 hover:bg-violet-600 hover:ring-0;
   }
   .btn-theme {
-    @apply dark:bg-blur dark:text-dark-theme-text bg-white px-2 py-1 hover:px-2.5;
+    @apply dark:bg-blur dark:text-dark-theme-text bg-background px-2 py-1 hover:px-2.5;
   }
   .btn-theme-selected {
     @apply bg-primary dark:text-dark-theme-text px-2 py-1 text-white hover:px-2.5;
@@ -142,7 +142,7 @@
   }
 
   .card.active {
-    top: 16.5%;
+    top: 16.2%;
     scale: 1;
   }
 
