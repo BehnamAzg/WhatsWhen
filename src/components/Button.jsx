@@ -31,8 +31,22 @@ export default function Button({
   actionType = "",
   actionPayload = "",
   width = "default",
+  link = "",
 }) {
   const { dispatch } = useStateContext();
+
+  if (link) {
+    return (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`btn ${types[type]} ${widths[width]}`}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
     <button

@@ -371,7 +371,7 @@ function reducer(state, action) {
         id: crypto.randomUUID(),
         time: state.newTask.time || formatTime(new Date()),
         title: state.newTask.title || "Untitled",
-        date: state.viewDate
+        date: state.viewDate,
       };
       // console.log(newTask);
       addNewTask(state.viewDate, newTask);
@@ -383,6 +383,12 @@ function reducer(state, action) {
         isPomodoroActive: false,
       };
     }
+    case "importData":
+      console.log("Not available yet!");
+      break;
+    case "exportData":
+      console.log("Not available yet!");
+      break;
     default:
       console.log("Unknown action!");
   }

@@ -7,6 +7,8 @@ import Button from "./Button";
 import Icon from "./Icon";
 import ThemeSelector from "./ThemeSelector";
 import Version from "./Version";
+import Link from "./Link";
+import Warning from "./Warning";
 
 export default function Menu() {
   const { dispatch, isMenuPanelOpen, isShortcutsPanelOpen } = useStateContext();
@@ -65,44 +67,47 @@ export default function Menu() {
 
       <div className="menu-row-container mt-2 flex-col gap-3">
         <Accordion icon="info" title="About WhatsWhen?">
-          <p className="accordian-details">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem
-            sapiente similique natus eos incidunt esse, maxime labore repellat
-            officia nulla rerum nihil.
-          </p>
+          <div className="accordian-details">
+            <p>
+              WhatsWhen is a Free and Open-Source Daily Planner and Time Manager
+              Tool.{" "}
+              <Link link="https://github.com/BehnamAzg/WhatsWhen">
+                Read More
+              </Link>
+            </p>
+          </div>
         </Accordion>
 
         <Accordion icon="import" title="Import / Export Data">
           <p className="accordian-details">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem
-            sapiente similique natus eos incidunt esse, maxime labore repellat
-            officia nulla rerum nihil.
+            This feature is NOT available yet in this version.{" "}
+            <Link link="https://github.com/BehnamAzg/WhatsWhen">Read More</Link>
           </p>
 
           <div className="menu-row-container mb-2">
-            <Button type="capsule" width="full">
+            <Button type="capsule" width="full" actionType="importData">
               <Icon name="download" />
               <span>Import Data</span>
             </Button>
-            <Button type="capsule" width="full">
+            <Button type="capsule" width="full" actionType="exportData">
               <Icon name="export" />
               <span>Export Data</span>
             </Button>
           </div>
         </Accordion>
         <div className="menu-row-container">
-          <Button type="capsule" width="fit">
+          <Button type="capsule" width="fit" link="https://github.com/BehnamAzg/WhatsWhen">
             <Icon name="github" />
             <span>Github</span>
           </Button>
-          <Button type="capsule" width="full">
+          <Button type="capsule" width="full" link="https://github.com/BehnamAzg/WhatsWhen/releases">
             <Icon name="clipboard" />
             <span>Release Notes</span>
           </Button>
         </div>
 
         <div className="menu-row-container">
-          <Button type="capsule" width="fit">
+          <Button type="capsule" width="fit" link="https://github.com/BehnamAzg/WhatsWhen/issues">
             <Icon name="bug" />
             <span>Report Bugs / Feedback</span>
           </Button>
@@ -117,6 +122,18 @@ export default function Menu() {
             <Icon name="heart" size="14" color="primary" />
             <span>Donate</span>
           </Button>
+        </div>
+
+        <div className="menu-row-container">
+          <Warning>
+            <p>
+              "Persistent Storage" is not activated, Install the app to avoid
+              losing your data.{" "}
+              <Link link="https://github.com/BehnamAzg/WhatsWhen" color="white">
+                Read More
+              </Link>
+            </p>
+          </Warning>
         </div>
 
         <div className="menu-row-container">

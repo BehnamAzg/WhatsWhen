@@ -223,7 +223,7 @@
       display 200ms,
       opacity 200ms;
     transition-behavior: allow-discrete;
-    @apply bg-blur bg-background transition-animation mt-2 w-44 translate-y-0 scale-100 rounded-2xl px-4 py-2.5 text-sm opacity-100 focus:outline-none;
+    @apply bg-blur bg-background transition-animation mt-2 w-44 translate-y-0 scale-100 rounded-2xl px-4 py-2.5 text-xs opacity-100 focus:outline-none;
     @starting-style {
       @apply -translate-y-full scale-0 opacity-0;
     }
