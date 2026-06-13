@@ -11,9 +11,10 @@ import Link from "./Link";
 import Warning from "./Warning";
 
 export default function Menu() {
-  const { dispatch, isMenuPanelOpen, isShortcutsPanelOpen } = useStateContext();
-
+  const { dispatch, isMenuPanelOpen, isShortcutsPanelOpen, isStoragePersistent } = useStateContext();
   const componentRef = useRef(null);
+
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -69,8 +70,12 @@ export default function Menu() {
         <Accordion icon="info" title="About WhatsWhen?">
           <div className="accordian-details">
             <p>
-              WhatsWhen is a Free and Open-Source Daily Planner and Time Manager
-              Tool.{" "}
+              WhatsWhen is a "free" and "open-source" daily planner and time
+              manager app.
+            </p>
+            <p>
+              This app is client-side and your data will not be stored on any
+              server.{" "}
               <Link link="https://github.com/BehnamAzg/WhatsWhen">
                 Read More
               </Link>
@@ -95,46 +100,58 @@ export default function Menu() {
             </Button>
           </div>
         </Accordion>
+
         <div className="menu-row-container">
-          <Button type="capsule" width="fit" link="https://github.com/BehnamAzg/WhatsWhen">
+          <Button
+            type="capsule"
+            width="fit"
+            link="https://github.com/BehnamAzg/WhatsWhen"
+          >
             <Icon name="github" />
             <span>Github</span>
           </Button>
-          <Button type="capsule" width="full" link="https://github.com/BehnamAzg/WhatsWhen/releases">
-            <Icon name="clipboard" />
-            <span>Release Notes</span>
+
+          <Button
+            type="capsule"
+            width="full"
+            link="https://github.com/BehnamAzg/WhatsWhen/issues"
+          >
+            <Icon name="bug" />
+            <span>Report Bugs / Feedback</span>
           </Button>
         </div>
 
         <div className="menu-row-container">
-          <Button type="capsule" width="fit" link="https://github.com/BehnamAzg/WhatsWhen/issues">
-            <Icon name="bug" />
-            <span>Report Bugs / Feedback</span>
+          <Button
+            type="capsule"
+            width="full"
+            link="https://behnamazg.github.io/Donation"
+          >
+            <Icon name="heart" size="14" color="primary" />
+            <span>Donate</span>
           </Button>
-          <Button type="capsule" width="full">
+          <Button type="capsule" width="fit">
             <Icon name="share" />
             <span>share</span>
           </Button>
         </div>
 
-        <div className="menu-row-container">
-          <Button type="capsule" width="full">
-            <Icon name="heart" size="14" color="primary" />
-            <span>Donate</span>
-          </Button>
-        </div>
-
-        <div className="menu-row-container">
-          <Warning>
-            <p>
-              "Persistent Storage" is not activated, Install the app to avoid
-              losing your data.{" "}
-              <Link link="https://github.com/BehnamAzg/WhatsWhen" color="white">
-                Read More
-              </Link>
-            </p>
-          </Warning>
-        </div>
+        {!isStoragePersistent && (
+          <div className="menu-row-container">
+            <Warning>
+              <p>
+                "Persistent Storage" is not activated, Install the app to avoid
+                losing your data.{" "}
+                <Link
+                  link="https://github.com/BehnamAzg/WhatsWhen"
+                  color="white"
+                >
+                  Read More
+                </Link>
+              </p>
+            </Warning>
+          </div>
+        )}
 
         <div className="menu-row-container">
           <Button type="install">

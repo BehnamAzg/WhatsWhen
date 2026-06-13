@@ -112,4 +112,23 @@ async function setPreferences(newPreferences) {
   }
 }
 
-export { addTask, updateTask, getTasks, deleteTask, getPreferences, setPreferences };
+async function isStoragePersistent() {
+  if (!navigator.storage?.persist) {
+    return false;
+  }
+  const alreadyPersistent = await navigator.storage.persisted();
+  if (alreadyPersistent) {
+    return true;
+  }
+  return await navigator.storage.persist();
+}
+
+export {
+  addTask,
+  updateTask,
+  getTasks,
+  deleteTask,
+  getPreferences,
+  setPreferences,
+  isStoragePersistent,
+};

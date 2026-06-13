@@ -86,6 +86,7 @@ const initialState = {
   isEmojiPanelOpen: false,
   isPomodoroActive: false,
   isTodoItemActive: false,
+  isStoragePersistent: true,
   currentTime: new Date(),
   currentDate: formatDate(new Date()),
   viewDate: formatDate(new Date()),
@@ -385,10 +386,19 @@ function reducer(state, action) {
     }
     case "importData":
       console.log("Not available yet!");
-      break;
+      return {
+        ...state,
+      };
     case "exportData":
       console.log("Not available yet!");
-      break;
+      return {
+        ...state,
+      };
+    case "setStoragePersistent":
+      return {
+        ...state,
+        isStoragePersistent: action.payload,
+      };
     default:
       console.log("Unknown action!");
   }
@@ -411,6 +421,7 @@ export default function StateProvider({ children }) {
       isTodoItemActive,
       newTask,
       preferences,
+      isStoragePersistent
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -484,7 +495,7 @@ export default function StateProvider({ children }) {
     };
   }, [updateAndSchedule]);
 
-  // Mouse scroll handler ###########################################################
+  // Mouse scroll handler #########################################################
   useEffect(() => {
     function handleScroll(e) {
       if (isMenuPanelOpen || isCalendarPanelOpen || isCreateTaskPanelOpen)
@@ -509,7 +520,7 @@ export default function StateProvider({ children }) {
     isCreateTaskPanelOpen,
   ]);
 
-  // Keyboard shortcuts handler #####################################################
+  // Keyboard shortcuts handler ###################################################
   useEffect(() => {
     const handleKeyDown = (event) => {
       const isInputOrTextarea =
@@ -581,7 +592,7 @@ export default function StateProvider({ children }) {
     };
   }, []);
 
-  // Return body of the provider ###################################################
+  // Return body of the provider ##################################################
   return (
     <StateContext.Provider
       value={{
@@ -605,6 +616,7 @@ export default function StateProvider({ children }) {
         isTodoItemActive,
         newTask,
         preferences,
+        isStoragePersistent
       }}
     >
       {children}
