@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import RepeatButton from "./RepeatButton";
 import useStateContext from "../context/useStateContext";
 
+const allDays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+
 export default function DayRepetition() {
   const { dispatch } = useStateContext();
 
@@ -10,8 +12,6 @@ export default function DayRepetition() {
     everyday: false,
     days: new Set(),
   });
-
-  const allDays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
   const handleToggle = (role, value) => {
     setSelection((prev) => {
@@ -49,10 +49,9 @@ export default function DayRepetition() {
   useEffect(() => {
     dispatch({
       type: "updateNewTaskRepeat",
-      payload: {
-        ...selection,
-        days: Array.from(selection.days),
-      },
+      payload: Array.from(selection.days)
+        ?.map((day) => allDays.indexOf(day))
+        .sort((a, b) => a - b),
     });
   }, [selection, dispatch]);
 

@@ -60,6 +60,7 @@ const dates = {
 };
 
 function addNewTask(date, task) {
+  console.log(task);
   console.log("Date parameter:", date, typeof date);
   console.log("Dates object keys:", Object.keys(dates));
   console.log("dates[date] exists?", dates[date]);
@@ -370,6 +371,7 @@ function reducer(state, action) {
         id: crypto.randomUUID(),
         time: state.newTask.time || formatTime(new Date()),
         title: state.newTask.title || "Untitled",
+        date: state.viewDate
       };
       // console.log(newTask);
       addNewTask(state.viewDate, newTask);
