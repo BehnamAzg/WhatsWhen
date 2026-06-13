@@ -54,10 +54,10 @@
     @apply bg-blur h-10 w-10;
   }
   .btn-circle-menu {
-    @apply bg-background dark:bg-primary/15 h-10 w-10;
+    @apply bg-background dark:bg-blur h-10 w-10;
   }
   .btn-circle-sm {
-    @apply bg-background h-8 w-8;
+    @apply bg-background/50 dark:bg-background/15 h-8 w-8;
   }
   .btn-circle-xs {
     @apply bg-blur h-5 w-5 p-1;
@@ -72,7 +72,7 @@
     @apply border-none bg-none hover:mr-1 hover:bg-white/20 hover:ring-0 focus-visible:bg-white/20;
   }
   .btn-popover {
-    @apply bg-background dark:bg-primary/15 h-10 w-20;
+    @apply bg-background dark:bg-blur h-10 w-20;
   }
   .btn-create-task {
     @apply bg-primary hover:scale-95 hover:bg-violet-600 hover:ring-0;
@@ -151,18 +151,18 @@
   }
 
   .current-task-timer {
-    @apply transition-animation w-24 scale-100 rounded-full bg-white/40 py-1.5 text-center text-sm font-bold tracking-wider opacity-100;
+    @apply transition-animation w-24 scale-100 rounded-full border border-light-border dark:border-dark-border bg-background/50 dark:bg-background/15  py-1.5 text-center text-sm font-bold tracking-wider opacity-100 dark:text-dark-theme-text;
     @starting-style {
       @apply scale-0 opacity-0;
     }
   }
 
   .current-task-timer-active {
-    @apply bg-primary text-white;
+    @apply bg-primary text-white dark:text-dark-theme-text;
   }
 
   .modal-container {
-    @apply font-albert bg-background dark:bg-primary/5 border-light-border dark:border-dark-border fixed inset-0 z-10 m-auto h-fit max-h-[80%] w-[28%] overflow-y-auto rounded-3xl border px-4 py-3 text-sm font-bold backdrop-blur-md focus:outline-none max-lg:w-[46%] max-sm:w-11/12;
+    @apply font-albert bg-background dark:bg-black/50 border-light-border dark:border-dark-border fixed inset-0 z-10 m-auto h-fit max-h-[80%] w-[28%] overflow-y-auto rounded-3xl border px-4 py-3 text-sm font-bold backdrop-blur-md focus:outline-none max-lg:w-[46%] max-sm:w-11/12;
   }
   .menu-row-container {
     @apply flex w-full gap-2 font-medium;
@@ -235,7 +235,7 @@
       display 200ms,
       opacity 200ms;
     transition-behavior: allow-discrete;
-    @apply bg-blur bg-background transition-animation mt-2 w-44 translate-y-0 scale-100 rounded-2xl px-4 py-2.5 text-xs opacity-100 focus:outline-none;
+    @apply bg-blur bg-background dark:bg-primary/10 dark:text-dark-theme-text transition-animation mt-2 w-44 translate-y-0 scale-100 rounded-2xl px-4 py-2.5 text-xs opacity-100 focus:outline-none;
     @starting-style {
       @apply -translate-y-full scale-0 opacity-0;
     }

@@ -1,6 +1,7 @@
 import useStateContext from "../context/useStateContext";
 
 import Card from "./Card";
+import NoTasks from "./NoTasks";
 
 export default function Main() {
   const { activeCard, sortedCards } = useStateContext();
@@ -27,7 +28,7 @@ export default function Main() {
           ))}
         </section>
       ) : (
-        "No Tasks"
+        <NoTasks />
       )}
     </main>
   );

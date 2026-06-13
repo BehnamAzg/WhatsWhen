@@ -11,10 +11,13 @@ import Link from "./Link";
 import Warning from "./Warning";
 
 export default function Menu() {
-  const { dispatch, isMenuPanelOpen, isShortcutsPanelOpen, isStoragePersistent } = useStateContext();
+  const {
+    dispatch,
+    isMenuPanelOpen,
+    isShortcutsPanelOpen,
+    isStoragePersistent,
+  } = useStateContext();
   const componentRef = useRef(null);
-
-  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
