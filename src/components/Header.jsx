@@ -59,11 +59,11 @@ export default function Header() {
   return (
     <header>
       <div className="header-row-container">
-        <Button type="circle" actionType="toggleMenu">
+        <Button type="circleMenu" actionType="toggleMenu">
           <Icon name="list" size="20" />
         </Button>
         <DateDisplay day={day} date={date} month={month} />
-        <Button type="circle" actionType="toggleCalendar">
+        <Button type="circleMenu" actionType="toggleCalendar">
           <Icon name="calendar" size="20" />
         </Button>
       </div>

@@ -14,7 +14,7 @@ export default function TaskPercentageDisplay() {
     <div className="popover-wrapper">
       <Button type="popover" popoverTarget="taskPercentagePopover">
         <span className="space-x-0.5">
-          <span className="text-xl">
+          <span className="text-xl dark:text-dark-theme-text">
             {calculatePercentage(currentTaskIndex + 1, cardsCount)}
           </span>
           <span className="text-primary pt-1 text-xs">%</span>

@@ -1,6 +1,6 @@
 const colors = {
   none: "",
-  white: "text-white",
+  white: "text-white dark:text-dark-theme-text",
   primary: "text-primary",
 };
 

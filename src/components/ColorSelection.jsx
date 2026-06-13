@@ -5,7 +5,6 @@ import ColorButton from "./ColorButton";
 import Icon from "./Icon";
 
 export default function ColorSelection() {
-
   const [customColor, setCustomColor] = useState("#694cf1");
   const colorRef = useRef(null);
   const { dispatch } = useStateContext();
@@ -19,7 +18,7 @@ export default function ColorSelection() {
   const iconColor = isLight(customColor) ? "primary" : "white";
 
   return (
-    <div className="flex-center h-10 flex-none justify-between gap-2 rounded-full border border-white bg-white/50 px-4">
+    <div className="flex-center border-light-border dark:border-dark-border bg-blur h-10 flex-none justify-between gap-2 rounded-full border px-4">
       <ColorButton value="#ffffff" classList="bg-white/50" isChecked={true} />
       <ColorButton value="#fca5a5" classList="bg-red-300/50" />
       <ColorButton value="#fdba74" classList="bg-orange-300/50" />
@@ -53,7 +52,6 @@ export default function ColorSelection() {
           className="color-dot flex items-center justify-center text-white focus:outline-none"
           style={{ background: customColor }}
           tabIndex="-1"
-          
         >
           <Icon name="plus" size="14" color={iconColor} />
         </span>

@@ -15,8 +15,9 @@ export default function ColorButton({
         defaultValue={value}
         className="peer sr-only"
         defaultChecked={isChecked}
-        onChange={(e) => dispatch({type: "updateNewTaskColor", payload: e.target.value})}
-        
+        onChange={(e) =>
+          dispatch({ type: "updateNewTaskColor", payload: e.target.value })
+        }
       />
       <span
         className={`color-dot focus:outline-none ${classList}`}

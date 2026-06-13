@@ -58,13 +58,14 @@ export default function Emoji() {
 
       <div className="flex-center scrollbar-thumb-primary my-2">
         <EmojiPicker
-          className="bg-background border-none"
+          className="bg-blur border-none shadow-none"
           onEmojiSelect={handleEmojiSelect}
           emojisPerRow={10}
+          tabIndex={0}
         >
           <EmojiPicker.Header>
             <EmojiPicker.Input
-              className="bg-white"
+              className="bg-blur! dark:placeholder:text-dark-theme-text/50! dark:text-dark-theme-text! "
               placeholder="Search emoji"
             />
           </EmojiPicker.Header>

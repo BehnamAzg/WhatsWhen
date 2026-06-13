@@ -7,12 +7,12 @@ export default function TodoInput({ todo, index }) {
 
   return (
     <li className="flex-center mx-2 w-full justify-start rounded-xl pr-1 pl-2">
-      <span className="h-3 w-3 shrink-0 rounded-full border border-black/70"></span>
+      <span className="dark:border-dark-theme-text/50 h-3 w-3 shrink-0 rounded-full border border-black/70"></span>
       <input
         name="todo"
         type="text"
         placeholder="To-do"
-        className="my-1 w-full px-2 focus:outline-none"
+        className="dark:placeholder:text-dark-theme-text/50 dark:text-dark-theme-text my-1 w-full px-2 focus:outline-none"
         value={todo}
         onChange={(e) =>
           dispatch({

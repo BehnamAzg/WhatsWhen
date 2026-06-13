@@ -55,8 +55,8 @@ export default function CreateTask() {
   return (
     <div
       ref={componentRef}
-      className="modal-container enter-transition scrollbar-none"
-      style={{ background: newTask.color }}
+      className="modal-container enter-transition scrollbar-none "
+      // style={{ background: newTask.color }}
     >
       <h1 className="header-title">
         <Button type="close" actionType="toggleCreateTask">
@@ -98,7 +98,7 @@ export default function CreateTask() {
             }
             type="time"
             name="time"
-            className="form-input w-1/2"
+            className="form-input w-1/2 "
           />
 
           {/* Reminder */}
@@ -136,13 +136,13 @@ export default function CreateTask() {
             name="description"
             rows="2"
             placeholder="Description"
-            className="bg-background focus-primary h-auto w-full rounded-2xl border border-white px-4 py-2.5"
+            className="bg-blur focus-primary h-auto w-full rounded-2xl border border-light-border dark:border-dark-border px-4 py-2.5 dark:placeholder:text-dark-theme-text/50 dark:text-dark-theme-text"
           ></textarea>
         </div>
 
         {/* Todo */}
         {isTodoItemActive && (
-          <ul className="flex-center h-full w-full flex-col gap-1.5 rounded-2xl border border-white bg-white/20 p-2">
+          <ul className="flex-center h-full w-full flex-col gap-1.5 rounded-2xl border border-light-border dark:border-dark-border bg-blur p-2">
             {newTask.todos.map((todo, index) => (
               <TodoInput todo={todo} index={index} key={index} />
             ))}

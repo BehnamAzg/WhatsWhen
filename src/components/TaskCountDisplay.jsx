@@ -9,7 +9,7 @@ export default function TaskCountDisplay() {
     <div className="popover-wrapper">
       <Button type="popover" popoverTarget="taskCountPopover">
         <span className="space-x-0.5">
-          <span className="text-xl space-x-3">{currentTaskIndex + 1}</span>
+          <span className="text-xl dark:text-dark-theme-text space-x-3">{currentTaskIndex + 1}</span>
           <span className="text-primary pt-1 text-xs">/</span>
           <span className="text-primary pt-1 text-xs">{cardsCount}</span>
         </span>

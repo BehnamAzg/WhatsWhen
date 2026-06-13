@@ -6,7 +6,7 @@ export default function ThemeSelector() {
 
   return (
     <div className="capsule-container">
-      <h3>Theme</h3>
+      <h3 className="text-black dark:text-dark-theme-text">Theme</h3>
       <div className="flex gap-x-2">
         <Button
           type={preferences.theme === "light" ? "themeSelected" : "theme"}

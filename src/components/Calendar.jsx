@@ -59,7 +59,7 @@ export default function Calendar() {
         <span className="text-base">Calendar</span>
       </h1>
 
-      <div className="flex-center my-2 px-4">
+      <div className="flex-center my-2 px-4 dark:text-dark-theme-text">
         <DayPicker mode="single" selected={selected} onSelect={setSelected} />
       </div>
     </div>

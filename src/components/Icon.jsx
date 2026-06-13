@@ -1,9 +1,9 @@
 const colors = {
   none: "",
-  white: "text-white",
-  black: "text-black",
+  white: "text-white dark:text-dark-theme-text",
+  black: "text-black dark:text-dark-theme-text",
   primary: "text-primary",
-  gray: "text-neutral-500",
+  gray: "text-neutral-500 dark:text-dark-theme-text/50",
 };
 
 export default function Icon({ name, size = "16", color = "black" }) {

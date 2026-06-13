@@ -16,13 +16,17 @@
   --font-albert: "Albert Sans", sans-serif;
   --color-primary: #694cf1;
   --color-background: rgba(255, 255, 255, 0.4);
+  --color-dark-theme-text: var(--color-blue-200);
+  /* --color-border-light: color-mix(in srgb, var(--color-white) 10%, transparent); */
+  --color-light-border: rgba(255, 255, 255, 0.5);
+  --color-dark-border: rgba(255, 255, 255, 0.07);
 }
 
 @utility flex-center {
   @apply flex items-center justify-center;
 }
 @utility bg-blur {
-  @apply border border-white/50 backdrop-blur-md;
+  @apply border-light-border dark:border-dark-border dark:bg-background/10 border backdrop-blur-md;
 }
 @utility focus-primary {
   @apply ring-primary focus-within:ring-2 focus:outline-none focus-visible:ring-2;
@@ -35,32 +39,40 @@
 }
 
 @layer components {
+  .custom-time::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
   .btn {
-    @apply flex-center focus-primary transition-animation min-h-0 shrink-0 scale-100 cursor-pointer gap-x-1.5 rounded-full border border-white/50 p-2 text-xs opacity-100 hover:ring-2;
+    @apply flex-center focus-primary transition-animation border-light-border dark:border-dark-border min-h-0 shrink-0 scale-100 cursor-pointer gap-x-1.5 rounded-full border p-2 text-xs opacity-100 hover:ring-2;
     @starting-style {
       @apply scale-0 opacity-0;
     }
   }
   .btn-circle {
-    @apply bg-background h-10 w-10;
+    @apply bg-blur h-10 w-10;
+  }
+  .btn-circle-menu {
+    @apply bg-background dark:bg-primary/15 h-10 w-10;
   }
   .btn-circle-sm {
     @apply bg-background h-8 w-8;
   }
   .btn-circle-xs {
-    @apply bg-background h-5 w-5 p-1;
+    @apply bg-blur h-5 w-5 p-1;
   }
   .btn-capsule {
-    @apply bg-background h-10 w-fit shrink px-4 text-nowrap hover:px-5;
+    @apply bg-blur dark:text-dark-theme-text h-10 w-fit shrink px-4 text-nowrap hover:px-5;
   }
   .btn-navigate-right {
-    @apply border-none bg-none hover:ml-1 hover:bg-white/25 hover:ring-0 focus-visible:bg-white/25;
+    @apply border-none bg-none hover:ml-1 hover:bg-white/20 hover:ring-0 focus-visible:bg-white/20;
   }
   .btn-navigate-left {
-    @apply border-none bg-none hover:mr-1 hover:bg-white/25 hover:ring-0 focus-visible:bg-white/25;
+    @apply border-none bg-none hover:mr-1 hover:bg-white/20 hover:ring-0 focus-visible:bg-white/20;
   }
   .btn-popover {
-    @apply bg-background h-10 w-20;
+    @apply bg-background dark:bg-primary/15 h-10 w-20;
   }
   .btn-create-task {
     @apply bg-primary hover:scale-95 hover:bg-violet-600 hover:ring-0;
@@ -69,16 +81,16 @@
     @apply bg-primary absolute top-3 right-3 h-7 w-7 p-1.5 hover:scale-95 hover:bg-violet-600 hover:ring-0;
   }
   .btn-theme {
-    @apply bg-white px-2 py-1 hover:px-2.5;
+    @apply dark:bg-blur dark:text-dark-theme-text bg-white px-2 py-1 hover:px-2.5;
   }
   .btn-theme-selected {
-    @apply bg-primary px-2 py-1 text-white hover:px-2.5;
+    @apply bg-primary dark:text-dark-theme-text px-2 py-1 text-white hover:px-2.5;
   }
   .btn-install {
-    @apply bg-primary h-10 w-full text-sm text-white;
+    @apply bg-primary dark:text-dark-theme-text h-10 w-full text-sm text-white;
   }
   .btn-capsule-cancel {
-    @apply bg-background h-8 w-fit shrink px-4 text-nowrap hover:px-5;
+    @apply bg-blur dark:text-dark-theme-text h-8 w-fit shrink px-4 text-nowrap hover:px-5;
   }
   .btn-capsule-add {
     @apply bg-primary h-8 w-fit shrink px-4 text-nowrap text-white hover:px-5;
@@ -96,7 +108,7 @@
 
 @layer utilities {
   .app-outter-container {
-    @apply font-albert flex h-screen min-h-0 w-screen items-center justify-center bg-neutral-200 dark:bg-sky-950 font-bold select-none;
+    @apply font-albert flex h-screen min-h-0 w-screen items-center justify-center bg-neutral-200 font-bold select-none dark:bg-black;
   }
   .app-inner-container {
     @apply flex h-full min-h-0 w-[30%] flex-col px-4 py-3 max-lg:w-1/2 max-md:w-1/2 max-sm:w-full;
@@ -115,7 +127,7 @@
     @apply flex-center min-h-0 w-full justify-between py-2;
   }
   .header-title {
-    @apply flex-center justify-start gap-2 rounded-full px-3 py-1 focus:outline-none;
+    @apply flex-center dark:text-dark-theme-text justify-start gap-2 rounded-full px-3 py-1 focus:outline-none;
   }
 
   .card {
@@ -150,16 +162,16 @@
   }
 
   .modal-container {
-    @apply font-albert bg-background fixed inset-0 z-10 m-auto h-fit max-h-[80%] w-[28%] overflow-y-auto rounded-3xl border border-white/50 px-4 py-3 text-sm font-bold backdrop-blur-md focus:outline-none max-lg:w-[46%] max-sm:w-11/12;
+    @apply font-albert bg-background dark:bg-primary/5 border-light-border dark:border-dark-border fixed inset-0 z-10 m-auto h-fit max-h-[80%] w-[28%] overflow-y-auto rounded-3xl border px-4 py-3 text-sm font-bold backdrop-blur-md focus:outline-none max-lg:w-[46%] max-sm:w-11/12;
   }
   .menu-row-container {
     @apply flex w-full gap-2 font-medium;
   }
   .accordian-summary {
-    @apply bg-blur flex-center ring-primary transition-animation focus-primary h-10 min-h-0 w-full cursor-pointer justify-start gap-x-2 rounded-full px-4 text-xs duration-200 select-none hover:ring-2;
+    @apply bg-blur dark:text-dark-theme-text flex-center ring-primary transition-animation focus-primary h-10 min-h-0 w-full cursor-pointer justify-start gap-x-2 rounded-full px-4 text-xs duration-200 select-none hover:ring-2;
   }
   .accordian-details {
-    @apply bg-blur my-2 w-full rounded-2xl px-4 py-2.5 text-xs;
+    @apply bg-blur dark:text-dark-theme-text my-2 w-full rounded-2xl px-4 py-2.5 text-xs;
   }
 
   .create-task-form {
@@ -169,20 +181,20 @@
     @apply flex w-full items-stretch gap-2;
   }
   .form-input {
-    @apply bg-background focus-primary h-10 w-full rounded-full border border-white px-4;
+    @apply bg-blur focus-primary border-light-border dark:border-dark-border dark:placeholder:text-dark-theme-text/50 dark:text-dark-theme-text h-10 w-full rounded-full border px-4;
   }
   .form-container-pomodoro {
-    @apply bg-background flex-center justify-start h-8 w-full gap-1 rounded-2xl border border-white px-4 py-4 text-center text-xs;
+    @apply bg-background dark:bg-blur flex-center border-light-border dark:border-dark-border h-8 w-full justify-start gap-1 rounded-2xl border px-4 py-4 text-center text-xs dark:text-dark-theme-text;
   }
   .form-input-pomodoro {
-    @apply focus-primary flex-center text-primary h-6 w-10 rounded-lg ml-4 text-center ;
+    @apply focus-primary flex-center text-primary ml-4 h-6 w-10 rounded-lg text-center;
   }
 
   .day-select {
-    @apply flex-center peer-checked:bg-primary peer-checked:hover:bg-background ring-primary rounded-xl bg-white px-2 py-1 peer-checked:border-transparent peer-checked:text-white hover:ring-2 peer-checked:hover:text-neutral-500 peer-checked:hover:ring-0 text-xs;
+    @apply flex-center peer-checked:bg-primary peer-checked:hover:bg-background dark:peer-checked:hover:bg-background/25 ring-primary bg-background dark:text-dark-theme-text/50 dark:bg-blur rounded-xl px-2 py-1 text-xs peer-checked:border-transparent peer-checked:text-white hover:ring-2 peer-checked:hover:text-neutral-500 peer-checked:hover:ring-0;
   }
   .color-dot {
-    @apply ring-primary flex h-6 w-6 cursor-pointer rounded-full border border-white/30 ring-offset-1 peer-checked:ring-2 hover:ring-2;
+    @apply ring-primary border-light-border dark:border-dark-border flex h-6 w-6 cursor-pointer rounded-full border ring-offset-1 peer-checked:ring-2 hover:ring-2;
   }
 
   .todo-checkbox-large {
@@ -196,10 +208,10 @@
     @apply flex-center w-full justify-start gap-1.5;
   }
   .shortcuts-kbd {
-    @apply bg-primary flex-center h-8 w-8 rounded-full border border-white/50 text-white shrink-0 ;
+    @apply bg-primary flex-center border-light-border dark:border-dark-border dark:text-dark-theme-text h-8 w-8 shrink-0 rounded-full border text-white;
   }
   .shortcuts-des {
-    @apply bg-background flex-center justify-start h-8 w-full rounded-full border border-white/50 shrink px-4 text-nowrap text-xs;
+    @apply bg-blur flex-center border-light-border dark:text-dark-theme-text dark:border-dark-border h-8 w-full shrink justify-start rounded-full border px-4 text-xs text-nowrap;
   }
 
   .btn-popover[popovertarget="taskCountPopover"] {

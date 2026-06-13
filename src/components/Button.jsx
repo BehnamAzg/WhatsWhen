@@ -5,6 +5,7 @@ const types = {
   circle: "btn-circle",
   circleSm: "btn-circle-sm",
   circleXs: "btn-circle-xs",
+  circleMenu: "btn-circle-menu",
   capsule: "btn-capsule",
   popover: "btn-popover",
   navigateRight: "btn-navigate-right",
