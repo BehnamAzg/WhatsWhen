@@ -172,10 +172,10 @@
     @apply bg-background focus-primary h-10 w-full rounded-full border border-white px-4;
   }
   .form-container-pomodoro {
-    @apply bg-background flex-center h-8 w-full gap-1 rounded-2xl border border-white px-2 py-4 text-center text-xs;
+    @apply bg-background flex-center justify-start h-8 w-full gap-1 rounded-2xl border border-white px-4 py-4 text-center text-xs;
   }
   .form-input-pomodoro {
-    @apply focus-primary flex-center text-primary h-6 w-12 rounded-lg px-2 text-center;
+    @apply focus-primary flex-center text-primary h-6 w-10 rounded-lg ml-4 text-center ;
   }
 
   .day-select {

@@ -4,7 +4,7 @@ export default function PomodoroTimerInput({ value = "" }) {
       name="pomodoro"
       type="number"
       defaultValue={value}
-      className="form-input-pomodoro appearance-none"
+      className="form-input-pomodoro appearance-none "
       
     />
   );
