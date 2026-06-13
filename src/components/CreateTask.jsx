@@ -150,14 +150,15 @@ export default function CreateTask() {
         )}
 
         <div className="form-row-container">
-          <Button type="capsule" width="full" actionType="addTodo">
-            <Icon name="todo" />
-            <span>Add To-do Item</span>
-          </Button>
           <Button type="capsule" width="full" actionType="togglePomodoro">
             <Icon name="timer" />
             <span>Pomodoro Timer</span>
           </Button>
+          <Button type="capsule" width="full" actionType="addTodo">
+            <Icon name="todo" />
+            <span>Add To-do Item</span>
+          </Button>
+          
         </div>
 
         {/* Pomodoro */}
