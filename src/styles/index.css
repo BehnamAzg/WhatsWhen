@@ -69,7 +69,7 @@
     @apply bg-blur dark:text-dark-theme-text h-10 w-fit shrink px-4 text-nowrap hover:px-5;
   }
   .btn-capsule-add-task {
-    @apply bg-primary text-white dark:text-dark-theme-text h-10 w-fit shrink px-4 text-nowrap hover:px-5;
+    @apply bg-primary dark:text-dark-theme-text h-10 w-fit shrink px-4 text-nowrap text-white hover:px-5;
   }
   .btn-navigate-right {
     @apply border-none bg-none hover:ml-1 hover:bg-white/20 hover:ring-0 focus-visible:bg-white/20;
@@ -173,7 +173,7 @@
   .menu-row-container {
     @apply flex w-full gap-2 font-medium;
   }
-  .accordian-summary {
+  .accordion-summary {
     @apply bg-blur dark:text-dark-theme-text flex-center ring-primary transition-animation focus-primary h-10 min-h-0 w-full cursor-pointer justify-start gap-x-2 rounded-full px-4 text-xs duration-200 select-none hover:ring-2;
   }
   .accordian-details {

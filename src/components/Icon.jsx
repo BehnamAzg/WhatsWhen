@@ -4,7 +4,7 @@ const colors = {
   black: "text-black dark:text-dark-theme-text",
   primary: "text-primary",
   gray: "text-neutral-500 dark:text-dark-theme-text/50",
-  fade: "text-white/70 dark:text-white/35"
+  fade: "text-white/70 dark:text-white/35",
 };
 
 export default function Icon({ name, size = "16", color = "black" }) {
