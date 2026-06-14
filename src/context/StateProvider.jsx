@@ -57,6 +57,112 @@ const dates = {
       pomodoroTimer: [],
     },
   ],
+  "2026-06-14": [
+    {
+      id: "550e8400-e29b-41d4-a716-146655440000",
+      time: "08:00",
+      title: "This is a long title for testing",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      icon: "",
+      color: "#6ee7b766",
+      tag: "Morning Routine",
+      reminder: true,
+      repeat: [1, 3, 6],
+      todos: [
+        { text: "This is todo 1", done: true },
+        { text: "This is todo 2", done: false },
+        { text: "This is todo 3", done: false },
+      ],
+      pomodoroTimer: [],
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-246655440000",
+      time: "14:30",
+      title: "This is a long title for testing",
+      icon: "☕",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      color: "#93c5fd66",
+      tag: "",
+      reminder: true,
+      repeat: [1, 3, 6],
+      todos: [
+        { text: "This is todo 1", done: false },
+        { text: "This is todo 2", done: true },
+        { text: "This is todo 3", done: false },
+      ],
+      pomodoroTimer: [],
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-346655440000",
+      time: "16:15",
+      title: "This is a long title for testing",
+      icon: "🏃‍♂️",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      color: "#ffffff66",
+      tag: "Morning Routine",
+      reminder: true,
+      repeat: [1, 3, 6],
+      todos: [
+        { text: "This is todo 1", done: false },
+        { text: "This is todo 2", done: true },
+        { text: "This is todo 3", done: false },
+      ],
+      pomodoroTimer: [],
+    },
+  ],
+  "2026-06-15": [
+    {
+      id: "550e8400-e29b-41d4-a716-146655440000",
+      time: "13:00",
+      title: "This is a long title for testing",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      icon: "",
+      color: "#6ee7b766",
+      tag: "Morning Routine",
+      reminder: true,
+      repeat: [1, 3, 6],
+      todos: [
+        { text: "This is todo 1", done: true },
+        { text: "This is todo 2", done: false },
+        { text: "This is todo 3", done: false },
+      ],
+      pomodoroTimer: [],
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-246655440000",
+      time: "14:30",
+      title: "This is a long title for testing",
+      icon: "☕",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      color: "#93c5fd66",
+      tag: "",
+      reminder: true,
+      repeat: [1, 3, 6],
+      todos: [
+        { text: "This is todo 1", done: false },
+        { text: "This is todo 2", done: true },
+        { text: "This is todo 3", done: false },
+      ],
+      pomodoroTimer: [],
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-346655440000",
+      time: "16:15",
+      title: "This is a long title for testing",
+      icon: "🏃‍♂️",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      color: "#ffffff66",
+      tag: "Morning Routine",
+      reminder: true,
+      repeat: [1, 3, 6],
+      todos: [
+        { text: "This is todo 1", done: false },
+        { text: "This is todo 2", done: true },
+        { text: "This is todo 3", done: false },
+      ],
+      pomodoroTimer: [],
+    },
+  ],
 };
 
 function addNewTask(date, task) {
@@ -168,6 +274,7 @@ function reducer(state, action) {
         isCalendarPanelOpen: false,
         isCreateTaskPanelOpen: false,
         isShortcutsPanelOpen: false,
+        isEmojiPanelOpen: false,
       };
     case "goToNextDay":
       return {
@@ -237,16 +344,12 @@ function reducer(state, action) {
           ...state,
           activeCard: index,
         };
-      if (isDateFuture(state.currentDate, state.viewDate))
-        return {
-          ...state,
-          activeCard: 0,
-        };
-
+      
       return {
         ...state,
-        activeCard: state.sortedCards.length - 1,
-      };
+        viewDate: state.currentDate,
+        activeCard: index,
+      }
     }
     case "goToFirstTask":
       return {
@@ -257,11 +360,6 @@ function reducer(state, action) {
       return {
         ...state,
         activeCard: state.sortedCards.length - 1,
-      };
-    case "goToCurrentDay":
-      return {
-        ...state,
-        viewDate: state.currentDate,
       };
     case "togglePomodoro":
       return {
@@ -546,12 +644,13 @@ export default function StateProvider({ children }) {
 
         if (event.key === "e") {
           event.preventDefault();
-          dispatch({ type: "goToCurrentTask" });
+          console.log("Not implemented")
+          // dispatch({ type: "goToCurrentTask" });
         }
 
         if (event.key === "r") {
           event.preventDefault();
-          dispatch({ type: "goToCurrentDay" });
+          dispatch({ type: "goToCurrentTask" });
         }
 
         if (event.key === "/") {
@@ -600,7 +699,6 @@ export default function StateProvider({ children }) {
         currentDate,
         viewDate,
         cardsCount: dates[viewDate]?.length || 0,
-        // cards: dates[viewDate],
         isMenuPanelOpen,
         isCreateTaskPanelOpen,
         isCalendarPanelOpen,

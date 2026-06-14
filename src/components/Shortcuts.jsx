@@ -62,6 +62,14 @@ export default function Shortcuts() {
             <span className="shortcuts-des">Create New Task</span>
           </li>
           <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">E</kbd>
+            <span className="shortcuts-des">Edit Viewing Task</span>
+          </li>
+          <li className="shortcuts-li">
+            <kbd className="shortcuts-kbd">DEL</kbd>
+            <span className="shortcuts-des">Delete Viewing Task</span>
+          </li>
+          <li className="shortcuts-li">
             <kbd className="shortcuts-kbd">M</kbd>
             <span className="shortcuts-des">Open Menu</span>
           </li>
@@ -73,10 +81,7 @@ export default function Shortcuts() {
             <kbd className="shortcuts-kbd text-xs">ESC</kbd>
             <span className="shortcuts-des">Close Panels</span>
           </li>
-          <li className="shortcuts-li">
-            <kbd className="shortcuts-kbd">E</kbd>
-            <span className="shortcuts-des">Go to Current Task</span>
-          </li>
+          
           <li className="shortcuts-li">
             <kbd className="shortcuts-kbd">W</kbd>
             <kbd className="shortcuts-kbd">↑</kbd>
@@ -89,7 +94,7 @@ export default function Shortcuts() {
           </li>
           <li className="shortcuts-li">
             <kbd className="shortcuts-kbd">R</kbd>
-            <span className="shortcuts-des">Go to Current Day</span>
+            <span className="shortcuts-des">Go to Current Task</span>
           </li>
           <li className="shortcuts-li">
             <kbd className="shortcuts-kbd">A</kbd>
