@@ -68,6 +68,9 @@
   .btn-capsule {
     @apply bg-blur dark:text-dark-theme-text h-10 w-fit shrink px-4 text-nowrap hover:px-5;
   }
+  .btn-capsule-add-task {
+    @apply bg-primary text-white dark:text-dark-theme-text h-10 w-fit shrink px-4 text-nowrap hover:px-5;
+  }
   .btn-navigate-right {
     @apply border-none bg-none hover:ml-1 hover:bg-white/20 hover:ring-0 focus-visible:bg-white/20;
   }
