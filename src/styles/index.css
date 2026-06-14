@@ -40,8 +40,11 @@
 
 @layer components {
   .custom-time::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
+    filter: invert(45%);
+  }
+  [data-theme="dark"] .custom-time::-webkit-calendar-picker-indicator {
+    filter: invert(88%) sepia(14%) saturate(1329%) hue-rotate(183deg)
+      brightness(103%) contrast(99%);
   }
 
   .btn {
@@ -151,18 +154,18 @@
   }
 
   .current-task-timer {
-    @apply transition-animation w-24 scale-100 rounded-full border border-light-border dark:border-dark-border bg-background/50 dark:bg-background/15  py-1.5 text-center text-sm font-bold tracking-wider opacity-100 dark:text-dark-theme-text;
+    @apply transition-animation border-light-border dark:border-dark-border bg-background/50 dark:bg-background/15 dark:text-dark-theme-text w-24 scale-100 rounded-full border py-1.5 text-center text-sm font-bold tracking-wider opacity-100;
     @starting-style {
       @apply scale-0 opacity-0;
     }
   }
 
   .current-task-timer-active {
-    @apply bg-primary text-white dark:text-dark-theme-text;
+    @apply bg-primary dark:text-dark-theme-text text-white;
   }
 
   .modal-container {
-    @apply font-albert bg-background dark:bg-black/50 border-light-border dark:border-dark-border fixed inset-0 z-10 m-auto h-fit max-h-[80%] w-[28%] overflow-y-auto rounded-3xl border px-4 py-3 text-sm font-bold backdrop-blur-md focus:outline-none max-lg:w-[46%] max-sm:w-11/12;
+    @apply font-albert bg-background border-light-border dark:border-dark-border fixed inset-0 z-10 m-auto h-fit max-h-[80%] w-[28%] overflow-y-auto rounded-3xl border px-4 py-3 text-sm font-bold backdrop-blur-md focus:outline-none max-lg:w-[46%] max-sm:w-11/12 dark:bg-black/50;
   }
   .menu-row-container {
     @apply flex w-full gap-2 font-medium;
@@ -184,7 +187,7 @@
     @apply bg-blur focus-primary border-light-border dark:border-dark-border dark:placeholder:text-dark-theme-text/50 dark:text-dark-theme-text h-10 w-full rounded-full border px-4;
   }
   .form-container-pomodoro {
-    @apply bg-background dark:bg-blur flex-center border-light-border dark:border-dark-border h-8 w-full justify-start gap-1 rounded-2xl border px-4 py-4 text-center text-xs dark:text-dark-theme-text;
+    @apply bg-background dark:bg-blur flex-center border-light-border dark:border-dark-border dark:text-dark-theme-text h-8 w-full justify-start gap-1 rounded-2xl border px-4 py-4 text-center text-xs;
   }
   .form-input-pomodoro {
     @apply focus-primary flex-center text-primary ml-4 h-6 w-10 rounded-lg text-center;

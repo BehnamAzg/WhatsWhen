@@ -98,7 +98,7 @@ export default function CreateTask() {
             }
             type="time"
             name="time"
-            className="form-input w-1/2 "
+            className="form-input w-1/2 custom-time"
           />
 
           {/* Reminder */}
