@@ -24,7 +24,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "14:30",
+      time: "11:30",
       title: "This is a long title for testing",
       icon: "☕",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -77,7 +77,7 @@ const dates = {
     },
     {
       id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "14:30",
+      time: "11:48",
       title: "This is a long title for testing",
       icon: "☕",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -344,12 +344,12 @@ function reducer(state, action) {
           ...state,
           activeCard: index,
         };
-      
+
       return {
         ...state,
         viewDate: state.currentDate,
         activeCard: index,
-      }
+      };
     }
     case "goToFirstTask":
       return {
@@ -497,6 +497,34 @@ function reducer(state, action) {
         ...state,
         isStoragePersistent: action.payload,
       };
+    case "tickClock": {
+      const newCurrentTime = new Date();
+
+      const newCurrentTask = state.sortedCards.reduce((latestTask, task) => {
+        const taskDateTime = new Date(`${state.viewDate}T${task.time}:00`);
+
+        if (taskDateTime <= newCurrentTime) {
+          return task;
+        }
+
+        return latestTask;
+      }, null);
+
+      // Only scroll if task actually changed
+      const taskChanged = state.currentTask?.id !== newCurrentTask?.id;
+
+      const newActiveCard = taskChanged
+        ? state.sortedCards.findIndex((obj) => obj.id === newCurrentTask?.id)
+        : state.activeCard;
+
+      return {
+        ...state,
+        currentTime: newCurrentTime,
+        currentTask: newCurrentTask,
+        activeCard: newActiveCard,
+        viewDate: taskChanged ? state.currentDate : state.viewDate,
+      };
+    }
     default:
       console.log("Unknown action!");
   }
@@ -519,7 +547,7 @@ export default function StateProvider({ children }) {
       isTodoItemActive,
       newTask,
       preferences,
-      isStoragePersistent
+      isStoragePersistent,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -558,9 +586,7 @@ export default function StateProvider({ children }) {
   const timerRef = useRef(null);
 
   const updateAndSchedule = useCallback(() => {
-    dispatch({ type: "updateTime" });
-    dispatch({ type: "updateCurrentTask" });
-    dispatch({ type: "goToCurrentTask" });
+    dispatch({ type: "tickClock" });
 
     if (scheduleNextUpdateRef.current) {
       scheduleNextUpdateRef.current();
@@ -644,7 +670,7 @@ export default function StateProvider({ children }) {
 
         if (event.key === "e") {
           event.preventDefault();
-          console.log("Not implemented")
+          console.log("Not implemented");
           // dispatch({ type: "goToCurrentTask" });
         }
 
@@ -714,7 +740,7 @@ export default function StateProvider({ children }) {
         isTodoItemActive,
         newTask,
         preferences,
-        isStoragePersistent
+        isStoragePersistent,
       }}
     >
       {children}
