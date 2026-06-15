@@ -13,11 +13,11 @@ export default function TodoInput({ todo, index }) {
         type="text"
         placeholder="To-do"
         className="dark:placeholder:text-dark-theme-text/50 dark:text-dark-theme-text my-1 w-full px-2 focus:outline-none"
-        value={todo}
+        value={todo.text}
         onChange={(e) =>
           dispatch({
             type: "updateNewTaskTodos",
-            payload: e.target.value,
+            payload: {text: e.target.value, done: false},
             index: index,
           })
         }

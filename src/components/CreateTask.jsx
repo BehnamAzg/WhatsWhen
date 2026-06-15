@@ -144,7 +144,7 @@ export default function CreateTask() {
         {/* Todo */}
         {isTodoItemActive && (
           <ul className="flex-center h-full w-full flex-col gap-1.5 rounded-2xl border border-light-border dark:border-dark-border bg-blur p-2">
-            {newTask.todos.map((todo, index) => (
+            {newTask.todos?.map((todo, index) => (
               <TodoInput todo={todo} index={index} key={index} />
             ))}
           </ul>

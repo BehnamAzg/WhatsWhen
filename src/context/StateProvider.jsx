@@ -363,7 +363,13 @@ function reducer(state, action) {
         isTodoItemActive: true,
         newTask: {
           ...state.newTask,
-          todos: [...state.newTask.todos, ""],
+          todos: [
+            ...state.newTask.todos,
+            {
+              text: "",
+              done: false,
+            },
+          ],
         },
       };
     case "deleteTodo": {
@@ -580,17 +586,6 @@ export default function StateProvider({ children }) {
     loadTasks(viewDate);
   }, [viewDate, loadTasks]);
 
-  // if (!dates[date]) {
-  //   dates[date] = [task];
-  // } else {
-  //   console.log("test");
-  //   if (!dates[date].some((t) => t.time === task.time)) {
-  //     dates[date].push(task);
-  //   } else {
-  //     console.log("Task with the same time already exists!");
-  //   }
-  // }
-
   async function createTask() {
     const task = {
       ...newTask,
@@ -599,10 +594,11 @@ export default function StateProvider({ children }) {
       title: newTask.title || "Untitled",
       date: viewDate,
     };
-    
-    if (sortedCards.some((card) => card.time === task.time)) return console.log("Task with the same time already exists!");
 
-    console.log("From createTask: ", task)
+    // if (sortedCards.some((card) => card.time === task.time))
+    //   return console.log("Task with the same time already exists!");
+
+    console.log("From createTask: ", task);
     await addTask(task);
     await loadTasks(task.date);
     dispatch({ type: "finishCreateTask" });
