@@ -25,10 +25,14 @@ async function getDB() {
 }
 
 function shouldTaskAppearOnDate(taskObj, date) {
-  const taskDate = new Date(date);
+  const viewedDate = new Date(date);
 
   if (taskObj.recurring) {
-    return taskObj.repeat.includes(taskDate.getDay());
+    const startDate = new Date(taskObj.date);
+
+    if (viewedDate < startDate) return false;
+
+    return taskObj.repeat.includes(viewedDate.getDay());
   }
 
   return taskObj.date === date;
@@ -43,13 +47,15 @@ async function getTasks(date) {
 
     const db = await getDB();
 
-    const onceTasks = await db.getAllFromIndex("tasks", "date", date);
-    const recurringTasks = await db.getAllFromIndex("tasks", "recurring", 1);
+    const onceTasks = (await db.getAllFromIndex("tasks", "date", date)).filter(
+      (task) => !task.recurring,
+    );
 
-    const tasks = [
-      ...onceTasks,
-      ...recurringTasks.filter((task) => shouldTaskAppearOnDate(task, date)),
-    ];
+    const recurringTasks = (
+      await db.getAllFromIndex("tasks", "recurring", 1)
+    ).filter((task) => shouldTaskAppearOnDate(task, date));
+
+    const tasks = [...onceTasks, ...recurringTasks];
 
     return tasks.sort((a, b) => a.time.localeCompare(b.time));
   } catch (err) {
@@ -61,13 +67,7 @@ async function getTasks(date) {
 async function addTask(taskObj) {
   try {
     const db = await getDB();
-
-    const task = {
-      ...taskObj,
-      recurring: taskObj.repeat?.length > 0 ? 1 : 0,
-    };
-
-    await db.add("tasks", task);
+    await db.add("tasks", taskObj);
   } catch (err) {
     console.error("addTask:", err.message);
   }

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import { formatDate, shiftDate, isDateFuture } from "../utils/date";
 import { formatTime, timeToSeconds, getTimeDifference } from "../utils/time";
+import { normalizeTask } from "../utils/task";
 import {
   addTask,
   getTasks,
@@ -203,6 +204,7 @@ const initialState = {
     color: "#ffffff66",
     tag: "",
     reminder: false,
+    recurring: 0,
     repeat: [],
     todos: [],
     isPomodoroTimer: false,
@@ -587,13 +589,7 @@ export default function StateProvider({ children }) {
   }, [viewDate, loadTasks]);
 
   async function createTask() {
-    const task = {
-      ...newTask,
-      id: crypto.randomUUID(),
-      time: newTask.time || formatTime(new Date()),
-      title: newTask.title || "Untitled",
-      date: viewDate,
-    };
+    const task = normalizeTask(newTask, viewDate);
 
     // if (sortedCards.some((card) => card.time === task.time))
     //   return console.log("Task with the same time already exists!");
