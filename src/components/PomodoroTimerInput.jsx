@@ -1,11 +1,11 @@
-export default function PomodoroTimerInput({ value = "" }) {
+export default function PomodoroTimerInput({ name, value = 0, onChange }) {
   return (
     <input
-      name="pomodoro"
+      name={name}
       type="number"
       defaultValue={value}
       className="form-input-pomodoro appearance-none "
-      
+      onChange={(e) => onChange(e)}
     />
   );
 }
