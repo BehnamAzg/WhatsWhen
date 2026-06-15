@@ -24,13 +24,47 @@ async function getDB() {
   return dbPromise;
 }
 
+function shouldTaskAppearOnDate(taskObj, date) {
+  const taskDate = new Date(date);
+
+  if (taskObj.recurring) {
+    return taskObj.repeat.includes(taskDate.getDay());
+  }
+
+  return taskObj.date === date;
+}
+
+async function getTasks(date) {
+  try {
+    if (!date || typeof date !== "string") {
+      console.error("Invalid date passed to getTasks:", date);
+      return [];
+    }
+
+    const db = await getDB();
+
+    const onceTasks = await db.getAllFromIndex("tasks", "date", date);
+    const recurringTasks = await db.getAllFromIndex("tasks", "recurring", 1);
+
+    const tasks = [
+      ...onceTasks,
+      ...recurringTasks.filter((task) => shouldTaskAppearOnDate(task, date)),
+    ];
+
+    return tasks.sort((a, b) => a.time.localeCompare(b.time));
+  } catch (err) {
+    console.error("getTasks:", err.message);
+    return [];
+  }
+}
+
 async function addTask(taskObj) {
   try {
     const db = await getDB();
 
     const task = {
       ...taskObj,
-      recurring: taskObj.repeat?.length > 0,
+      recurring: taskObj.repeat?.length > 0 ? 1 : 0,
     };
 
     await db.add("tasks", task);
@@ -51,36 +85,6 @@ async function updateTask(taskObj) {
     await db.put("tasks", task);
   } catch (err) {
     console.error("updateTask:", err.message);
-  }
-}
-
-function shouldTaskAppearOnDate(taskObj, date) {
-  const taskDate = new Date(date);
-
-  if (taskObj.recurring) {
-    return taskObj.repeat.includes(taskDate.getDay());
-  }
-
-  return taskObj.date === date;
-}
-
-async function getTasks(date) {
-  try {
-    const db = await getDB();
-
-    const onceTasks = await db.getAllFromIndex("tasks", "date", date);
-
-    const recurringTasks = await db.getAllFromIndex("tasks", "recurring", true);
-
-    const tasks = [
-      ...onceTasks,
-      ...recurringTasks.filter((task) => shouldTaskAppearOnDate(task, date)),
-    ];
-
-    return tasks.sort((a, b) => a.time.localeCompare(b.time));
-  } catch (err) {
-    console.error("getTasks:", err.message);
-    return [];
   }
 }
 
@@ -125,8 +129,8 @@ async function isStoragePersistent() {
 
 export {
   addTask,
-  updateTask,
   getTasks,
+  updateTask,
   deleteTask,
   getPreferences,
   setPreferences,

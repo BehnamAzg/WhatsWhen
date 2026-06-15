@@ -12,7 +12,7 @@ export default function TaskPercentageDisplay() {
 
   return (
     <div className="popover-wrapper">
-      <Button type="popover" popoverTarget="taskPercentagePopover">
+      <Button type="popover" popoverTarget="taskPercentagePopover" onClick={() => ""}>
         <span className="space-x-0.5">
           <span className="text-xl dark:text-dark-theme-text">
             {calculatePercentage(currentTaskIndex + 1, cardsCount)}

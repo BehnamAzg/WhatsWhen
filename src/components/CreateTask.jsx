@@ -18,6 +18,7 @@ export default function CreateTask() {
     isPomodoroActive,
     isTodoItemActive,
     newTask,
+    createTask,
   } = useStateContext();
 
   const componentRef = useRef(null);
@@ -168,7 +169,7 @@ export default function CreateTask() {
           <Button type="cancel" actionType="toggleCreateTask">
             Cancel
           </Button>
-          <Button type="add" actionType="createNewTask">
+          <Button type="add" onClick={createTask}>
             Add Task
           </Button>
         </div>

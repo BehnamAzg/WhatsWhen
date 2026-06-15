@@ -1,8 +1,17 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import { formatDate, shiftDate, isDateFuture } from "../utils/date";
 import { formatTime, timeToSeconds, getTimeDifference } from "../utils/time";
+import {
+  addTask,
+  getTasks,
+  updateTask,
+  deleteTask,
+  getPreferences,
+  setPreferences,
+} from "../data/db";
 import StateContext from "./StateContext";
 
+/*
 const dates = {
   "2026-06-13": [
     {
@@ -164,25 +173,7 @@ const dates = {
     },
   ],
 };
-
-function addNewTask(date, task) {
-  console.log(task);
-  console.log("Date parameter:", date, typeof date);
-  console.log("Dates object keys:", Object.keys(dates));
-  console.log("dates[date] exists?", dates[date]);
-  console.log("Boolean check:", !dates[date]);
-  // console.log(dates[date]);
-  // if (!dates[date]) {
-  //   dates[date] = [task];
-  // } else {
-  //   console.log("test");
-  //   if (!dates[date].some((t) => t.time === task.time)) {
-  //     dates[date].push(task);
-  //   } else {
-  //     console.log("Task with the same time already exists!");
-  //   }
-  // }
-}
+*/
 
 const initialState = {
   isMenuPanelOpen: false,
@@ -214,12 +205,8 @@ const initialState = {
     reminder: false,
     repeat: [],
     todos: [],
-    pomodoroTimer: {
-      cycle: 4,
-      work: 25,
-      shortBreak: 5,
-      longBreak: 15,
-    },
+    isPomodoroTimer: false,
+    pomodoroTimer: {},
   },
 };
 
@@ -316,13 +303,13 @@ function reducer(state, action) {
         ...state,
         currentTime: new Date(),
       };
-    case "updateSortedCards":
-      return {
-        ...state,
-        sortedCards: [...(dates[state.viewDate] || [])].sort(
-          (a, b) => timeToSeconds(a.time) - timeToSeconds(b.time),
-        ),
-      };
+    // case "updateSortedCards":
+    //   return {
+    //     ...state,
+    //     sortedCards: [...(dates[state.viewDate] || [])].sort(
+    //       (a, b) => timeToSeconds(a.time) - timeToSeconds(b.time),
+    //     ),
+    //   };
     case "updateCurrentTask":
       return {
         ...state,
@@ -365,6 +352,10 @@ function reducer(state, action) {
       return {
         ...state,
         isPomodoroActive: !state.isPomodoroActive,
+        newTask: {
+          ...state.newTask,
+          isPomodoroTimer: !state.isPomodoroActive,
+        },
       };
     case "addTodo":
       return {
@@ -464,16 +455,15 @@ function reducer(state, action) {
           repeat: action.payload,
         },
       };
-    case "createNewTask": {
-      const newTask = {
-        ...state.newTask,
-        id: crypto.randomUUID(),
-        time: state.newTask.time || formatTime(new Date()),
-        title: state.newTask.title || "Untitled",
-        date: state.viewDate,
+    case "updateNewTaskPomodoro":
+      return {
+        ...state,
+        newTask: {
+          ...state.newTask,
+          pomodoroTimer: action.payload,
+        },
       };
-      // console.log(newTask);
-      addNewTask(state.viewDate, newTask);
+    case "finishCreateTask":
       return {
         ...state,
         newTask: initialState.newTask,
@@ -481,7 +471,6 @@ function reducer(state, action) {
         isTodoItemActive: false,
         isPomodoroActive: false,
       };
-    }
     case "importData":
       console.log("Not available yet!");
       return {
@@ -525,6 +514,16 @@ function reducer(state, action) {
         viewDate: taskChanged ? state.currentDate : state.viewDate,
       };
     }
+    case "loadPreferences":
+      return {
+        ...state,
+        preferences: action.payload,
+      };
+    case "setTasks":
+      return {
+        ...state,
+        sortedCards: action.payload,
+      };
     default:
       console.log("Unknown action!");
   }
@@ -552,6 +551,99 @@ export default function StateProvider({ children }) {
     dispatch,
   ] = useReducer(reducer, initialState);
 
+  // CRUD Operations ############################################################
+  /*
+  useEffect(() => {
+    async function init() {
+      const prefs = await getPreferences();
+
+      dispatch({
+        type: "loadPreferences",
+        payload: prefs,
+      });
+    }
+
+    init();
+  }, []);
+  */
+
+  const loadTasks = useCallback(async (date) => {
+    const tasks = await getTasks(date);
+
+    dispatch({
+      type: "setTasks",
+      payload: tasks,
+    });
+  }, []);
+
+  useEffect(() => {
+    loadTasks(viewDate);
+  }, [viewDate, loadTasks]);
+
+  // if (!dates[date]) {
+  //   dates[date] = [task];
+  // } else {
+  //   console.log("test");
+  //   if (!dates[date].some((t) => t.time === task.time)) {
+  //     dates[date].push(task);
+  //   } else {
+  //     console.log("Task with the same time already exists!");
+  //   }
+  // }
+
+  async function createTask() {
+    const task = {
+      ...newTask,
+      id: crypto.randomUUID(),
+      time: newTask.time || formatTime(new Date()),
+      title: newTask.title || "Untitled",
+      date: viewDate,
+    };
+    
+    if (sortedCards.some((card) => card.time === task.time)) return console.log("Task with the same time already exists!");
+
+    console.log("From createTask: ", task)
+    await addTask(task);
+    await loadTasks(task.date);
+    dispatch({ type: "finishCreateTask" });
+  }
+
+  async function removeTask(id, date) {
+    await deleteTask(id);
+    await loadTasks(date);
+  }
+
+  async function editTask(task) {
+    await updateTask(task);
+    await loadTasks(task.date);
+  }
+
+  /*
+  useEffect(() => {
+    async function init() {
+      const tasks = await getTasks(viewDate);
+
+      dispatch({
+        type: "hydrateTasksDates",
+        payload: tasks,
+      });
+    }
+
+    init();
+  }, [viewDate]);
+
+  async function createTask(taskData) {
+    await addTask(taskData);
+    dispatch({ type: "createNewTask", payload: taskData });
+  }
+
+  async function removeTask(id) {
+    await deleteTask(id);
+    dispatch({ type: "deleteTask", payload: id });
+  }
+  */
+
+  // ############################################################################
   const currentTaskIndex = sortedCards.findIndex(
     (obj) => obj.id === currentTask?.id,
   );
@@ -569,7 +661,7 @@ export default function StateProvider({ children }) {
 
   // Updating the current task ##################################################
   useEffect(() => {
-    dispatch({ type: "updateSortedCards" });
+    // dispatch({ type: "updateSortedCards" });
     dispatch({ type: "updateCurrentTask" });
 
     if (viewDate === currentDate) {
@@ -722,9 +814,10 @@ export default function StateProvider({ children }) {
     <StateContext.Provider
       value={{
         dispatch,
+        createTask,
         currentDate,
         viewDate,
-        cardsCount: dates[viewDate]?.length || 0,
+        cardsCount: sortedCards.length,
         isMenuPanelOpen,
         isCreateTaskPanelOpen,
         isCalendarPanelOpen,

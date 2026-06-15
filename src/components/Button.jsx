@@ -28,6 +28,7 @@ const widths = {
 
 export default function Button({
   children,
+  onClick,
   type = "default",
   popoverTarget = "",
   actionType = "",
@@ -55,9 +56,13 @@ export default function Button({
       type="button"
       className={`btn ${types[type]} ${widths[width]}`}
       onClick={
-        type === "popover"
-          ? () => ""
-          : () => dispatch({ type: actionType, payload: actionPayload })
+        onClick
+          ? onClick
+          : () =>
+              dispatch({
+                type: actionType,
+                payload: actionPayload,
+              })
       }
       popoverTarget={popoverTarget}
     >

@@ -7,7 +7,7 @@ export default function TaskCountDisplay() {
 
   return (
     <div className="popover-wrapper">
-      <Button type="popover" popoverTarget="taskCountPopover">
+      <Button type="popover" popoverTarget="taskCountPopover" onClick={() => ""}>
         <span className="space-x-0.5">
           <span className="text-xl dark:text-dark-theme-text space-x-3">{currentTaskIndex + 1}</span>
           <span className="text-primary pt-1 text-xs">/</span>
