@@ -17,6 +17,7 @@ const types = {
   themeSelected: "btn-theme-selected",
   install: "btn-install",
   cancel: "btn-capsule-cancel",
+  delete: "btn-capsule-delete",
   add: "btn-capsule-add",
 };
 

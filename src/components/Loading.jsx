@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="flex-center h-full w-full">
+    <div className="flex-center bg-blur absolute z-10 h-full w-full rounded-2xl border-none">
       <div className="flex-center w-fit flex-col gap-3 rounded-2xl px-4 py-6">
         <svg
           fill="currentColor"

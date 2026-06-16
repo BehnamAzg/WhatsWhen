@@ -45,6 +45,7 @@ const initialState = {
   isPomodoroActive: false,
   isTodoItemActive: false,
   isStoragePersistent: true,
+  isDeletePanelOpen: false,
   isLoading: false,
   currentTime: new Date(),
   currentDate: formatDate(new Date()),
@@ -52,6 +53,7 @@ const initialState = {
   sortedCards: [],
   currentTask: "",
   activeCard: 0,
+  selectedTask: {},
   preferences: {
     theme: "light",
   },
@@ -82,6 +84,7 @@ function reducer(state, action) {
         isCalendarPanelOpen: false,
         isCreateTaskPanelOpen: false,
         isShortcutsPanelOpen: false,
+        isDeletePanelOpen: false,
       };
     case "toggleCalendar":
       return {
@@ -90,6 +93,7 @@ function reducer(state, action) {
         isMenuPanelOpen: false,
         isCreateTaskPanelOpen: false,
         isShortcutsPanelOpen: false,
+        isDeletePanelOpen: false,
       };
     case "toggleCreateTask":
       return {
@@ -98,17 +102,39 @@ function reducer(state, action) {
         isMenuPanelOpen: false,
         isCalendarPanelOpen: false,
         isShortcutsPanelOpen: false,
+        isDeletePanelOpen: false,
       };
     case "toggleShortcuts":
       return {
         ...state,
         isShortcutsPanelOpen: !state.isShortcutsPanelOpen,
+        isDeletePanelOpen: false,
       };
     case "toggleEmoji":
       return {
         ...state,
         isEmojiPanelOpen: !state.isEmojiPanelOpen,
       };
+    case "toggleDeletePanel": {
+      if (state.sortedCards.length <= 0)
+        return {
+          ...state,
+          isDeletePanelOpen: false,
+        };
+      let selection = {};
+      if (!state.isDeletePanelOpen) {
+        selection = state.sortedCards[state.activeCard];
+      }
+      return {
+        ...state,
+        isDeletePanelOpen: !state.isDeletePanelOpen,
+        isMenuPanelOpen: false,
+        isCreateTaskPanelOpen: false,
+        isCalendarPanelOpen: false,
+        isShortcutsPanelOpen: false,
+        selectedTask: selection,
+      };
+    }
     case "changeTheme":
       return {
         ...state,
@@ -125,6 +151,7 @@ function reducer(state, action) {
         isCreateTaskPanelOpen: false,
         isShortcutsPanelOpen: false,
         isEmojiPanelOpen: false,
+        isDeletePanelOpen: false,
       };
     case "goToNextDay":
       return {
@@ -420,6 +447,7 @@ export default function StateProvider({ children }) {
       isCreateTaskPanelOpen,
       isShortcutsPanelOpen,
       isEmojiPanelOpen,
+      isDeletePanelOpen,
       currentDate,
       viewDate,
       activeCard,
@@ -431,11 +459,11 @@ export default function StateProvider({ children }) {
       preferences,
       isStoragePersistent,
       isLoading,
+      selectedTask,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  // CRUD Operations ############################################################
   /*
   useEffect(() => {
     async function init() {
@@ -451,6 +479,7 @@ export default function StateProvider({ children }) {
   }, []);
   */
 
+  // Tasks CRUD Operations ######################################################
   const loadTasks = useCallback(async (date) => {
     try {
       dispatch({ type: "toggleIsLoading" });
@@ -485,6 +514,7 @@ export default function StateProvider({ children }) {
   async function removeTask(id, date) {
     await deleteTask(id);
     await loadTasks(date);
+    dispatch({ type: "toggleDeletePanel" });
   }
 
   async function editTask(task) {
@@ -495,6 +525,10 @@ export default function StateProvider({ children }) {
   // ############################################################################
   const currentTaskIndex = sortedCards.findIndex(
     (obj) => obj.id === currentTask?.id,
+  );
+
+  const selectedTaskIndex = sortedCards.findIndex(
+    (obj) => obj.id === selectedTask?.id,
   );
 
   const isCurrentTaskToday =
@@ -561,7 +595,13 @@ export default function StateProvider({ children }) {
   // Mouse scroll handler #########################################################
   useEffect(() => {
     function handleScroll(e) {
-      if (isMenuPanelOpen || isCalendarPanelOpen || isCreateTaskPanelOpen)
+      if (
+        isMenuPanelOpen ||
+        isCalendarPanelOpen ||
+        isCreateTaskPanelOpen ||
+        isShortcutsPanelOpen ||
+        isDeletePanelOpen
+      )
         return;
 
       if (e.deltaY > 50 && activeCard < sortedCards.length - 1) {
@@ -581,6 +621,8 @@ export default function StateProvider({ children }) {
     isMenuPanelOpen,
     isCalendarPanelOpen,
     isCreateTaskPanelOpen,
+    isShortcutsPanelOpen,
+    isDeletePanelOpen,
   ]);
 
   // Keyboard shortcuts handler ###################################################
@@ -592,6 +634,18 @@ export default function StateProvider({ children }) {
         event.target.isContentEditable;
 
       if (!isInputOrTextarea) {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          dispatch({ type: "closeAllPanels" });
+        }
+
+        if (event.key === "Delete") {
+          event.preventDefault();
+          dispatch({ type: "toggleDeletePanel" });
+        }
+
+        if (isDeletePanelOpen) return;
+
         if (event.key === "n") {
           event.preventDefault();
           dispatch({ type: "toggleCreateTask" });
@@ -607,12 +661,6 @@ export default function StateProvider({ children }) {
           dispatch({ type: "toggleCalendar" });
         }
 
-        if (event.key === "e") {
-          event.preventDefault();
-          console.log("Not implemented");
-          // dispatch({ type: "goToCurrentTask" });
-        }
-
         if (event.key === "r") {
           event.preventDefault();
           dispatch({ type: "jumpToCurrentTask" });
@@ -621,11 +669,6 @@ export default function StateProvider({ children }) {
         if (event.key === "/") {
           event.preventDefault();
           dispatch({ type: "toggleShortcuts" });
-        }
-
-        if (event.key === "Escape") {
-          event.preventDefault();
-          dispatch({ type: "closeAllPanels" });
         }
 
         if (event.key === "d" || event.key === "ArrowRight") {
@@ -645,6 +688,7 @@ export default function StateProvider({ children }) {
 
         if (event.key === "s" || event.key === "ArrowDown") {
           event.preventDefault();
+
           dispatch({ type: "goToNextCard" });
         }
       }
@@ -654,7 +698,7 @@ export default function StateProvider({ children }) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [isDeletePanelOpen]);
 
   // Return body of the provider ##################################################
   return (
@@ -662,6 +706,7 @@ export default function StateProvider({ children }) {
       value={{
         dispatch,
         createTask,
+        removeTask,
         currentDate,
         viewDate,
         cardsCount: sortedCards.length,
@@ -670,10 +715,12 @@ export default function StateProvider({ children }) {
         isCalendarPanelOpen,
         isShortcutsPanelOpen,
         isEmojiPanelOpen,
+        isDeletePanelOpen,
         activeCard,
         sortedCards,
         currentTask,
         currentTaskIndex,
+        selectedTaskIndex,
         isCurrentTaskToday,
         durations,
         isPomodoroActive,
@@ -682,6 +729,7 @@ export default function StateProvider({ children }) {
         preferences,
         isStoragePersistent,
         isLoading,
+        selectedTask,
       }}
     >
       {children}

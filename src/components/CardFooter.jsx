@@ -41,7 +41,7 @@ export default function CardFooter({ index }) {
         {isCurrentTaskToday ? formattedCountdown : durations[index].formatted}
       </time>
       <div className="flex-center gap-2">
-        <Button type="circleSm">
+        <Button type="circleSm" actionType="toggleDeletePanel">
           <Icon name="trash" />
         </Button>
         <Button type="circleSm">

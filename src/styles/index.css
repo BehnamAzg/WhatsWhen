@@ -98,6 +98,9 @@
   .btn-capsule-cancel {
     @apply bg-blur dark:text-dark-theme-text h-8 w-fit shrink px-4 text-nowrap hover:px-5;
   }
+  .btn-capsule-delete {
+    @apply dark:text-dark-theme-text h-8 w-fit shrink bg-red-500/70 px-4 text-nowrap text-white hover:px-5;
+  }
   .btn-capsule-add {
     @apply bg-primary h-8 w-fit shrink px-4 text-nowrap text-white hover:px-5;
   }
@@ -208,7 +211,7 @@
     @apply flex-center peer-checked:bg-primary peer-checked:hover:bg-background dark:peer-checked:hover:bg-background/25 ring-primary bg-background dark:text-dark-theme-text/50 dark:bg-blur rounded-xl px-2 py-1 text-xs peer-checked:border-transparent peer-checked:text-white hover:ring-2 peer-checked:hover:text-neutral-500 peer-checked:hover:ring-0;
   }
   .color-dot {
-    @apply ring-primary border-light-border dark:border-dark-border flex h-6 w-6 cursor-pointer rounded-full border ring-offset-1 peer-checked:ring-2 hover:ring-2;
+    @apply ring-primary border-light-border dark:border-dark-border flex h-6 w-6 cursor-pointer rounded-full border peer-checked:ring-2 hover:ring-2;
   }
 
   .todo-checkbox-large {
