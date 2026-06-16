@@ -14,112 +14,6 @@ import StateContext from "./StateContext";
 
 /*
 const dates = {
-  "2026-06-13": [
-    {
-      id: "550e8400-e29b-41d4-a716-146655440000",
-      time: "13:00",
-      title: "This is a long title for testing",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      icon: "",
-      color: "#6ee7b766",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: true },
-        { text: "This is todo 2", done: false },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "11:30",
-      title: "This is a long title for testing",
-      icon: "☕",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#93c5fd66",
-      tag: "",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "16:15",
-      title: "This is a long title for testing",
-      icon: "🏃‍♂️",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#ffffff66",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-  ],
-  "2026-06-14": [
-    {
-      id: "550e8400-e29b-41d4-a716-146655440000",
-      time: "08:00",
-      title: "This is a long title for testing",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      icon: "",
-      color: "#6ee7b766",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: true },
-        { text: "This is todo 2", done: false },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "11:48",
-      title: "This is a long title for testing",
-      icon: "☕",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#93c5fd66",
-      tag: "",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "16:15",
-      title: "This is a long title for testing",
-      icon: "🏃‍♂️",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#ffffff66",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-  ],
   "2026-06-15": [
     {
       id: "550e8400-e29b-41d4-a716-146655440000",
@@ -134,40 +28,6 @@ const dates = {
       todos: [
         { text: "This is todo 1", done: true },
         { text: "This is todo 2", done: false },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-246655440000",
-      time: "14:30",
-      title: "This is a long title for testing",
-      icon: "☕",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#93c5fd66",
-      tag: "",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-    {
-      id: "550e8400-e29b-41d4-a716-346655440000",
-      time: "16:15",
-      title: "This is a long title for testing",
-      icon: "🏃‍♂️",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      color: "#ffffff66",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: false },
-        { text: "This is todo 2", done: true },
         { text: "This is todo 3", done: false },
       ],
       pomodoroTimer: [],
@@ -306,39 +166,25 @@ function reducer(state, action) {
         ...state,
         currentTime: new Date(),
       };
-    // case "updateSortedCards":
-    //   return {
-    //     ...state,
-    //     sortedCards: [...(dates[state.viewDate] || [])].sort(
-    //       (a, b) => timeToSeconds(a.time) - timeToSeconds(b.time),
-    //     ),
-    //   };
-    case "updateCurrentTask":
-      return {
-        ...state,
-        currentTask: state.sortedCards.reduce((latestTask, task) => {
-          const taskDateTime = new Date(`${state.viewDate}T${task.time}:00`);
-          if (taskDateTime <= state.currentTime) {
-            return task;
-          }
-          return latestTask;
-        }, null),
-      };
     case "goToCurrentTask": {
-      const index = state.sortedCards.findIndex(
-        (obj) => obj.id === state.currentTask?.id,
+      const currentTask = state.sortedCards.reduce((latestTask, task) => {
+        const taskDateTime = new Date(`${state.viewDate}T${task.time}:00`);
+
+        if (taskDateTime <= state.currentTime) {
+          return task;
+        }
+
+        return latestTask;
+      }, null);
+
+      const activeCard = state.sortedCards.findIndex(
+        (obj) => obj.id === currentTask?.id,
       );
 
-      if (state.viewDate === state.currentDate)
-        return {
-          ...state,
-          activeCard: index,
-        };
-
       return {
         ...state,
-        viewDate: state.currentDate,
-        activeCard: index,
+        currentTask,
+        activeCard,
       };
     }
     case "goToFirstTask":
@@ -623,31 +469,6 @@ export default function StateProvider({ children }) {
     await loadTasks(task.date);
   }
 
-  /*
-  useEffect(() => {
-    async function init() {
-      const tasks = await getTasks(viewDate);
-
-      dispatch({
-        type: "hydrateTasksDates",
-        payload: tasks,
-      });
-    }
-
-    init();
-  }, [viewDate]);
-
-  async function createTask(taskData) {
-    await addTask(taskData);
-    dispatch({ type: "createNewTask", payload: taskData });
-  }
-
-  async function removeTask(id) {
-    await deleteTask(id);
-    dispatch({ type: "deleteTask", payload: id });
-  }
-  */
-
   // ############################################################################
   const currentTaskIndex = sortedCards.findIndex(
     (obj) => obj.id === currentTask?.id,
@@ -666,8 +487,7 @@ export default function StateProvider({ children }) {
 
   // Updating the current task ##################################################
   useEffect(() => {
-    // dispatch({ type: "updateSortedCards" });
-    dispatch({ type: "updateCurrentTask" });
+    dispatch({ type: "goToCurrentTask" });
 
     if (viewDate === currentDate) {
       return dispatch({ type: "goToCurrentTask" });
@@ -676,7 +496,7 @@ export default function StateProvider({ children }) {
     } else {
       return dispatch({ type: "goToLastTask" });
     }
-  }, [viewDate, currentDate]);
+  }, [viewDate, currentDate, sortedCards]);
 
   // Timer for updating the current task ##########################################
   const scheduleNextUpdateRef = useRef(null);
