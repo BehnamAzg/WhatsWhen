@@ -14,6 +14,7 @@ export default function DeletePanel() {
     selectedTask,
     selectedTaskIndex,
     removeTask,
+    viewDate,
   } = useStateContext();
 
   const componentRef = useRef(null);
@@ -62,7 +63,7 @@ export default function DeletePanel() {
       </div>
 
       {selectedTask.recurring === 1 && (
-        <div className="flex-center dark:text-dark-theme-text m-3 justify-start rounded-lg bg-red-500/70 px-4 py-2 text-white font-medium">
+        <div className="flex-center dark:text-dark-theme-text m-3 justify-start rounded-lg bg-red-500/70 px-4 py-2 font-medium text-white">
           This will remove all the occurrences of this "Recurring" task!
         </div>
       )}
@@ -73,7 +74,7 @@ export default function DeletePanel() {
         </Button>
         <Button
           type="delete"
-          onClick={() => removeTask(selectedTask.id, selectedTask.date)}
+          onClick={() => removeTask(selectedTask.id, viewDate)}
         >
           Delete
         </Button>

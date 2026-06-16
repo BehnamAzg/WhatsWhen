@@ -19,9 +19,12 @@ export default function CreateTask() {
     isTodoItemActive,
     newTask,
     createTask,
+    taskMode,
   } = useStateContext();
 
   const componentRef = useRef(null);
+
+  const isTaskEditMode = taskMode === "edit";
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -56,14 +59,16 @@ export default function CreateTask() {
   return (
     <div
       ref={componentRef}
-      className="modal-container enter-transition scrollbar-none "
+      className="modal-container enter-transition scrollbar-none"
       // style={{ background: newTask.color }}
     >
       <h1 className="header-title">
         <Button type="close" actionType="toggleCreateTask">
           <Icon name="x" color="white" />
         </Button>
-        <span className="text-base">Create a New Task</span>
+        <span className="text-base">
+          {isTaskEditMode ? "Edit Task" : "Create a New Task"}
+        </span>
       </h1>
 
       <form className="create-task-form">
@@ -71,7 +76,9 @@ export default function CreateTask() {
           {/* Icon */}
           <Button type="circle" actionType="toggleEmoji">
             {newTask.icon ? (
-              <span className="flex-center w-full h-full text-lg">{newTask.icon}</span>
+              <span className="flex-center h-full w-full text-lg">
+                {newTask.icon}
+              </span>
             ) : (
               <Icon name="smiley" size="22" color="gray" />
             )}
@@ -99,7 +106,7 @@ export default function CreateTask() {
             }
             type="time"
             name="time"
-            className="form-input w-1/2 custom-time"
+            className="form-input custom-time w-1/2"
           />
 
           {/* Reminder */}
@@ -137,13 +144,13 @@ export default function CreateTask() {
             name="description"
             rows="2"
             placeholder="Description"
-            className="bg-blur focus-primary h-auto w-full rounded-2xl border border-light-border dark:border-dark-border px-4 py-2.5 dark:placeholder:text-dark-theme-text/50 dark:text-dark-theme-text"
+            className="bg-blur focus-primary border-light-border dark:border-dark-border dark:placeholder:text-dark-theme-text/50 dark:text-dark-theme-text h-auto w-full rounded-2xl border px-4 py-2.5"
           ></textarea>
         </div>
 
         {/* Todo */}
         {isTodoItemActive && (
-          <ul className="flex-center h-full w-full flex-col gap-1.5 rounded-2xl border border-light-border dark:border-dark-border bg-blur p-2">
+          <ul className="flex-center border-light-border dark:border-dark-border bg-blur h-full w-full flex-col gap-1.5 rounded-2xl border p-2">
             {newTask.todos?.map((todo, index) => (
               <TodoInput todo={todo} index={index} key={index} />
             ))}
@@ -159,7 +166,6 @@ export default function CreateTask() {
             <Icon name="todo" />
             <span>Add To-do Item</span>
           </Button>
-          
         </div>
 
         {/* Pomodoro */}
@@ -170,7 +176,7 @@ export default function CreateTask() {
             Cancel
           </Button>
           <Button type="add" onClick={createTask}>
-            Add Task
+            {isTaskEditMode ? "Edit Task" : "Add Task"}
           </Button>
         </div>
       </form>

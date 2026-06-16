@@ -54,6 +54,7 @@ const initialState = {
   currentTask: "",
   activeCard: 0,
   selectedTask: {},
+  taskMode: "",
   preferences: {
     theme: "light",
   },
@@ -71,7 +72,12 @@ const initialState = {
     repeat: [],
     todos: [],
     isPomodoroTimer: false,
-    pomodoroTimer: {},
+    pomodoroTimer: {
+      cycle: 4,
+      focus: 25,
+      shortBreak: 5,
+      longBreak: 15,
+    },
   },
 };
 
@@ -103,6 +109,9 @@ function reducer(state, action) {
         isCalendarPanelOpen: false,
         isShortcutsPanelOpen: false,
         isDeletePanelOpen: false,
+        taskMode: "create",
+        newTask: initialState.newTask,
+        isPomodoroActive: false,
       };
     case "toggleShortcuts":
       return {
@@ -133,6 +142,29 @@ function reducer(state, action) {
         isCalendarPanelOpen: false,
         isShortcutsPanelOpen: false,
         selectedTask: selection,
+      };
+    }
+    case "toggleEditTaskPanel": {
+      if (state.sortedCards.length <= 0)
+        return {
+          ...state,
+        };
+      let selection = {};
+      if (!state.isCreateTaskPanelOpen) {
+        selection = state.sortedCards[state.activeCard];
+      }
+      return {
+        ...state,
+        isCreateTaskPanelOpen: !state.isCreateTaskPanelOpen,
+        isMenuPanelOpen: false,
+        isCalendarPanelOpen: false,
+        isShortcutsPanelOpen: false,
+        isDeletePanelOpen: false,
+        isPomodoroActive: selection.isPomodoroTimer,
+        isTodoItemActive: selection.todos.length > 0,
+        selectedTask: selection,
+        newTask: selection,
+        taskMode: "edit",
       };
     }
     case "changeTheme":
@@ -460,6 +492,7 @@ export default function StateProvider({ children }) {
       isStoragePersistent,
       isLoading,
       selectedTask,
+      taskMode,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -730,6 +763,7 @@ export default function StateProvider({ children }) {
         isStoragePersistent,
         isLoading,
         selectedTask,
+        taskMode,
       }}
     >
       {children}

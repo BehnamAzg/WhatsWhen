@@ -44,7 +44,7 @@ export default function CardFooter({ index }) {
         <Button type="circleSm" actionType="toggleDeletePanel">
           <Icon name="trash" />
         </Button>
-        <Button type="circleSm">
+        <Button type="circleSm" actionType="toggleEditTaskPanel">
           <Icon name="pencil" />
         </Button>
       </div>

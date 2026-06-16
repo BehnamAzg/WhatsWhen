@@ -3,13 +3,8 @@ import PomodoroTimerInput from "./PomodoroTimerInput";
 import useStateContext from "../context/useStateContext";
 
 export default function PomodoroTimerCreate() {
-  const { dispatch } = useStateContext();
-  const [pomodoroOptions, setPomodoroOption] = useState({
-    cycle: 4,
-    focus: 25,
-    shortBreak: 5,
-    longBreak: 15,
-  });
+  const { dispatch, newTask } = useStateContext();
+  const [pomodoroOptions, setPomodoroOption] = useState(newTask.pomodoroTimer);
 
   function handleInputChange(e) {
     const { name, value } = e.target;
