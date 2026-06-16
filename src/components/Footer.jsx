@@ -15,7 +15,7 @@ export default function Footer() {
   return (
     <footer className="footer-container">
       {showCurrentTaskButton() ? (
-        <Button type="capsule" actionType="goToCurrentTask">
+        <Button type="capsule" actionType="jumpToCurrentTask">
           <span>Current Task</span>
           <Icon name="caret-right" size="12" />
         </Button>

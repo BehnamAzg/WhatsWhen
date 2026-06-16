@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import { formatDate, shiftDate, isDateFuture } from "../utils/date";
-import { formatTime, timeToSeconds, getTimeDifference } from "../utils/time";
+import { getTimeDifference } from "../utils/time";
 import { normalizeTask } from "../utils/task";
 import {
   addTask,
@@ -175,6 +175,29 @@ function reducer(state, action) {
         }
 
         return latestTask;
+      }, null);
+
+      const activeCard = state.sortedCards.findIndex(
+        (obj) => obj.id === currentTask?.id,
+      );
+
+      return {
+        ...state,
+        currentTask,
+        activeCard,
+      };
+    }
+    case "jumpToCurrentTask": {
+      if (state.viewDate !== state.currentDate) {
+        return {
+          ...state,
+          viewDate: state.currentDate,
+        };
+      }
+
+      const currentTask = state.sortedCards.reduce((latestTask, task) => {
+        const taskDateTime = new Date(`${state.viewDate}T${task.time}:00`);
+        return taskDateTime <= state.currentTime ? task : latestTask;
       }, null);
 
       const activeCard = state.sortedCards.findIndex(
@@ -487,8 +510,7 @@ export default function StateProvider({ children }) {
 
   // Updating the current task ##################################################
   useEffect(() => {
-    dispatch({ type: "goToCurrentTask" });
-
+    if (!sortedCards.length) return;
     if (viewDate === currentDate) {
       return dispatch({ type: "goToCurrentTask" });
     } else if (isDateFuture(currentDate, viewDate)) {
@@ -593,7 +615,7 @@ export default function StateProvider({ children }) {
 
         if (event.key === "r") {
           event.preventDefault();
-          dispatch({ type: "goToCurrentTask" });
+          dispatch({ type: "jumpToCurrentTask" });
         }
 
         if (event.key === "/") {
