@@ -112,6 +112,7 @@ function reducer(state, action) {
         taskMode: "create",
         newTask: initialState.newTask,
         isPomodoroActive: false,
+        isTodoItemActive: false,
       };
     case "toggleShortcuts":
       return {
@@ -152,6 +153,11 @@ function reducer(state, action) {
       let selection = {};
       if (!state.isCreateTaskPanelOpen) {
         selection = state.sortedCards[state.activeCard];
+      } else {
+        return {
+          ...state,
+          isCreateTaskPanelOpen: !state.isCreateTaskPanelOpen,
+        };
       }
       return {
         ...state,
@@ -697,6 +703,11 @@ export default function StateProvider({ children }) {
         if (event.key === "r") {
           event.preventDefault();
           dispatch({ type: "jumpToCurrentTask" });
+        }
+
+        if (event.key === "e") {
+          event.preventDefault();
+          dispatch({ type: "toggleEditTaskPanel" });
         }
 
         if (event.key === "/") {
