@@ -16,6 +16,7 @@ export default function Main() {
 
   return (
     <main className="main-container">
+      {isLoading && <Loading />}
       {sortedCards?.length > 0 ? (
         <section className="cards-container">
           {sortedCards.map((card, index) => (
@@ -29,7 +30,7 @@ export default function Main() {
           ))}
         </section>
       ) : (
-        isLoading ? <Loading/> : <NoTasks />
+        <NoTasks />
       )}
     </main>
   );
