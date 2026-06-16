@@ -1,10 +1,11 @@
 import useStateContext from "../context/useStateContext";
 
 import Card from "./Card";
+import Loading from "./Loading";
 import NoTasks from "./NoTasks";
 
 export default function Main() {
-  const { activeCard, sortedCards } = useStateContext();
+  const { activeCard, sortedCards, isLoading } = useStateContext();
 
   const getCardClass = (index) => {
     if (index === activeCard) return "card active";
@@ -28,7 +29,7 @@ export default function Main() {
           ))}
         </section>
       ) : (
-        <NoTasks />
+        isLoading ? <Loading/> : <NoTasks />
       )}
     </main>
   );

@@ -185,6 +185,7 @@ const initialState = {
   isPomodoroActive: false,
   isTodoItemActive: false,
   isStoragePersistent: true,
+  isLoading: false,
   currentTime: new Date(),
   currentDate: formatDate(new Date()),
   viewDate: formatDate(new Date()),
@@ -532,6 +533,11 @@ function reducer(state, action) {
         ...state,
         sortedCards: action.payload,
       };
+    case "toggleIsLoading":
+      return {
+        ...state,
+        isLoading: !state.isLoading,
+      };
     default:
       console.log("Unknown action!");
   }
@@ -555,6 +561,7 @@ export default function StateProvider({ children }) {
       newTask,
       preferences,
       isStoragePersistent,
+      isLoading,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -576,12 +583,18 @@ export default function StateProvider({ children }) {
   */
 
   const loadTasks = useCallback(async (date) => {
-    const tasks = await getTasks(date);
-
-    dispatch({
-      type: "setTasks",
-      payload: tasks,
-    });
+    try {
+      dispatch({ type: "toggleIsLoading" });
+      const tasks = await getTasks(date);
+      dispatch({
+        type: "setTasks",
+        payload: tasks,
+      });
+    } catch (err) {
+      console.error(err.message);
+    } finally {
+      dispatch({ type: "toggleIsLoading" });
+    }
   }, []);
 
   useEffect(() => {
@@ -826,6 +839,7 @@ export default function StateProvider({ children }) {
         newTask,
         preferences,
         isStoragePersistent,
+        isLoading,
       }}
     >
       {children}
