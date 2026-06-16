@@ -147,6 +147,14 @@
     top: 0%;
   }
 
+  .card.prev .current-task-timer-active {
+    @apply bg-background/50 text-black;
+  }
+
+  .card.prev.time {
+    @apply bg-black;
+  }
+
   .card.active {
     top: 16.2%;
     scale: 1;
