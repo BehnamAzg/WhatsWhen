@@ -432,6 +432,13 @@ function reducer(state, action) {
     case "tickClock": {
       const newCurrentTime = new Date();
 
+      if (state.viewDate !== state.currentDate) {
+        return {
+          ...state,
+          currentTime: newCurrentTime,
+        };
+      }
+
       const newCurrentTask = state.sortedCards.reduce((latestTask, task) => {
         const taskDateTime = new Date(`${state.viewDate}T${task.time}:00`);
 
@@ -454,7 +461,7 @@ function reducer(state, action) {
         currentTime: newCurrentTime,
         currentTask: newCurrentTask,
         activeCard: newActiveCard,
-        viewDate: taskChanged ? state.currentDate : state.viewDate,
+        // viewDate: taskChanged ? state.currentDate : state.viewDate,
       };
     }
     case "loadPreferences":
