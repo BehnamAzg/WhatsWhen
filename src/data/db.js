@@ -13,10 +13,7 @@ const dbPromise = openDB(DB_NAME, DB_VERSION, {
       taskStore.createIndex("date", "date");
       taskStore.createIndex("recurring", "recurring");
     }
-
-    if (!db.objectStoreNames.contains("preferences")) {
-      db.createObjectStore("preferences");
-    }
+    if (!db.objectStoreNames.contains("preferences")) db.createObjectStore("preferences");
   },
 });
 
@@ -26,15 +23,11 @@ async function getDB() {
 
 function shouldTaskAppearOnDate(taskObj, date) {
   const viewedDate = new Date(date);
-
   if (taskObj.recurring) {
     const startDate = new Date(taskObj.date);
-
     if (viewedDate < startDate) return false;
-
     return taskObj.repeat.includes(viewedDate.getDay());
   }
-
   return taskObj.date === date;
 }
 
@@ -46,18 +39,16 @@ async function getTasks(date) {
     }
 
     const db = await getDB();
-
     const onceTasks = (await db.getAllFromIndex("tasks", "date", date)).filter(
       (task) => !task.recurring,
     );
-
     const recurringTasks = (
       await db.getAllFromIndex("tasks", "recurring", 1)
     ).filter((task) => shouldTaskAppearOnDate(task, date));
-
     const tasks = [...onceTasks, ...recurringTasks];
 
     return tasks.sort((a, b) => a.time.localeCompare(b.time));
+
   } catch (err) {
     console.error("getTasks:", err.message);
     return [];
@@ -76,13 +67,12 @@ async function addTask(taskObj) {
 async function updateTask(taskObj) {
   try {
     const db = await getDB();
-
     const task = {
       ...taskObj,
       recurring: taskObj.repeat?.length > 0 ? 1 : 0,
     };
-
     await db.put("tasks", task);
+
   } catch (err) {
     console.error("updateTask:", err.message);
   }
@@ -92,6 +82,7 @@ async function deleteTask(taskId) {
   try {
     const db = await getDB();
     await db.delete("tasks", taskId);
+
   } catch (err) {
     console.error("deleteTask:", err.message);
   }
@@ -101,6 +92,7 @@ async function getPreferences() {
   try {
     const db = await getDB();
     return (await db.get("preferences", "app")) ?? { theme: "light" };
+
   } catch (err) {
     console.error("getPreferences:", err.message);
     return { theme: "light" };
@@ -111,19 +103,16 @@ async function setPreferences(newPreferences) {
   try {
     const db = await getDB();
     await db.put("preferences", newPreferences, "app");
+    
   } catch (err) {
     console.error("setPreferences:", err.message);
   }
 }
 
 async function isStoragePersistent() {
-  if (!navigator.storage?.persist) {
-    return false;
-  }
+  if (!navigator.storage?.persist) return false;
   const alreadyPersistent = await navigator.storage.persisted();
-  if (alreadyPersistent) {
-    return true;
-  }
+  if (alreadyPersistent) return true;
   return await navigator.storage.persist();
 }
 
