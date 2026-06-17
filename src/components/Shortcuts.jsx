@@ -66,7 +66,7 @@ export default function Shortcuts() {
             <span className="shortcuts-des">Edit Viewing Task</span>
           </li>
           <li className="shortcuts-li">
-            <kbd className="shortcuts-kbd">DEL</kbd>
+            <kbd className="shortcuts-kbd text-xs">DEL</kbd>
             <span className="shortcuts-des">Delete Viewing Task</span>
           </li>
           <li className="shortcuts-li">
@@ -81,7 +81,7 @@ export default function Shortcuts() {
             <kbd className="shortcuts-kbd text-xs">ESC</kbd>
             <span className="shortcuts-des">Close Panels</span>
           </li>
-          
+
           <li className="shortcuts-li">
             <kbd className="shortcuts-kbd">W</kbd>
             <kbd className="shortcuts-kbd">↑</kbd>

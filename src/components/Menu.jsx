@@ -73,12 +73,16 @@ export default function Menu() {
         <Accordion icon="info" title="About WhatsWhen?">
           <div className="accordian-details">
             <p>
-              WhatsWhen is a "free" and "open-source" daily planner and time
-              manager app.
+              WhatsWhen is a "Free" and "Open-Source" Daily Planner and Task
+              Manager Application.
             </p>
+            <br />
             <p>
               This app is client-side and your data will not be stored on any
               server.{" "}
+            </p>
+
+            <p className="text-right">
               <Link link="https://github.com/BehnamAzg/WhatsWhen">
                 Read More
               </Link>
@@ -87,10 +91,14 @@ export default function Menu() {
         </Accordion>
 
         <Accordion icon="import" title="Import / Export Data">
-          <p className="accordian-details">
-            This feature is NOT available yet in this version.{" "}
-            <Link link="https://github.com/BehnamAzg/WhatsWhen">Read More</Link>
-          </p>
+          <div className="accordian-details">
+            <p>This feature is NOT available yet in this version. </p>
+            <p className="text-right">
+              <Link link="https://github.com/BehnamAzg/WhatsWhen">
+                Read More
+              </Link>
+            </p>
+          </div>
 
           <div className="menu-row-container mb-2">
             <Button type="capsule" width="full" actionType="importData">
