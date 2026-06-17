@@ -461,7 +461,6 @@ function reducer(state, action) {
         currentTime: newCurrentTime,
         currentTask: newCurrentTask,
         activeCard: newActiveCard,
-        // viewDate: taskChanged ? state.currentDate : state.viewDate,
       };
     }
     case "loadPreferences":
@@ -510,7 +509,9 @@ export default function StateProvider({ children }) {
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  /*
+  // Get & Set Preferences #######################################################
+  const didLoadPreferences = useRef(false);
+
   useEffect(() => {
     async function init() {
       const prefs = await getPreferences();
@@ -519,11 +520,22 @@ export default function StateProvider({ children }) {
         type: "loadPreferences",
         payload: prefs,
       });
+
+      didLoadPreferences.current = true;
     }
 
     init();
   }, []);
-  */
+
+  useEffect(() => {
+    if (!didLoadPreferences.current) return;
+
+    async function savePreferences() {
+      await setPreferences(preferences);
+    }
+
+    savePreferences();
+  }, [preferences]);
 
   // Tasks CRUD Operations ######################################################
   const loadTasks = useCallback(async (date) => {
@@ -602,7 +614,7 @@ export default function StateProvider({ children }) {
     }
   }, [viewDate, currentDate, sortedCards]);
 
-  // Timer for updating the current task ##########################################
+  // Timer for updating the current task ########################################
   const scheduleNextUpdateRef = useRef(null);
   const timerRef = useRef(null);
 
@@ -640,7 +652,7 @@ export default function StateProvider({ children }) {
     };
   }, [updateAndSchedule]);
 
-  // Mouse scroll handler #########################################################
+  // Mouse scroll handler ########################################################
   useEffect(() => {
     function handleScroll(e) {
       if (
@@ -673,7 +685,7 @@ export default function StateProvider({ children }) {
     isDeletePanelOpen,
   ]);
 
-  // Keyboard shortcuts handler ###################################################
+  // Keyboard shortcuts handler ##################################################
   useEffect(() => {
     const handleKeyDown = (event) => {
       const isInputOrTextarea =
@@ -753,7 +765,7 @@ export default function StateProvider({ children }) {
     };
   }, [isDeletePanelOpen]);
 
-  // Return body of the provider ##################################################
+  // Return body of the provider #################################################
   return (
     <StateContext.Provider
       value={{
