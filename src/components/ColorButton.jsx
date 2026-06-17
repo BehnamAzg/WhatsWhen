@@ -12,9 +12,9 @@ export default function ColorButton({
       <input
         type="radio"
         name="color"
-        defaultValue={value}
+        value={value}
         className="peer sr-only"
-        defaultChecked={isChecked}
+        checked={isChecked}
         onChange={(e) =>
           dispatch({ type: "updateNewTaskColor", payload: e.target.value })
         }

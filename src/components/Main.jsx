@@ -25,7 +25,7 @@ export default function Main() {
               index={index}
               key={card.id}
               style={getCardClass(index)}
-              color={card.color}
+              color={card.color + "66"}
             />
           ))}
         </section>
