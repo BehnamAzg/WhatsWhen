@@ -23,9 +23,11 @@ async function getDB() {
 
 function shouldTaskAppearOnDate(taskObj, date) {
   const viewedDate = new Date(date);
+  
   if (taskObj.recurring) {
     const startDate = new Date(taskObj.date);
     if (viewedDate < startDate) return false;
+
     return taskObj.repeat.includes(viewedDate.getDay());
   }
   return taskObj.date === date;
@@ -35,16 +37,20 @@ async function getTasks(date) {
   try {
     if (!date || typeof date !== "string") {
       console.error("Invalid date passed to getTasks:", date);
+
       return [];
     }
 
     const db = await getDB();
+
     const onceTasks = (await db.getAllFromIndex("tasks", "date", date)).filter(
       (task) => !task.recurring,
     );
+
     const recurringTasks = (
       await db.getAllFromIndex("tasks", "recurring", 1)
     ).filter((task) => shouldTaskAppearOnDate(task, date));
+
     const tasks = [...onceTasks, ...recurringTasks];
 
     return tasks.sort((a, b) => a.time.localeCompare(b.time));
@@ -91,6 +97,7 @@ async function deleteTask(taskId) {
 async function getPreferences() {
   try {
     const db = await getDB();
+
     return (await db.get("preferences", "app")) ?? { theme: "light" };
 
   } catch (err) {
@@ -111,8 +118,10 @@ async function setPreferences(newPreferences) {
 
 async function isStoragePersistent() {
   if (!navigator.storage?.persist) return false;
+
   const alreadyPersistent = await navigator.storage.persisted();
   if (alreadyPersistent) return true;
+
   return await navigator.storage.persist();
 }
 
