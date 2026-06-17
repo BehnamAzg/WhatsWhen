@@ -5,7 +5,13 @@ import Loading from "./Loading";
 import NoTasks from "./NoTasks";
 
 export default function Main() {
-  const { activeCard, sortedCards, isLoading } = useStateContext();
+  const {
+    activeCard,
+    sortedCards,
+    isLoading,
+    handleTouchStart,
+    handleTouchEnd,
+  } = useStateContext();
 
   const getCardClass = (index) => {
     if (index === activeCard) return "card active";
@@ -15,7 +21,11 @@ export default function Main() {
   };
 
   return (
-    <main className="main-container">
+    <main
+      className="main-container"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {isLoading && <Loading />}
       {sortedCards?.length > 0 ? (
         <section className="cards-container">

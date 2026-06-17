@@ -652,9 +652,9 @@ export default function StateProvider({ children }) {
     };
   }, [updateAndSchedule]);
 
-  // Mouse scroll handler ########################################################
-  useEffect(() => {
-    function handleScroll(e) {
+  // Mouse & Touch scroll handler ################################################
+  const navigateByDelta = useCallback(
+    (deltaY) => {
       if (
         isMenuPanelOpen ||
         isCalendarPanelOpen ||
@@ -664,26 +664,66 @@ export default function StateProvider({ children }) {
       )
         return;
 
-      if (e.deltaY > 50 && activeCard < sortedCards.length - 1) {
+      if (deltaY > 50 && activeCard < sortedCards.length - 1) {
         dispatch({ type: "goToNextCard" });
-      } else if (e.deltaY < 50) {
+      } else if (deltaY < -50 && activeCard > 0) {
         dispatch({ type: "goToPrevCard" });
       }
+    },
+    [
+      activeCard,
+      sortedCards.length,
+      isMenuPanelOpen,
+      isCalendarPanelOpen,
+      isCreateTaskPanelOpen,
+      isShortcutsPanelOpen,
+      isDeletePanelOpen,
+      dispatch,
+    ],
+  );
+
+  useEffect(() => {
+    function handleScroll(e) {
+      navigateByDelta(e.deltaY);
     }
 
     window.addEventListener("wheel", handleScroll);
+
     return () => {
       window.removeEventListener("wheel", handleScroll);
     };
-  }, [
-    activeCard,
-    sortedCards,
-    isMenuPanelOpen,
-    isCalendarPanelOpen,
-    isCreateTaskPanelOpen,
-    isShortcutsPanelOpen,
-    isDeletePanelOpen,
-  ]);
+  }, [navigateByDelta]);
+
+  const touchStart = useRef({ x: 0, y: 0 });
+
+  function handleTouchStart(e) {
+    touchStart.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+  }
+
+  function handleTouchEnd(e) {
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+
+    const deltaX = touchStart.current.x - endX;
+    const deltaY = touchStart.current.y - endY;
+
+    const threshold = 50;
+
+    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+      // Vertical swipe
+      navigateByDelta(deltaY);
+    } else {
+      // Horizontal swipe
+      if (deltaX > threshold) {
+        dispatch({ type: "goToNextDay" }); // swipe left
+      } else if (deltaX < -threshold) {
+        dispatch({ type: "goToPrevDay" }); // swipe right
+      }
+    }
+  }
 
   // Keyboard shortcuts handler ##################################################
   useEffect(() => {
@@ -773,6 +813,8 @@ export default function StateProvider({ children }) {
         createTask,
         removeTask,
         editTask,
+        handleTouchStart,
+        handleTouchEnd,
         currentDate,
         viewDate,
         cardsCount: sortedCards.length,
