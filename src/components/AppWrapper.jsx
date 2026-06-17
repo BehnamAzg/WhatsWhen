@@ -13,7 +13,7 @@ export default function AppWrapper({ children }) {
         type: "setStoragePersistent",
         payload: result,
       });
-      console.log(`The persistance check returned: ${result}`);
+      // console.log(`The persistance check returned: ${result}`);
     }
 
     checkStorage();
