@@ -8,7 +8,7 @@ export default function CardHeader({ card, index }) {
           {card.icon ? card.icon : <Icon name="smiley" size="24" color="fade" />}
         </span>
         <div className="flex h-fit flex-col justify-center">
-          <h1 className="w-52 truncate text-lg text-black " title={card.title}>
+          <h1 className="w-52 truncate text-lg text-black dark:text-dark-theme-text/70" title={card.title}>
             {card.title}
           </h1>
           <time className="text-sm tracking-widest text-primary dark:text-dark-theme-text">{card.time}</time>
