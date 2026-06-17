@@ -19,6 +19,7 @@ export default function CreateTask() {
     isTodoItemActive,
     newTask,
     createTask,
+    editTask,
     taskMode,
   } = useStateContext();
 
@@ -175,7 +176,7 @@ export default function CreateTask() {
           <Button type="cancel" actionType="toggleCreateTask">
             Cancel
           </Button>
-          <Button type="add" onClick={createTask}>
+          <Button type="add" onClick={isTaskEditMode ? editTask : createTask}>
             {isTaskEditMode ? "Edit Task" : "Add Task"}
           </Button>
         </div>

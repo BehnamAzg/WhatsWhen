@@ -79,7 +79,7 @@ async function updateTask(taskObj) {
 
     const task = {
       ...taskObj,
-      recurring: taskObj.repeat?.length > 0,
+      recurring: taskObj.repeat?.length > 0 ? 1 : 0,
     };
 
     await db.put("tasks", task);

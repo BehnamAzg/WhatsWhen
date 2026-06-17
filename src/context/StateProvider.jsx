@@ -556,9 +556,11 @@ export default function StateProvider({ children }) {
     dispatch({ type: "toggleDeletePanel" });
   }
 
-  async function editTask(task) {
+  async function editTask() {
+    const task = normalizeTask(newTask, viewDate);
     await updateTask(task);
-    await loadTasks(task.date);
+    await loadTasks(viewDate);
+    dispatch({ type: "toggleCreateTask" });
   }
 
   // ############################################################################
@@ -751,6 +753,7 @@ export default function StateProvider({ children }) {
         dispatch,
         createTask,
         removeTask,
+        editTask,
         currentDate,
         viewDate,
         cardsCount: sortedCards.length,
