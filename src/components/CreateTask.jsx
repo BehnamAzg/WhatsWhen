@@ -44,7 +44,7 @@ export default function CreateTask() {
         'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
       if (focusableElements.length > 0) {
-        focusableElements[0].focus();
+        focusableElements[2].focus();
       } else {
         // Fallback
         componentRef.current.focus();
