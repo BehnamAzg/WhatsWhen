@@ -2,7 +2,7 @@ import Icon from "./Icon";
 
 export default function CardBody({ card }) {
   return (
-    <ul className="mt-4 mb-3 h-full min-h-0 w-full overflow-y-auto rounded-2xl bg-white/20 px-4 py-2.5 font-medium dark:bg-white/10">
+    <ul className="mt-4 mb-3 h-full min-h-0 w-full overflow-y-auto scrollbar-thin scrollbar-thumb-primary rounded-2xl bg-white/20 px-4 py-2.5 font-medium dark:bg-white/10 ">
       <li className="mb-2 text-sm">
         <p>{card.description}</p>
       </li>

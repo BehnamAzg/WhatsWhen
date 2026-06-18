@@ -224,7 +224,7 @@ body {
     @apply flex-center peer-checked:bg-primary mt-0.5 h-4 w-4 shrink-0 rounded-full border border-black text-transparent transition-all peer-checked:border-none peer-checked:text-white;
   }
   .todo-text {
-    @apply text-sm text-black decoration-black/50 decoration-2 peer-checked:line-through;
+    @apply text-sm text-black decoration-primary/70 decoration-2 peer-checked:line-through;
   }
 
   .shortcuts-li {

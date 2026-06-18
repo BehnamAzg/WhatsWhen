@@ -145,7 +145,7 @@ export default function CreateTask() {
             name="description"
             rows="2"
             placeholder="Description"
-            className="bg-blur focus-primary border-light-border dark:border-dark-border dark:placeholder:text-dark-theme-text/50 dark:text-dark-theme-text h-auto w-full rounded-2xl border px-4 py-2.5"
+            className="bg-blur focus-primary border-light-border dark:border-dark-border dark:placeholder:text-dark-theme-text/50 dark:text-dark-theme-text h-auto w-full scrollbar-none rounded-2xl border px-4 py-2.5"
           ></textarea>
         </div>
 
