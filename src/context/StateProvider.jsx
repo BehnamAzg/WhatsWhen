@@ -559,11 +559,6 @@ export default function StateProvider({ children }) {
 
   async function createTask() {
     const task = normalizeTask(newTask, viewDate);
-
-    // if (sortedCards.some((card) => card.time === task.time))
-    //   return console.log("Task with the same time already exists!");
-
-    console.log("From createTask: ", task);
     await addTask(task);
     await loadTasks(task.date);
     dispatch({ type: "finishCreateTask" });
