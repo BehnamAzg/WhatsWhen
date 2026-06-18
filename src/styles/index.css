@@ -74,6 +74,9 @@ body {
   .btn-capsule {
     @apply bg-blur dark:text-dark-theme-text h-10 w-fit shrink px-4 text-nowrap hover:px-5;
   }
+  .btn-capsule-current {
+    @apply bg-background dark:bg-blur dark:text-dark-theme-text h-10 w-fit shrink px-4 text-nowrap hover:px-5;
+  }
   .btn-capsule-add-task {
     @apply bg-primary dark:text-dark-theme-text h-10 w-fit shrink px-4 text-nowrap text-white hover:px-5;
   }
@@ -165,7 +168,7 @@ body {
   }
 
   .card.active {
-    top: 16.2%;
+    top: 15.8%;
     scale: 1;
   }
 
@@ -185,7 +188,7 @@ body {
   }
 
   .modal-container {
-    @apply font-albert bg-background border-light-border dark:border-dark-border fixed inset-0 z-10 m-auto h-fit max-h-[80%] w-[28%] overflow-y-auto rounded-3xl border px-4 py-3 text-sm font-bold backdrop-blur-md focus:outline-none max-lg:w-[46%] max-sm:w-11/12 dark:bg-black/50;
+    @apply font-albert bg-background border-light-border dark:border-dark-border fixed inset-0 z-10 m-auto h-fit max-h-[80%] w-[28%] overflow-y-auto rounded-3xl border px-4 py-3 text-sm font-bold shadow-lg backdrop-blur-md focus:outline-none max-lg:w-[46%] max-sm:w-11/12 dark:bg-black/50;
   }
   .menu-row-container {
     @apply flex w-full gap-2 font-medium;
@@ -224,7 +227,7 @@ body {
     @apply flex-center peer-checked:bg-primary mt-0.5 h-4 w-4 shrink-0 rounded-full border border-black text-transparent transition-all peer-checked:border-none peer-checked:text-white;
   }
   .todo-text {
-    @apply text-sm text-black decoration-primary/70 decoration-2 peer-checked:line-through;
+    @apply decoration-primary/70 text-sm text-black decoration-2 peer-checked:line-through;
   }
 
   .shortcuts-li {

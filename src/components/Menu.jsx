@@ -58,7 +58,7 @@ export default function Menu() {
         <Button type="close" actionType="toggleMenu">
           <Icon name="x" color="white" />
         </Button>
-        <span className="text-base">WhatsWhen?</span>
+        <span className="text-base">Menu</span>
       </h1>
 
       <div className="menu-row-container mt-4">
@@ -95,7 +95,7 @@ export default function Menu() {
             <p>This feature is NOT available yet in this version. </p>
             <p className="text-right">
               <Link link="https://github.com/BehnamAzg/WhatsWhen">
-                Read More
+                Learn More
               </Link>
             </p>
           </div>
@@ -157,7 +157,7 @@ export default function Menu() {
                   link="https://github.com/BehnamAzg/WhatsWhen"
                   color="white"
                 >
-                  Read More
+                  Learn More
                 </Link>
               </p>
             </Warning>
@@ -173,9 +173,6 @@ export default function Menu() {
 
         <Version />
 
-        {/* <p className="my-1 text-[10px] w-full text-center text-violet-400">
-          &copy; {new Date().getFullYear()} WhatsWhen? - All Rights Reserved.
-        </p> */}
       </div>
     </div>
   );

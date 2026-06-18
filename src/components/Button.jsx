@@ -7,6 +7,7 @@ const types = {
   circleXs: "btn-circle-xs",
   circleMenu: "btn-circle-menu",
   capsule: "btn-capsule",
+  capsuleCurrent: "btn-capsule-current",
   capsuleAddTask: "btn-capsule-add-task",
   popover: "btn-popover",
   navigateRight: "btn-navigate-right",
