@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 
 import useStateContext from "../context/useStateContext";
+import { getRoundedTime } from"../utils/time";
 
 import Button from "./Button";
 import ColorSelection from "./ColorSelection";
@@ -101,7 +102,7 @@ export default function CreateTask() {
         <div className="form-row-container">
           {/* Time */}
           <input
-            value={newTask.time}
+            value={newTask.time || getRoundedTime()}
             onChange={(e) =>
               dispatch({ type: "updateNewTaskTime", payload: e.target.value })
             }

@@ -34,7 +34,7 @@ function getTimeDifference(time1, time2) {
 
 function calculateRemainingSeconds(targetDate) {
   if (!targetDate) return null;
-  
+
   const now = new Date();
   // If target time has passed today, schedule for tomorrow
   if (targetDate <= now) {
@@ -54,9 +54,22 @@ function formatCountdownTime(seconds) {
   return `${String(hrs).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 }
 
+function getRoundedTime() {
+  const now = new Date();
+  const minutes = now.getMinutes();
+  const roundedMinutes = Math.round(minutes / 5) * 5;
+
+  now.setMinutes(roundedMinutes);
+  now.setSeconds(0);
+  now.setMilliseconds(0);
+
+  return now.toTimeString().slice(0, 5);
+}
+
 export {
   formatTime,
   timeToSeconds,
+  getRoundedTime,
   getTimeDifference,
   formatCountdownTime,
   calculateRemainingSeconds,
