@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 import useStateContext from "../context/useStateContext";
-import { getRoundedTime } from"../utils/time";
+import { getRoundedTime } from "../utils/time";
 
 import Button from "./Button";
 import ColorSelection from "./ColorSelection";
@@ -62,7 +62,6 @@ export default function CreateTask() {
     <div
       ref={componentRef}
       className="modal-container enter-transition scrollbar-none"
-      // style={{ background: newTask.color }}
     >
       <h1 className="header-title">
         <Button type="close" actionType="toggleCreateTask">
