@@ -3,6 +3,8 @@ import useStateContext from "../context/useStateContext";
 import Button from "./Button";
 import Icon from "./Icon";
 
+const checked = "todo-checked";
+
 export default function TodoInput({ todo, index }) {
   const { dispatch } = useStateContext();
   const inputRef = useRef(null);
@@ -15,7 +17,11 @@ export default function TodoInput({ todo, index }) {
 
   return (
     <li className="flex-center mx-2 w-full justify-start rounded-xl pr-1 pl-2">
-      <span className="dark:border-dark-theme-text/50 h-3 w-3 shrink-0 rounded-full border border-black/70"></span>
+      <span
+        className={`dark:border-dark-theme-text/50 h-3 w-3 shrink-0 rounded-full border border-black/70 ${todo.done && checked}`}
+      >
+        {todo.done && <Icon name="check-todo" size="12" color="none" />}
+      </span>
       <input
         ref={inputRef}
         autoComplete="off"

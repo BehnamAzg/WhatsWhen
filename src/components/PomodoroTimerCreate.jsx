@@ -25,6 +25,8 @@ export default function PomodoroTimerCreate() {
           1
         </div> */}
 
+        <p>This feature is NOT available yet in this version. </p>
+
         <div className="form-container-pomodoro">
           <span className="w-1/4 text-left">Cycles:</span>
           <PomodoroTimerInput

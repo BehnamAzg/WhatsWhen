@@ -15,7 +15,7 @@ export default function Icon({ name, size = "16", color = "black" }) {
       fill="currentColor"
       className={`${colors[color]}`}
     >
-      <use href={`/icons.svg#icon-${name}`}></use>
+      <use href={`./icons.svg#icon-${name}`}></use>
     </svg>
   );
 }

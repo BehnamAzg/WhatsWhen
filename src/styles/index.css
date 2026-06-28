@@ -229,6 +229,9 @@ body {
   .todo-text {
     @apply decoration-primary/70 text-sm text-black decoration-2 peer-checked:line-through;
   }
+  .todo-checked {
+    @apply bg-primary text-white border-none;
+  }
 
   .shortcuts-li {
     @apply flex-center w-full justify-start gap-1.5;

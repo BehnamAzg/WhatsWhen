@@ -93,11 +93,11 @@ export default function Menu() {
         <Accordion icon="import" title="Import / Export Data">
           <div className="accordian-details">
             <p>This feature is NOT available yet in this version. </p>
-            <p className="text-right">
+            {/* <p className="text-right">
               <Link link="https://github.com/BehnamAzg/WhatsWhen">
                 Learn More
               </Link>
-            </p>
+            </p> */}
           </div>
 
           <div className="menu-row-container mb-2">
