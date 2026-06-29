@@ -728,6 +728,17 @@ export default function StateProvider({ children }) {
         event.target.tagName === "TEXTAREA" ||
         event.target.isContentEditable;
 
+      if (isCreateTaskPanelOpen) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          if (taskMode === "edit") {
+            editTask();
+          } else {
+            createTask();
+          }
+        }
+      }
+
       if (!isInputOrTextarea) {
         if (event.key === "Escape") {
           event.preventDefault();
@@ -798,7 +809,13 @@ export default function StateProvider({ children }) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isDeletePanelOpen]);
+  }, [
+    isDeletePanelOpen,
+    isCreateTaskPanelOpen,
+    editTask,
+    createTask,
+    taskMode,
+  ]);
 
   // Return body of the provider #################################################
   return (
