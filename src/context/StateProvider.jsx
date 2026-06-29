@@ -739,12 +739,12 @@ export default function StateProvider({ children }) {
         }
       }
 
-      if (!isInputOrTextarea) {
-        if (event.key === "Escape") {
-          event.preventDefault();
-          dispatch({ type: "closeAllPanels" });
-        }
+      if (event.key === "Escape") {
+        event.preventDefault();
+        dispatch({ type: "closeAllPanels" });
+      }
 
+      if (!isInputOrTextarea) {
         if (event.key === "Delete") {
           event.preventDefault();
           dispatch({ type: "toggleDeletePanel" });
