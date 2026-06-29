@@ -11,6 +11,7 @@ export default function Main() {
     isLoading,
     handleTouchStart,
     handleTouchEnd,
+    preferences,
   } = useStateContext();
 
   const getCardClass = (index) => {
@@ -35,7 +36,7 @@ export default function Main() {
               index={index}
               key={card.id}
               style={getCardClass(index)}
-              color={card.color + "66"}
+              color={card.color === "#ffffff" && preferences.theme === "dark" ? "#12121266": card.color + "66"}
             />
           ))}
         </section>

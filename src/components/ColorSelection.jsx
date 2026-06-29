@@ -5,8 +5,7 @@ import ColorButton from "./ColorButton";
 import Icon from "./Icon";
 
 export default function ColorSelection() {
-
-  const { dispatch, newTask } = useStateContext();
+  const { dispatch, newTask, preferences } = useStateContext();
   const [customColor, setCustomColor] = useState(newTask.color);
   const colorRef = useRef(null);
 
@@ -35,7 +34,7 @@ export default function ColorSelection() {
     <div className="flex-center border-light-border dark:border-dark-border bg-blur h-10 flex-none justify-between gap-2 rounded-full border px-4">
       <ColorButton
         value="#ffffff"
-        classList="bg-white/50"
+        classList={preferences.theme === "dark" ? "bg-white/5" : "bg-white/50"}
         isChecked={newTask.color === "#ffffff"}
       />
       <ColorButton

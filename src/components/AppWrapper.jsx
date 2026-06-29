@@ -6,7 +6,7 @@ export default function AppWrapper({ children }) {
   const { preferences, dispatch } = useStateContext();
 
   useEffect(() => {
-    // Check Storage Persistance 
+    // Check Storage Persistance
     async function checkStorage() {
       const result = await isStoragePersistent();
       dispatch({
