@@ -27,6 +27,7 @@ export default function CreateTask() {
   const componentRef = useRef(null);
 
   const isTaskEditMode = taskMode === "edit";
+  const isColorNeutral = newTask.color === "#ffffff";
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -62,6 +63,7 @@ export default function CreateTask() {
     <div
       ref={componentRef}
       className="modal-container enter-transition scrollbar-none"
+      style={{background: isColorNeutral ? "" : newTask.color + "66"}}
     >
       <h1 className="header-title">
         <Button type="close" actionType="toggleCreateTask">
