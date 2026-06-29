@@ -9,6 +9,7 @@ import ThemeSelector from "./ThemeSelector";
 import Version from "./Version";
 import Link from "./Link";
 import Warning from "./Warning";
+import { shareApp } from "../utils/share";
 
 export default function Menu() {
   const {
@@ -141,7 +142,7 @@ export default function Menu() {
             <Icon name="heart" size="14" color="primary" />
             <span>Donate</span>
           </Button>
-          <Button type="capsule" width="fit">
+          <Button type="capsule" width="fit" onClick={shareApp}>
             <Icon name="share" />
             <span>share</span>
           </Button>
@@ -172,7 +173,6 @@ export default function Menu() {
         </div>
 
         <Version />
-
       </div>
     </div>
   );
