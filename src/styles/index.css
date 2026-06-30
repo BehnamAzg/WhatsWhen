@@ -224,10 +224,10 @@ body {
   }
 
   .todo-checkbox-large {
-    @apply flex-center peer-checked:bg-primary mt-0.5 h-4 w-4 shrink-0 rounded-full border border-black text-transparent transition-all peer-checked:border-none peer-checked:text-white;
+    @apply flex-center peer-checked:bg-primary mt-0.5 h-4 w-4 shrink-0 rounded-full border text-transparent transition-all peer-checked:border-none peer-checked:text-white;
   }
   .todo-text {
-    @apply decoration-primary/70 text-sm text-black decoration-2 peer-checked:line-through;
+    @apply decoration-primary/70 text-sm decoration-2 peer-checked:line-through;
   }
   .todo-checked {
     @apply bg-primary text-white border-none;

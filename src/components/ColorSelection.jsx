@@ -34,7 +34,7 @@ export default function ColorSelection() {
     <div className="flex-center border-light-border dark:border-dark-border bg-blur h-10 flex-none justify-between gap-2 rounded-full border px-4">
       <ColorButton
         value="#ffffff"
-        classList={preferences.theme === "dark" ? "bg-white/5" : "bg-white/50"}
+        classList={preferences.theme === "dark" ? "bg-black/50" : "bg-white/50"}
         isChecked={newTask.color === "#ffffff"}
       />
       <ColorButton
