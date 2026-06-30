@@ -10,6 +10,8 @@ import Version from "./Version";
 import Link from "./Link";
 import Warning from "./Warning";
 import { shareApp } from "../utils/share";
+import InstallButton from "./InstallButton";
+
 
 export default function Menu() {
   const {
@@ -148,7 +150,7 @@ export default function Menu() {
           </Button>
         </div>
 
-        {!isStoragePersistent && (
+        {isStoragePersistent && (
           <div className="menu-row-container">
             <Warning>
               <p>
@@ -166,10 +168,7 @@ export default function Menu() {
         )}
 
         <div className="menu-row-container">
-          <Button type="install">
-            <Icon name="download" color="white" />
-            <span>Install The App</span>
-          </Button>
+          <InstallButton />
         </div>
 
         <Version />
