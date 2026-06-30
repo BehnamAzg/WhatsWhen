@@ -12,30 +12,6 @@ import {
 } from "../data/db";
 import StateContext from "./StateContext";
 
-/*
-const dates = {
-  "2026-06-15": [
-    {
-      id: "550e8400-e29b-41d4-a716-146655440000",
-      time: "13:00",
-      title: "This is a long title for testing",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      icon: "",
-      color: "#6ee7b766",
-      tag: "Morning Routine",
-      reminder: true,
-      repeat: [1, 3, 6],
-      todos: [
-        { text: "This is todo 1", done: true },
-        { text: "This is todo 2", done: false },
-        { text: "This is todo 3", done: false },
-      ],
-      pomodoroTimer: [],
-    },
-  ],
-};
-*/
-
 const initialState = {
   isMenuPanelOpen: false,
   isCalendarPanelOpen: false,
@@ -536,6 +512,18 @@ export default function StateProvider({ children }) {
 
     savePreferences();
   }, [preferences]);
+
+  // Theme change for theme-color at HTML
+  useEffect(() => {
+    document.documentElement.dataset.theme = preferences.theme;
+
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute(
+        "content",
+        preferences.theme === "dark" ? "#000000" : "#e5e5e5",
+      );
+  }, [preferences.theme]);
 
   // Tasks CRUD Operations ######################################################
   const loadTasks = useCallback(async (date) => {
