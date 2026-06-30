@@ -131,7 +131,6 @@ export default function CreateTask() {
         </div>
 
         <DayRepetition />
-
         <ColorSelection />
 
         <div className="form-row-container">

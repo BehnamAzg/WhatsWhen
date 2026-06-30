@@ -28,7 +28,7 @@ function getTimeDifference(time1, time2) {
   }
   return {
     totalSeconds: 0,
-    formatted: "--:--:--",
+    formatted: "Last Task",
   };
 }
 
