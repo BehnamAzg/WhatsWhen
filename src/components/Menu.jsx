@@ -1,17 +1,15 @@
 import { useEffect, useRef } from "react";
 
 import useStateContext from "../context/useStateContext";
+import { shareApp } from "../utils/share";
 
 import Accordion from "./Accordion";
 import Button from "./Button";
 import Icon from "./Icon";
 import ThemeSelector from "./ThemeSelector";
-import Version from "./Version";
 import Link from "./Link";
 import Warning from "./Warning";
-import { shareApp } from "../utils/share";
 import InstallButton from "./InstallButton";
-
 
 export default function Menu() {
   const {
@@ -150,7 +148,7 @@ export default function Menu() {
           </Button>
         </div>
 
-        {isStoragePersistent && (
+        {!isStoragePersistent && (
           <div className="menu-row-container">
             <Warning>
               <p>
@@ -167,11 +165,49 @@ export default function Menu() {
           </div>
         )}
 
-        <div className="menu-row-container">
+        
           <InstallButton />
+       
+
+        <div className="menu-row-container">
+          {/* License */}
+          <Button
+            type="capsule"
+            width="full"
+            link="https://github.com/BehnamAzg/WhatsWhen"
+          >
+             <Icon name="copyleft" size="12" />
+            <span className="text-[10px] dark:text-dark-theme-text">
+              {new Date().getFullYear()} WhatsWhen?
+            </span>
+          </Button>
+          {/* Privacy Policy */}
+          <Button
+            type="capsule"
+            width="full"
+            link="https://github.com/BehnamAzg/WhatsWhen"
+          >
+            <Icon name="shield-check" size="12" />
+            <span className="dark:text-dark-theme-text text-[10px]">
+              Privacy Policy
+            </span>
+          </Button>
         </div>
 
-        <Version />
+        <div className="menu-row-container mb-2">
+          {/* Version */}
+          <Button
+            type="capsule"
+            width="full"
+            link="https://github.com/BehnamAzg/WhatsWhen"
+          >
+            <Icon name="code" size="12" />
+            <span className="dark:text-dark-theme-text text-[10px]">
+              Version 0.9.0 - BETA
+            </span>
+          </Button>
+        </div>
+
       </div>
     </div>
   );
