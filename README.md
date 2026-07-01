@@ -38,10 +38,10 @@ By default, browsers operate in **"best effort" storage mode**. This is the defa
 In general, data stored in this mode may be cleared by the browser after a period of inactivity or under storage pressure.
 
 > [!WARNING]
-> To make your data more persistent and less likely to be cleared, you should enable **persistent storage**. This can be done simply by installing the web app (PWA).
+> To make your data persistent and less likely to be cleared, you should enable **persistent storage**. This can be done simply by installing the web app.
 
 > [!TIP]
-> You can also manually enable persistence by running this command in the browser console:
+> To also make sure **persistent storage** is activated, you can run this command in the console:
 >
 > ```js
 > await navigator.storage.persist()
