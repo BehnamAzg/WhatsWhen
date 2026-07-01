@@ -14,12 +14,12 @@ A free and open-source daily planner and task manager web application.
 
 ![App Screenshot](public/screenshots/screenshot.png)
 
-## About
+## ℹ️ About
 
 WhatsWhen is built with React. It is a client-side application, meaning your data is never sent to any server.
 Application data is stored locally in your browser using the native IndexedDB API.
 
-## Features
+## ✔️ Features
 
 - Task timer between tasks
 - Task reminders
@@ -29,7 +29,7 @@ Application data is stored locally in your browser using the native IndexedDB AP
 - PWA installable
 - Offline support
 
-## Documentation
+## 📑 Documentation
 
 ### 🔹 Persistent Storage
 
@@ -61,4 +61,4 @@ You will be able to export and import your data as a JSON file.
 [LICENSE]: https://img.shields.io/github/license/BehnamAzg/WhatsWhen?style=flat
 [VERSIOIN]: https://img.shields.io/github/v/release/BehnamAzg/WhatsWhen?style=flat
 [STARS]: https://img.shields.io/github/stars/BehnamAzg/WhatsWhen?style=flat
-[SUPPORT]: https://img.shields.io/badge/%F0%9F%A4%8D%20Support--694cf1?style=flat&labelColor=694cf1
+[SUPPORT]: https://img.shields.io/badge/Support-🤍-694cf1?style=flat&labelColor=694cf1
