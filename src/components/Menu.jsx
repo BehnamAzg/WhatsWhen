@@ -8,16 +8,10 @@ import Button from "./Button";
 import Icon from "./Icon";
 import ThemeSelector from "./ThemeSelector";
 import Link from "./Link";
-import Warning from "./Warning";
 import InstallButton from "./InstallButton";
 
 export default function Menu() {
-  const {
-    dispatch,
-    isMenuPanelOpen,
-    isShortcutsPanelOpen,
-    isStoragePersistent,
-  } = useStateContext();
+  const { dispatch, isMenuPanelOpen, isShortcutsPanelOpen } = useStateContext();
   const componentRef = useRef(null);
 
   useEffect(() => {
@@ -78,13 +72,8 @@ export default function Menu() {
               Manager Application.
             </p>
             <br />
-            <p>
-              This app is client-side and your data will not be stored on any
-              server.{" "}
-            </p>
-
             <p className="text-right">
-              <Link link="https://github.com/BehnamAzg/WhatsWhen">
+              <Link link="https://github.com/BehnamAzg/WhatsWhen?tab=readme-ov-file#about">
                 Read More
               </Link>
             </p>
@@ -94,11 +83,11 @@ export default function Menu() {
         <Accordion icon="import" title="Import / Export Data">
           <div className="accordian-details">
             <p>This feature is NOT available yet in this version. </p>
-            {/* <p className="text-right">
-              <Link link="https://github.com/BehnamAzg/WhatsWhen">
+            <p className="text-right">
+              <Link link="https://github.com/BehnamAzg/WhatsWhen#-export-and-importing-data">
                 Learn More
               </Link>
-            </p> */}
+            </p>
           </div>
 
           <div className="menu-row-container mb-2">
@@ -148,45 +137,22 @@ export default function Menu() {
           </Button>
         </div>
 
-        {!isStoragePersistent && (
-          <div className="menu-row-container">
-            <Warning>
-              <p>
-                "Persistent Storage" is not activated, Install the app to avoid
-                losing your data.{" "}
-                <Link
-                  link="https://github.com/BehnamAzg/WhatsWhen"
-                  color="white"
-                >
-                  Learn More
-                </Link>
-              </p>
-            </Warning>
-          </div>
-        )}
-
-        
-          <InstallButton />
-       
+        <InstallButton />
 
         <div className="menu-row-container">
           {/* License */}
           <Button
             type="capsule"
             width="full"
-            link="https://github.com/BehnamAzg/WhatsWhen"
+            link="https://github.com/BehnamAzg/WhatsWhen?tab=GPL-3.0-1-ov-file"
           >
-             <Icon name="copyleft" size="12" />
-            <span className="text-[10px] dark:text-dark-theme-text">
+            <Icon name="copyleft" size="12" />
+            <span className="dark:text-dark-theme-text text-[10px]">
               {new Date().getFullYear()} WhatsWhen?
             </span>
           </Button>
           {/* Privacy Policy */}
-          <Button
-            type="capsule"
-            width="full"
-            link="https://github.com/BehnamAzg/WhatsWhen"
-          >
+          <Button type="capsule" width="full">
             <Icon name="shield-check" size="12" />
             <span className="dark:text-dark-theme-text text-[10px]">
               Privacy Policy
@@ -207,7 +173,6 @@ export default function Menu() {
             </span>
           </Button>
         </div>
-
       </div>
     </div>
   );
