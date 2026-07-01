@@ -1,15 +1,16 @@
 <div align="center">
-<img src="public/icons/icon.png" alt="WhatsWhen Icon" width="84" align="left">
+<img src="public/icons/icon.png" alt="WhatsWhen Icon" width="64">
 
 # WhatsWhen?
 
 A free and open-source daily planner and task manager web application.
 
-</div>
-
 [![OPEN]](https://whatswhen.netlify.app/)
 
 [![LICENSE]](https://github.com/BehnamAzg/WhatsWhen/blob/main/LICENSE) [![VERSIOIN]](https://github.com/BehnamAzg/WhatsWhen/releases) [![STARS]](https://github.com/BehnamAzg/WhatsWhen) [![SUPPORT]](https://behnamazg.github.io/Donation)
+</div>
+
+
 
 ![App Screenshot](public/screenshots/screenshot.png)
 
@@ -57,7 +58,7 @@ You will be able to export and import your data as a JSON file.
 
 
 [OPEN]: https://img.shields.io/badge/Open_WhatsWhen_➜-694cf1?style=for-the-badge
-[LICENSE]: https://img.shields.io/github/license/BehnamAzg/WhatsWhen?style=flat&labelColor=694cf1
-[VERSIOIN]: https://img.shields.io/github/v/release/BehnamAzg/WhatsWhen?style=flat&labelColor=694cf1
-[STARS]: https://img.shields.io/github/stars/BehnamAzg/WhatsWhen-694cf1?style=flat&labelColor=694cf1
+[LICENSE]: https://img.shields.io/github/license/BehnamAzg/WhatsWhen?style=flat
+[VERSIOIN]: https://img.shields.io/github/v/release/BehnamAzg/WhatsWhen?style=flat
+[STARS]: https://img.shields.io/github/stars/BehnamAzg/WhatsWhen?style=flat
 [SUPPORT]: https://img.shields.io/badge/%F0%9F%A4%8D%20Support--694cf1?style=flat&labelColor=694cf1
