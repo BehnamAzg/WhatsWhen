@@ -1,8 +1,25 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+
+// Shared module state (persists across all hook usages)
+let deferredPrompt = null;
+let installAvailable = false;
+
+const listeners = new Set();
+
+// Register immediately when file is imported
+if (typeof window !== "undefined") {
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+
+    deferredPrompt = e;
+    installAvailable = true;
+
+    listeners.forEach((listener) => listener(true));
+  });
+}
 
 export function usePWAInstall() {
-  const deferredPromptRef = useRef(null);
-  const [canInstall, setCanInstall] = useState(false);
+  const [canInstall, setCanInstall] = useState(installAvailable);
 
   const [isInstalled] = useState(() => {
     return (
@@ -13,34 +30,25 @@ export function usePWAInstall() {
   });
 
   useEffect(() => {
-    const handleBeforeInstallPrompt = (e) => {
-      e.preventDefault();
-      deferredPromptRef.current = e;
-      setCanInstall(true);
-    };
-
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    listeners.add(setCanInstall);
 
     return () => {
-      window.removeEventListener(
-        "beforeinstallprompt",
-        handleBeforeInstallPrompt,
-      );
+      listeners.delete(setCanInstall);
     };
   }, []);
 
   async function install() {
-    const prompt = deferredPromptRef.current;
-    if (!prompt) return;
+    if (!deferredPrompt) return;
 
-    prompt.prompt();
-    const { outcome } = await prompt.userChoice;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
 
     if (outcome === "accepted") {
+      installAvailable = false;
       setCanInstall(false);
     }
 
-    deferredPromptRef.current = null;
+    deferredPrompt = null;
   }
 
   return { canInstall, isInstalled, install };
