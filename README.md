@@ -16,13 +16,17 @@ A free and open-source daily planner and task manager web application.
 
 ## ℹ️ About
 
-WhatsWhen is built with React. It is a client-side application, meaning your data is never sent to any server.
-Application data is stored locally in your browser using the native IndexedDB API.
+WhatsWhen is a daily planner and task manager built with React.
+It's a client-side application, meaning your data is stored locally in your browser using the native IndexedDB API.
+
+This app started as a personal project to create a planner that matched my own needs and workflow. I decided to publish it so others could benefit from it as well.
+
+The key feature of WhatsWhen is its task-based timer system. Each task in your daily schedule includes a timer that automatically shows how much time is left until the next task begins. This helps you stay aware of your schedule, manage your time more effectively, and improve productivity.
 
 ## ✔️ Features
 
-- Task timer between tasks
-- Task reminders
+- Task timer
+- Task reminder
 - Task customization
 - Todo lists
 - Pomodoro timer
